@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" th:href="@{/static/css/Admin/fragments.css}">
+</head>
+
+<body>
+<div class="sidebar">
+  <h2>Admin Panel</h2>
+  <ul>
+    <li><a href="/admin/home">Dashboard</a></li>
+    <li><a href="/admin/doctor-list">Doctor List</a></li>
+    <li><a href="/admin/patient-list">Patient List</a></li>
+    <li><a href="/admin/appointment-details">Appointment Details</a></li>
+    <li><a href="/admin/add-doctor">Add Doctor</a></li>
+    <li><a href="/admin/messages">Messages</a></li>
+    <li><button onclick="logout()">Logout</button></li>
+  </ul>
+</div>
+
+<div class="content">
+
+</div>
+
+<script th:src="@{/static/js/Admin/fragments.js}"></script>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Light background color */
+}
+
+/* Sidebar Styles */
+.sidebar {
+    height: 100vh; /* Full viewport height */
+    width: 220px; /* Sidebar width */
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #333;
+    color: #fff;
+    padding-top: 20px;
+    transition: width 0.3s; /* Smooth width transition */
+    z-index: 1000; /* Ensure sidebar appears above content */
+}
+
+.sidebar h2 {
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.sidebar li {
+    padding: 10px;
+}
+
+.sidebar a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 10px 20px;
+    transition: background-color 0.3s; /* Smooth hover transition */
+}
+
+.sidebar a:hover {
+    background-color: #555; /* Darker background on hover */
+}
+
+/* Logout Button Styles */
+.sidebar li button {
+    color: #ddd;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    display: block;
+    width: 100%;
+    text-align: left;
+    transition: background-color 0.3s;
+}
+
+.sidebar li button:hover {
+    background-color: #2C2E33;
+}

@@ -1,0 +1,104 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 18px;
+    color: #666;
+}
+
+/* Chatbot Styles */
+.chat-container {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.chat-messages {
+    padding: 10px;
+    height: 200px;
+    overflow-y: scroll;
+    background-color: #f4f4f4;
+}
+
+.chat-input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-top: 1px solid #ccc;
+    border-radius: 0;
+}
+
+
+
+/* User Message Style */
+.user-message {
+    color: #007bff;
+}
+
+/* Chatbot Message Style */
+.chatbot-message {
+    color: #28a745;
+}
+
+/* Typing Animation */
+.typing-indicator {
+    font-style: italic;
+    color: #ccc;
+    animation: typing-animation 1s infinite;
+}
+
+@keyframes typing-animation {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
+}
+
+
+.chat-input-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Align items and create space between input and icon */
+    padding-right: 10px; /* Padding for space between icon and input */
+}
+
+.chat-input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-top: 1px solid #ccc;
+    border-radius: 0;
+}
+
+.chat-send-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.chat-send-button img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}

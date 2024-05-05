@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" th:href="@{/static/css/Admin/home.css}">
+</head>
+<body>
+<div th:replace="~{Admin/fragments}"></div>
+<div class="container">
+    <h1 class="dashboard-heading">Dashboard</h1>
+    <div class="dashboard-cards">
+        <div class="card">
+            <h3>Total Users</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <a href="#">View Details</a>
+        </div>
+    </div>
+</div>
+<script th:src="@{/static/js/Admin/home.js}"></script>
+</body>
+</html>

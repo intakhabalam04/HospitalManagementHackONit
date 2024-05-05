@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor List</title>
+    <link rel="stylesheet" th:href="@{/static/css/Admin/doctor-list.css}">
+</head>
+<body>
+<div th:replace="~{Admin/fragments}"></div>
+<div class="content">
+    <h1>Doctor List</h1>
+    <table id="doctorTable">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Specialization</th>
+            <th>Mobile</th>
+            <th>Consultancy Fee</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+<div id="editDoctorModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Edit Doctor</h2>
+        <form id="editDoctorForm">
+            <input type="hidden" id="editDoctorId" name="editDoctorId">
+            <div class="form-group">
+                <label for="editDoctorName">Doctor Name:</label>
+                <input type="text" id="editDoctorName" name="editDoctorName" required>
+            </div>
+            <div class="form-group">
+                <label for="editSpecialization">Specialization:</label>
+                <input type="text" id="editSpecialization" name="editSpecialization" required>
+            </div>
+            <div class="form-group">
+                <label for="editConsultancyFee">Consultancy Fee:</label>
+                <input type="tel" id="editConsultancyFee" name="editConsultancyFee" required>
+            </div>
+            <div class="form-group">
+                <label for="editMobileNumber">Mobile Number:</label>
+                <input type="tel" id="editMobileNumber" name="editMobileNumber" pattern="[0-9]{10}" required>
+            </div>
+            <div class="form-group">
+                <label for="editEmail">Email:</label>
+                <input type="email" id="editEmail" name="editEmail" required>
+            </div>
+            <button type="button" onclick="updateDoctor()">Update Doctor</button>
+        </form>
+    </div>
+</div>
+
+<script th:src="@{/static/js/Admin/doctor-list.js}"></script>
+</body>
+</html>

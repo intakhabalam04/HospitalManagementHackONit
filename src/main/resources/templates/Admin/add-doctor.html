@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Doctor</title>
+  <link rel="stylesheet" th:href="@{/static/css/Admin/add-doctor.css}">
+</head>
+
+<body>
+<div th:replace="~{Admin/fragments}"></div>
+<div class="content">
+  <h1>Add Doctor</h1>
+  <form id="addDoctorForm">
+    <div class="form-group">
+      <label for="doctorName">Doctor Name:</label>
+      <input type="text" id="doctorName" name="doctorName" required>
+    </div>
+    <div class="form-group">
+      <label for="specialization">Specialization:</label>
+      <input type="text" id="specialization" name="specialization" required>
+    </div>
+    <div class="form-group">
+      <label for="consultancyFee">Consultancy Fee:</label>
+      <input type="tel" id="consultancyFee" name="consultancyFee" required>
+    </div>
+    <div class="form-group">
+      <label for="mobileNumber">Mobile Number:</label>
+      <input type="tel" id="mobileNumber" name="mobileNumber" pattern="[0-9]{10}" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+    </div>
+    <button type="submit">Add Doctor</button>
+  </form>
+</div>
+
+<script th:src="@{/static/js/Admin/add-doctor.js}"></script>
+</body>
+
+</html>

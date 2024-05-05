@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Appointment History</title>
+  <link rel="stylesheet" th:href="@{/static/css/Patient/appointment-history.css}">
+</head>
+
+<body>
+<div th:replace="~{Patient/fragments}"></div>
+<div class="content">
+  <h1>Appointment History</h1>
+  <div>
+    <table id="appointmentTable">
+      <thead>
+      <tr>
+        <th>Patient Name</th>
+        <th>Doctor Name</th>
+        <th>Fee</th>
+        <th>Appointment Date</th>
+        <th>Appointment Time</th>
+      </tr>
+      </thead>
+      <tbody id="appointmentList">
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script th:src="@{/static/js/Patient/appointment-history.js}"></script>
+</body>
+
+</html>
