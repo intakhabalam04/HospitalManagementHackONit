@@ -35,7 +35,7 @@ public class PatientController {
     public ModelAndView home() {
         String viewName = "Patient/home";
         Map<String, Object> model = new HashMap<>();
-        model.put("currentuser",securityService.currentUser());
+        model.put("currentuser", securityService.currentUser());
         return new ModelAndView(viewName, model);
     }
 
@@ -47,10 +47,16 @@ public class PatientController {
     @PostMapping("/book-appointment")
     public ResponseEntity<?> bookAppointment1(@RequestBody Appointment appointment) {
         try {
-            appointmentService.bookAppointment(appointment);
-            return ResponseEntity.status(HttpStatus.CREATED).body("{\"success\": true}");
+            Appointment appointment1 = appointmentService.bookAppointment(appointment);
+            Map<String, Object> response = new HashMap<>();
+            response.put("success", true);
+            response.put("appointmentId", appointment1.getId());
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"success\": false, \"message\": \"" + e.getMessage() + "\"}");
+            Map<String, Object> response = new HashMap<>();
+            response.put("success", false);
+            response.put("message", e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
         }
     }
 
@@ -84,7 +90,7 @@ public class PatientController {
     public ModelAndView chatbot() {
         String viewName = "Patient/chatbot";
         Map<String, Object> model = new HashMap<>();
-        model.put("currentuser",securityService.currentUser());
+        model.put("currentuser", securityService.currentUser());
         return new ModelAndView(viewName, model);
     }
 

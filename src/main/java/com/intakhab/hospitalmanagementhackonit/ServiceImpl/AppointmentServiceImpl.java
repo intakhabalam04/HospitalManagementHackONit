@@ -1,6 +1,7 @@
 package com.intakhab.hospitalmanagementhackonit.ServiceImpl;
 
 import com.intakhab.hospitalmanagementhackonit.Dto.AppointmentDto;
+import com.intakhab.hospitalmanagementhackonit.Enum.PaymentStatus;
 import com.intakhab.hospitalmanagementhackonit.Model.Appointment;
 import com.intakhab.hospitalmanagementhackonit.Model.Doctor;
 import com.intakhab.hospitalmanagementhackonit.Model.Email;
@@ -39,7 +40,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public void bookAppointment(Appointment appointment) {
+    public Appointment bookAppointment(Appointment appointment) {
         Appointment appointment1 = new Appointment();
 
         appointment1.setPatientName(appointment.getPatientName());
@@ -48,6 +49,7 @@ public class AppointmentServiceImpl implements AppointmentService {
         appointment1.setGender(appointment.getGender());
         appointment1.setAppointmentDate(appointment.getAppointmentDate());
         appointment1.setAppointmentTime(appointment.getAppointmentTime());
+        appointment1.setPaymentStatus(PaymentStatus.PENDING);
 
         Doctor doctor = doctorService.getDoctor(appointment.getDoctorid());
         appointment1.setDoctor(doctor);
@@ -56,7 +58,7 @@ public class AppointmentServiceImpl implements AppointmentService {
         User currentUser = securityService.currentUser();
         appointment1.setUser(currentUser);
 
-        appointmentRepo.save(appointment1);
+        Appointment save = appointmentRepo.save(appointment1);
 
         List<Appointment> appointments = doctor.getAppointment();
         appointments.add(appointment1);
@@ -73,7 +75,7 @@ public class AppointmentServiceImpl implements AppointmentService {
         email.setSubject("Appointment Confirmation");
 
         StringBuilder message = new StringBuilder();
-        message.append("Dear ").append(appointment1.getPatientName()).append(",\n\n");
+        message.append("Dear ").append(appointment.getPatientName()).append(",\n\n");
         message.append("Your appointment has been successfully booked. Here are the details:\n\n");
         message.append("Doctor: Dr. ").append(doctor.getName()).append("\n");
         message.append("Date: ").append(appointment.getAppointmentDate()).append("\n");
@@ -86,7 +88,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 
         email.setMessage(message.toString());
 
-        emailService.sendEmail(email);
+//        emailService.sendEmail(email);
 
         Email email1 = new Email();
         email1.setReceiver(doctor.getEmail());
@@ -103,7 +105,8 @@ public class AppointmentServiceImpl implements AppointmentService {
         message1.append("Your Hospital Management Team");
 
         email1.setMessage(message1.toString());
-        emailService.sendEmail(email1);
+//        emailService.sendEmail(email1);
+        return save;
     }
 
     @Override
@@ -127,6 +130,7 @@ public class AppointmentServiceImpl implements AppointmentService {
         appointmentDto.setUserId(appointment.getUser().getId());
         appointmentDto.setDoctorName(appointment.getDoctor().getName());
         appointmentDto.setConsultationFee(appointment.getConsultationFee());
+        appointmentDto.setPaymentStatus(appointment.getPaymentStatus().toString());
         return appointmentDto;
     }
 }

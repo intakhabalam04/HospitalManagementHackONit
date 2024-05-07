@@ -42,6 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const age = document.getElementById('age').value;
         const symptoms = document.getElementById('symptoms').value;
         const gender = document.querySelector('input').value;
+        const appointmentFee = consultancyFeeInput.value;
 
         const appointmentDetails = {
             doctorid: selectedDoctorId,
@@ -55,17 +56,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         fetch('/patient/book-appointment', {
-            method: 'POST',
-            headers: {
+            method: 'POST', headers: {
                 'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(appointmentDetails)
+            }, body: JSON.stringify(appointmentDetails)
         })
             .then(response => response.json())
-            .then(data => {
+            .then(async data => {
                 if (data.success) {
-                    alert('Appointment booked successfully');
-                    location.reload()
+                    console.log(data.appointmentId)
+                    try {
+                        const res = await paymentStart(appointmentFee);
+
+                        const paymentUpdateResponse = await fetch('/patient/verify_payment', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                appointmentId: data.appointmentId,
+                                paymentId: res.razorpay_payment_id,
+                                orderId: res.razorpay_order_id,
+                                signature: res.razorpay_signature
+                            })
+                        });
+                        if (!paymentUpdateResponse.ok) {
+                            throw new Error('Failed to update payment status');
+                        }
+                        location.reload();
+                    } catch (error) {
+                        console.error('Error during payment:', error);
+                    }
                 } else {
                     alert('Failed to book appointment');
                 }

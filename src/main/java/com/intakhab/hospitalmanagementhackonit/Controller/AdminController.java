@@ -1,5 +1,6 @@
 package com.intakhab.hospitalmanagementhackonit.Controller;
 
+import com.intakhab.hospitalmanagementhackonit.Dto.DoctorDto;
 import com.intakhab.hospitalmanagementhackonit.Model.Doctor;
 import com.intakhab.hospitalmanagementhackonit.Repository.DoctorRepo;
 import com.intakhab.hospitalmanagementhackonit.Service.AdminService;
@@ -42,7 +43,7 @@ public class AdminController {
 
     @GetMapping("/doctors/{id}")
     public ResponseEntity<?> getDoctor(@PathVariable UUID id) {
-        Doctor doctor = doctorService.getDoctor(id);
+        DoctorDto doctor = doctorService.getDoctorDto(id);
         if (doctor == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"success\": false}");
         } else {

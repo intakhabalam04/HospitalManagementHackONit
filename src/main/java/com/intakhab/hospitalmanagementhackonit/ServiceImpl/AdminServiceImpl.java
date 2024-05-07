@@ -2,6 +2,7 @@ package com.intakhab.hospitalmanagementhackonit.ServiceImpl;
 
 import com.intakhab.hospitalmanagementhackonit.Dto.AppointmentDto;
 import com.intakhab.hospitalmanagementhackonit.Dto.DoctorDto;
+import com.intakhab.hospitalmanagementhackonit.Enum.PaymentStatus;
 import com.intakhab.hospitalmanagementhackonit.Enum.UserAction;
 import com.intakhab.hospitalmanagementhackonit.Enum.UserRole;
 import com.intakhab.hospitalmanagementhackonit.Model.Doctor;
@@ -84,6 +85,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void deleteDoctor(UUID id) {
         try {
+            System.out.println("Doctor Id: " + id);
             doctorRepo.deleteById(id);
         } catch (Exception e) {
             e.printStackTrace();
@@ -116,23 +118,25 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public List<AppointmentDto> getAppointments() {
         try {
-            return appointmentRepo.findAll().stream().map(appointment -> {
-                AppointmentDto appointmentDto = new AppointmentDto();
-                appointmentDto.setId(appointment.getId());
-                appointmentDto.setPatientName(appointment.getPatientName());
-                appointmentDto.setAge(appointment.getAge());
-                appointmentDto.setSymptoms(appointment.getSymptoms());
-                appointmentDto.setGender(appointment.getGender());
-                appointmentDto.setConsultationFee(appointment.getConsultationFee());
-                appointmentDto.setAppointmentDate(appointment.getAppointmentDate());
-                appointmentDto.setAppointmentTime(appointment.getAppointmentTime());
-                appointmentDto.setDoctorId(appointment.getDoctor().getId());
-                appointmentDto.setUserId(appointment.getUser().getId());
-                appointmentDto.setDoctorName(appointment.getDoctor().getName());
-                appointmentDto.setEmail(appointment.getDoctor().getEmail());
-                appointmentDto.setMobile(appointment.getDoctor().getMobile());
-                return appointmentDto;
-            }).toList();
+            return appointmentRepo.findAll().stream()
+                    .filter(appointment -> appointment.getPaymentStatus().equals(PaymentStatus.COMPLETED))
+                    .map(appointment -> {
+                        AppointmentDto appointmentDto = new AppointmentDto();
+                        appointmentDto.setId(appointment.getId());
+                        appointmentDto.setPatientName(appointment.getPatientName());
+                        appointmentDto.setAge(appointment.getAge());
+                        appointmentDto.setSymptoms(appointment.getSymptoms());
+                        appointmentDto.setGender(appointment.getGender());
+                        appointmentDto.setConsultationFee(appointment.getConsultationFee());
+                        appointmentDto.setAppointmentDate(appointment.getAppointmentDate());
+                        appointmentDto.setAppointmentTime(appointment.getAppointmentTime());
+                        appointmentDto.setDoctorId(appointment.getDoctor().getId());
+                        appointmentDto.setUserId(appointment.getUser().getId());
+                        appointmentDto.setDoctorName(appointment.getDoctor().getName());
+                        appointmentDto.setEmail(appointment.getDoctor().getEmail());
+                        appointmentDto.setMobile(appointment.getDoctor().getMobile());
+                        return appointmentDto;
+                    }).toList();
         } catch (Exception e) {
             e.printStackTrace();
             return null;

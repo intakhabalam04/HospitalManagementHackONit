@@ -12,30 +12,33 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     document.head.appendChild(script2);
 });
-const paymentStart = () => {
-
-    const amount = document.getElementById('payment_field').value
-    if(amount==='' || amount===null){
-        Swal.fire({
-            title: "Error!",
-            text: "Please enter a valid amount.",
-            icon: "error"
-        })
-        return;
-    }else if(amount<1){
-        Swal.fire({
-            title: "Error!",
-            text : "Please enter amount greater than equal to 1 .",
-            icon: "error"
-        })
-        return;
-    }
-    createOrder(amount)
+const paymentStart = (amount) => {
+    return new Promise((resolve, reject) => {
+        // existing code...
+        if(amount==='' || amount===null){
+            Swal.fire({
+                title: "Error!",
+                text: "Please enter a valid amount.",
+                icon: "error"
+            })
+            reject('Invalid amount');
+            return;
+        }else if(amount<1){
+            Swal.fire({
+                title: "Error!",
+                text : "Please enter amount greater than equal to 1 .",
+                icon: "error"
+            })
+            reject('Invalid amount');
+            return;
+        }
+        createOrder(amount, resolve, reject);
+    });
 }
 
-function createOrder(amount){
+function createOrder(amount, resolve, reject){
     $.ajax({
-        url: '/user/create_order',
+        url: '/patient/create_order',
         data: JSON.stringify({
             amount: amount, info: 'order_request'
         }),
@@ -44,29 +47,35 @@ function createOrder(amount){
         dataType: 'json',
         success: function (response) {
             if (response.status === 'created') {
-                initializePayment( response);
+                initializePayment(response, resolve, reject);
             }
         }, error: function (error) {
-            console.log(error)
+            console.log(error);
+            reject(error);
         }
     })
 }
-function initializePayment(response) {
+
+function initializePayment(response, resolve, reject) {
     const options = {
         key: 'rzp_test_awxSLkLfejkRl3',
         amount: response.amount,
         currency: 'INR',
-        name: 'Payment tutorial',
-        description: 'Tutorial',
+        name: 'Appointment Fee',
+        description: 'Jansevak Appointment Fee',
         // image: 'https://en.wikipedia.org/wiki/Image#/media/File:Image_created_with_a_mobile_phone.png',
         order_id: response.id,
         handler: function (response) {
             console.log(response)
             Swal.fire({
                 title:'Success',
-                text:'Thanks for donating',
+                text:'Your payment was successful',
                 icon:'success'
+            }).then(() => {
+                resolve(response)
             })
+
+
         }, prefill: {
             name: 'Intakhab Alam',
             email: 'intakhabalam2004@gmail.com',
@@ -92,6 +101,10 @@ function initializePayment(response) {
             text:response.error.description,
             icon: 'error'
         })
+        reject(response.error);
+    })
+    rzp.on('payment.success', function (response) {
+        resolve(response);
     })
     rzp.open()
 }

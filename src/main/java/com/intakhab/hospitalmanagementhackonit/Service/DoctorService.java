@@ -13,4 +13,6 @@ public interface DoctorService {
     List<DoctorDto> getAllDoctors();
 
     List<AppointmentDto> getDoctorsAppointments();
+
+    DoctorDto getDoctorDto(UUID id);
 }

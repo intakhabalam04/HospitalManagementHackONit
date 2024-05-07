@@ -6,7 +6,7 @@ import com.intakhab.hospitalmanagementhackonit.Model.Appointment;
 import java.util.List;
 
 public interface AppointmentService {
-    void bookAppointment(Appointment appointment);
+    Appointment bookAppointment(Appointment appointment);
 
     List<AppointmentDto> getAllAppointments();
 }

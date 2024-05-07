@@ -2,7 +2,6 @@ fetch("/admin/doctors")
     .then(response => response.json())
     .then(data => {
         const doctorTableBody = document.querySelector("#doctorTable tbody");
-
         doctorTableBody.innerHTML = "";
 
         data.forEach(doctor => {
@@ -102,6 +101,7 @@ function updateDoctor() {
 
 
 function deleteDoctor(doctorId) {
+    console.log("Deleting doctor with ID:", doctorId);
     fetch(`/admin/doctors/${doctorId}`, {
         method: "DELETE"
     })

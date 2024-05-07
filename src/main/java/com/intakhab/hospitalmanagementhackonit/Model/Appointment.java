@@ -1,5 +1,6 @@
 package com.intakhab.hospitalmanagementhackonit.Model;
 
+import com.intakhab.hospitalmanagementhackonit.Enum.PaymentStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,9 +26,10 @@ public class Appointment {
     private LocalDate appointmentDate;
     private LocalTime appointmentTime;
     private UUID doctorid;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     private Doctor doctor;
     @ManyToOne
     private User user;
-
+    @Enumerated(EnumType.STRING)
+    private PaymentStatus paymentStatus;
 }

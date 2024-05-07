@@ -2,6 +2,7 @@ package com.intakhab.hospitalmanagementhackonit.ServiceImpl;
 
 import com.intakhab.hospitalmanagementhackonit.Dto.AppointmentDto;
 import com.intakhab.hospitalmanagementhackonit.Dto.DoctorDto;
+import com.intakhab.hospitalmanagementhackonit.Enum.PaymentStatus;
 import com.intakhab.hospitalmanagementhackonit.Model.Appointment;
 import com.intakhab.hospitalmanagementhackonit.Model.Doctor;
 import com.intakhab.hospitalmanagementhackonit.Repository.DoctorRepo;
@@ -38,9 +39,18 @@ public class DoctorServiceImpl implements DoctorService {
     public List<AppointmentDto> getDoctorsAppointments() {
         List<Doctor> doctors = doctorRepo.findAll();
         return doctors.stream()
-                .flatMap(doctor -> doctor.getAppointment().stream()
+                .flatMap(doctor -> doctor.getAppointment().stream().filter(appointment->appointment.getPaymentStatus().toString().equals(PaymentStatus.COMPLETED.toString()))
                         .map(appointment -> convertToDto(appointment, doctor)))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public DoctorDto getDoctorDto(UUID id) {
+        Doctor doctor = doctorRepo.findById(id).orElse(null);
+        if (doctor == null) {
+            return null;
+        }
+        return convertToDto(doctor);
     }
 
     private AppointmentDto convertToDto(Appointment appointment, Doctor doctor) {

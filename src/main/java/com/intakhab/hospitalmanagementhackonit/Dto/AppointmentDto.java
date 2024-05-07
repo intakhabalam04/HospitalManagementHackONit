@@ -25,4 +25,5 @@ public class AppointmentDto {
     private String doctorName;
     private String email;
     private String mobile;
+    private String paymentStatus;
 }
