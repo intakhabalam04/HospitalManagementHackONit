@@ -1,6 +1,11 @@
+body{
+    background: linear-gradient(#5eb062,#34ac86) no-repeat;
+    height: 755px;
 
+}
 .content {
-    margin: 20px;
+    margin-left: 225px;
+    text-align: center;
 }
 
 .patient-list {

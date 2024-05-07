@@ -13,18 +13,28 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #333;
+    background-color: #35a3bb;
     color: #fff;
     padding-top: 20px;
-    transition: width 0.3s; /* Smooth width transition */
     z-index: 1000; /* Ensure sidebar appears above content */
+    overflow-y: auto; /* Enable scrollbar if content exceeds height */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Add shadow for depth */
+    transform: translateX(-100%); /* Hide sidebar off-screen by default */
+    transition: transform 0.3s, width 0.3s; /* Smooth width and transform transition */
+    margin-left: 200px;
+}
+
+.sidebar.show {
+    transform: translateX(0); /* Move sidebar into view */
 }
 
 .sidebar h2 {
     margin: 0;
     padding: 10px;
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 2rem;
+    color: rgb(29, 28, 28);
+    font-family: cursive;
 }
 
 .sidebar ul {
@@ -35,23 +45,29 @@ body {
 
 .sidebar li {
     padding: 10px;
+    transition: background-color 0.3s; /* Smooth hover transition */
 }
+
+/* .sidebar li:hover {
+    background-color: #555;
+
+} */
 
 .sidebar a {
     color: #fff;
     text-decoration: none;
     display: block;
     padding: 10px 20px;
-    transition: background-color 0.3s; /* Smooth hover transition */
 }
+.sidebar a:hover{
+    color:black;
+    background-color: aqua;
 
-.sidebar a:hover {
-    background-color: #555; /* Darker background on hover */
 }
 
 /* Logout Button Styles */
 .sidebar li button {
-    color: #ddd;
+    color: #fff;
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -60,8 +76,29 @@ body {
     width: 100%;
     text-align: left;
     transition: background-color 0.3s;
+    font-size: 17px;
 }
 
 .sidebar li button:hover {
-    background-color: #2C2E33;
+    background-color: aqua;
+    color: black;
+}
+
+/* Sidebar Animation */
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%); /* Start off-screen */
+    }
+    to {
+        transform: translateX(0); /* Move into view */
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0); /* Start in view */
+    }
+    to {
+        transform: translateX(-100%); /* Move off-screen */
+    }
 }

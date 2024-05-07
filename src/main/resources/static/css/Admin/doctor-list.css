@@ -1,4 +1,8 @@
+body{
+    background: linear-gradient(#5eb062,#34ac86) no-repeat;
+    height: 746px;
 
+}
 table {
     width: 100%;
     border-collapse: collapse;
@@ -11,7 +15,9 @@ th, td {
 }
 
 th {
-    background-color: #f0f0f0;
+    background-color: #52e9ca;
+
+
 }
 
 button {
@@ -21,7 +27,7 @@ button {
     background-color: #4CAF50;
     color: white;
     border: none;
-    border-radius: 3px;
+    border-radius: 5px;
     transition: background-color 0.3s;
 }
 
@@ -82,7 +88,7 @@ input[type="email"] {
     width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
-    border-radius: 3px;
+    border-radius: 5px;
 }
 
 button[type="submit"] {
@@ -97,4 +103,14 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
     background-color: #45a049;
+}
+.content {
+    margin-left: 225px;
+    margin-right: 50px;
+}
+
+.content h1{
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }

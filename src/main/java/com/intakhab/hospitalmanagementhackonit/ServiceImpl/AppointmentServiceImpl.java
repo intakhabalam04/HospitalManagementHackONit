@@ -3,12 +3,14 @@ package com.intakhab.hospitalmanagementhackonit.ServiceImpl;
 import com.intakhab.hospitalmanagementhackonit.Dto.AppointmentDto;
 import com.intakhab.hospitalmanagementhackonit.Model.Appointment;
 import com.intakhab.hospitalmanagementhackonit.Model.Doctor;
+import com.intakhab.hospitalmanagementhackonit.Model.Email;
 import com.intakhab.hospitalmanagementhackonit.Model.User;
 import com.intakhab.hospitalmanagementhackonit.Repository.AppointmentRepo;
 import com.intakhab.hospitalmanagementhackonit.Repository.DoctorRepo;
 import com.intakhab.hospitalmanagementhackonit.Repository.UserRepo;
 import com.intakhab.hospitalmanagementhackonit.Service.AppointmentService;
 import com.intakhab.hospitalmanagementhackonit.Service.DoctorService;
+import com.intakhab.hospitalmanagementhackonit.Service.EmailService;
 import com.intakhab.hospitalmanagementhackonit.Service.SecurityService;
 import org.springframework.stereotype.Service;
 
@@ -25,12 +27,15 @@ public class AppointmentServiceImpl implements AppointmentService {
     private final UserRepo userRepo;
     private final SecurityService securityService;
 
-    public AppointmentServiceImpl(DoctorService doctorService, AppointmentRepo appointmentRepo, DoctorRepo doctorRepo, UserRepo userRepo, SecurityService securityService) {
+    private final EmailService emailService;
+
+    public AppointmentServiceImpl(DoctorService doctorService, AppointmentRepo appointmentRepo, DoctorRepo doctorRepo, UserRepo userRepo, SecurityService securityService, EmailService emailService) {
         this.doctorService = doctorService;
         this.appointmentRepo = appointmentRepo;
         this.doctorRepo = doctorRepo;
         this.userRepo = userRepo;
         this.securityService = securityService;
+        this.emailService = emailService;
     }
 
     @Override
@@ -63,7 +68,42 @@ public class AppointmentServiceImpl implements AppointmentService {
         currentUser.setAppointmentList(userAppointments);
         userRepo.save(currentUser);
 
+        Email email = new Email();
+        email.setReceiver(currentUser.getEmail());
+        email.setSubject("Appointment Confirmation");
 
+        StringBuilder message = new StringBuilder();
+        message.append("Dear ").append(appointment1.getPatientName()).append(",\n\n");
+        message.append("Your appointment has been successfully booked. Here are the details:\n\n");
+        message.append("Doctor: Dr. ").append(doctor.getName()).append("\n");
+        message.append("Date: ").append(appointment.getAppointmentDate()).append("\n");
+        message.append("Time: ").append(appointment.getAppointmentTime()).append("\n");
+        message.append("Consultation Fee: ").append(doctor.getConsultancyFee()).append("\n\n");
+        message.append("Please arrive 10 minutes before your scheduled time. If you need to cancel or reschedule, please contact our office as soon as possible.\n\n");
+        message.append("Thank you for choosing our services.\n\n");
+        message.append("Best Regards,\n");
+        message.append("Your Hospital Management Team");
+
+        email.setMessage(message.toString());
+
+        emailService.sendEmail(email);
+
+        Email email1 = new Email();
+        email1.setReceiver(doctor.getEmail());
+        email1.setSubject("New Appointment");
+        StringBuilder message1 = new StringBuilder();
+        message1.append("Dear Dr. ").append(doctor.getName()).append(",\n\n");
+        message1.append("You have a new appointment scheduled.\n\n");
+        message1.append("Patient Name: ").append(appointment.getPatientName()).append("\n");
+        message1.append("Date: ").append(appointment.getAppointmentDate()).append("\n");
+        message1.append("Time: ").append(appointment.getAppointmentTime()).append("\n");
+        message1.append("Consultation Fee: ").append(doctor.getConsultancyFee()).append("\n\n");
+        message1.append("Please be prepared for the appointment.\n\n");
+        message1.append("Best Regards,\n");
+        message1.append("Your Hospital Management Team");
+
+        email1.setMessage(message1.toString());
+        emailService.sendEmail(email1);
     }
 
     @Override

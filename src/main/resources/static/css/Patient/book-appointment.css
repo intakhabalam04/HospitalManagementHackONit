@@ -3,6 +3,8 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f8f8f8;
+    background: linear-gradient(#5eb062,#34ac86) no-repeat;
+    height: 725px;
 }
 
 .content {
@@ -12,6 +14,13 @@ body {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    background-color: #52e9ca;
+
+}
+
+.content:hover {
+    transform: translateY(-5px);
 }
 
 h1 {
@@ -44,6 +53,17 @@ button {
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+button:focus {
+    border-color: #007bff;
 }
 
 textarea {
@@ -58,15 +78,19 @@ select {
     background-repeat: no-repeat;
 }
 
-button {
+#btn {
     background-color: #007bff;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s;
+    margin-left: 200px;
+    font-size: 18px;
+
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #3db1d5;
+    color: #333;
 }

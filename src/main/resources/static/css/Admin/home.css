@@ -2,6 +2,10 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    transition: background-color 0.3s; /* Add transition for background color */
+    background: linear-gradient(#5eb062,#34ac86) no-repeat;
+    height: 755px;
+
 }
 
 .container {
@@ -10,8 +14,11 @@ body {
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #f9f9f9;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s; /* Add transition for box shadow */
+    background-color: #52e9ca;
+    margin-left: 225px;
+
 }
 
 .dashboard-heading {
@@ -23,17 +30,23 @@ body {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+
 }
 
 .card {
     width: 30%;
     margin-bottom: 20px;
-    background-color: #fff;
+    background-color: #dad6d6;
     border: 1px solid #ddd;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     padding: 20px;
     box-sizing: border-box;
+    transition: transform 0.3s; /* Add transition for transform */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Move card up slightly on hover */
 }
 
 .card h3 {

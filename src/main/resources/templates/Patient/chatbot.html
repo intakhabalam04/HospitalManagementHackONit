@@ -1,31 +1,38 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patient Dashboard</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Chatbot</title>
     <link rel="stylesheet" th:href="@{/static/css/Patient/chatbot.css}">
 </head>
-
 <body>
-<div th:replace="~{Patient/fragments}"></div>
-<div class="content">
-    <h1>Welcome, Patient!</h1>
-    <p>Enter your name and start chatting with the chatbot.</p>
+<div class="chatbot-container">
 
-    <div class="chat-container">
-        <div class="chat-messages" id="chat-messages">
-        </div>
-        <input type="text" class="chat-input" id="user-input" placeholder="Type your message...">
-        <button class="chat-button" onclick="sendMessage()">
-            <img th:src="@{/static/images/send-icon.png}" alt="Send Icon">
-        </button>
+    <div id="header">
+        <a href="#" class="previous round" id="pr" onclick="backButton()">&#8249;</a>
+        <h1>Welcome, <span th:text="${currentuser.name}"></span>!</h1>
+        <p id="im">Enter your name to start:</p>
     </div>
+    <div id="chatbot">
+        <div id="conversation">
+            <div class="chatbot-message" id="chat-messages">
+            </div>
+        </div>
+        <message-container>
+            <input id="user-input" type="text" placeholder="Type your message here">
+            <button id="submit-button" onclick="sendMessage()">
+                <img class="send-icon" th:src="@{/static/images/send-message.png}" alt="">
+            </button>
+        </message-container>
+
+    </div>
+
 </div>
 
 <script th:src="@{/static/js/Patient/chatbot.js}"></script>
 </body>
+
 
 </html>

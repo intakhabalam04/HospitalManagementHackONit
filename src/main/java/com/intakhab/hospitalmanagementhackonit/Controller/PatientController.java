@@ -5,10 +5,14 @@ import com.intakhab.hospitalmanagementhackonit.Model.ChatBot;
 import com.intakhab.hospitalmanagementhackonit.Service.AppointmentService;
 import com.intakhab.hospitalmanagementhackonit.Service.ChatBotService;
 import com.intakhab.hospitalmanagementhackonit.Service.DoctorService;
+import com.intakhab.hospitalmanagementhackonit.Service.SecurityService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/patient")
@@ -18,16 +22,21 @@ public class PatientController {
     private final AppointmentService appointmentService;
 
     private final ChatBotService chatBotService;
+    private final SecurityService securityService;
 
-    public PatientController(DoctorService doctorService, AppointmentService appointmentService, ChatBotService chatBotService) {
+    public PatientController(DoctorService doctorService, AppointmentService appointmentService, ChatBotService chatBotService, SecurityService securityService) {
         this.doctorService = doctorService;
         this.appointmentService = appointmentService;
         this.chatBotService = chatBotService;
+        this.securityService = securityService;
     }
 
     @GetMapping("/home")
     public ModelAndView home() {
-        return new ModelAndView("Patient/home");
+        String viewName = "Patient/home";
+        Map<String, Object> model = new HashMap<>();
+        model.put("currentuser",securityService.currentUser());
+        return new ModelAndView(viewName, model);
     }
 
     @GetMapping("/book-appointment")
@@ -73,7 +82,10 @@ public class PatientController {
 
     @GetMapping("/chatbot")
     public ModelAndView chatbot() {
-        return new ModelAndView("Patient/chatbot");
+        String viewName = "Patient/chatbot";
+        Map<String, Object> model = new HashMap<>();
+        model.put("currentuser",securityService.currentUser());
+        return new ModelAndView(viewName, model);
     }
 
     @PostMapping("/chatbot")

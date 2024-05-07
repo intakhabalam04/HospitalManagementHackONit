@@ -1,5 +1,6 @@
 package com.intakhab.hospitalmanagementhackonit.Service;
 
+import com.intakhab.hospitalmanagementhackonit.Dto.AppointmentDto;
 import com.intakhab.hospitalmanagementhackonit.Dto.DoctorDto;
 import com.intakhab.hospitalmanagementhackonit.Model.Doctor;
 
@@ -10,4 +11,6 @@ public interface DoctorService {
     Doctor getDoctor(UUID id);
 
     List<DoctorDto> getAllDoctors();
+
+    List<AppointmentDto> getDoctorsAppointments();
 }

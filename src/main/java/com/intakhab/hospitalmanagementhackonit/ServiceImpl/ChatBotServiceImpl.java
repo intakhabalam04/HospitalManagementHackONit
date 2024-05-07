@@ -20,6 +20,7 @@ public class ChatBotServiceImpl implements ChatBotService {
             String url = FLASK_SERVER_URL + "/chat";
             String requestPayLoad = "{\"input\": \"" + message + "\"}";
             ChatBotResponse response = restTemplate.postForObject(url, requestPayLoad, ChatBotResponse.class);
+            assert response != null;
             return new ChatBot(message, response.getResponse());
         } catch (Exception e) {
             e.printStackTrace();

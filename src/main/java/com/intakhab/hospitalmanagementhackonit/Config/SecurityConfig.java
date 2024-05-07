@@ -32,10 +32,13 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+        System.out.println(http);
         http.csrf().disable()
                 .authorizeRequests()
+                .requestMatchers("/send_message").permitAll()
                 .requestMatchers("/forgot", "/reset_password","/static/**").permitAll()
                 .requestMatchers("/register", "/home","/checkAvailability").permitAll()
+                .requestMatchers("/Doctor","/about","/contact").permitAll()
                 .requestMatchers("/patient/**").hasRole("PATIENT")
                 .requestMatchers("/doctor/**").hasRole("DOCTOR")
                 .requestMatchers("/admin/**").hasRole("ADMIN")
@@ -54,7 +57,7 @@ public class SecurityConfig {
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login?logout").permitAll();
+                .logoutSuccessUrl("/home").permitAll();
 
         return http.build();
     }

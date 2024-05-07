@@ -1,10 +1,12 @@
 package com.intakhab.hospitalmanagementhackonit.ServiceImpl;
 
+import com.intakhab.hospitalmanagementhackonit.Dto.AppointmentDto;
 import com.intakhab.hospitalmanagementhackonit.Dto.DoctorDto;
 import com.intakhab.hospitalmanagementhackonit.Enum.UserAction;
 import com.intakhab.hospitalmanagementhackonit.Enum.UserRole;
 import com.intakhab.hospitalmanagementhackonit.Model.Doctor;
 import com.intakhab.hospitalmanagementhackonit.Model.User;
+import com.intakhab.hospitalmanagementhackonit.Repository.AppointmentRepo;
 import com.intakhab.hospitalmanagementhackonit.Repository.DoctorRepo;
 import com.intakhab.hospitalmanagementhackonit.Repository.UserRepo;
 import com.intakhab.hospitalmanagementhackonit.Service.AdminService;
@@ -20,11 +22,13 @@ public class AdminServiceImpl implements AdminService {
     private final DoctorRepo doctorRepo;
     private final PasswordEncoder passwordEncoder;
     private final UserRepo userRepo;
+    private final AppointmentRepo appointmentRepo;
 
-    public AdminServiceImpl(DoctorRepo doctorRepo, PasswordEncoder passwordEncoder, UserRepo userRepo) {
+    public AdminServiceImpl(DoctorRepo doctorRepo, PasswordEncoder passwordEncoder, UserRepo userRepo, AppointmentRepo appointmentRepo) {
         this.doctorRepo = doctorRepo;
         this.passwordEncoder = passwordEncoder;
         this.userRepo = userRepo;
+        this.appointmentRepo = appointmentRepo;
     }
 
     @Override
@@ -107,5 +111,31 @@ public class AdminServiceImpl implements AdminService {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public List<AppointmentDto> getAppointments() {
+        try {
+            return appointmentRepo.findAll().stream().map(appointment -> {
+                AppointmentDto appointmentDto = new AppointmentDto();
+                appointmentDto.setId(appointment.getId());
+                appointmentDto.setPatientName(appointment.getPatientName());
+                appointmentDto.setAge(appointment.getAge());
+                appointmentDto.setSymptoms(appointment.getSymptoms());
+                appointmentDto.setGender(appointment.getGender());
+                appointmentDto.setConsultationFee(appointment.getConsultationFee());
+                appointmentDto.setAppointmentDate(appointment.getAppointmentDate());
+                appointmentDto.setAppointmentTime(appointment.getAppointmentTime());
+                appointmentDto.setDoctorId(appointment.getDoctor().getId());
+                appointmentDto.setUserId(appointment.getUser().getId());
+                appointmentDto.setDoctorName(appointment.getDoctor().getName());
+                appointmentDto.setEmail(appointment.getDoctor().getEmail());
+                appointmentDto.setMobile(appointment.getDoctor().getMobile());
+                return appointmentDto;
+            }).toList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

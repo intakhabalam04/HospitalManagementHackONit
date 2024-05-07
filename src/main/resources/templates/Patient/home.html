@@ -11,8 +11,12 @@
 <body>
 <div th:replace="~{Patient/fragments}"></div>
 <div class="content">
-  <h1>Welcome, Patient!</h1>
-  <p>Your content for the dashboard goes here.</p>
+  <h1>Welcome, <span th:text="${currentuser.name}"></span>!</h1>
+</div>
+
+<div class="content">
+  <h2>News and Updates</h2>
+  <p>Stay tuned for the latest news and updates here.</p>
 </div>
 
 <script th:src="@{/static/js/Patient/home.js}"></script>

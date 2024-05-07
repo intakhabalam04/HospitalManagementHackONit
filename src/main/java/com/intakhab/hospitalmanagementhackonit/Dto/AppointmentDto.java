@@ -23,4 +23,6 @@ public class AppointmentDto {
     private UUID doctorId;
     private UUID userId;
     private String doctorName;
+    private String email;
+    private String mobile;
 }

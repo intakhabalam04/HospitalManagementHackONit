@@ -47,7 +47,7 @@ public class AuthServiceImpl implements AuthService {
             user.setUsername(newRegisterdUser.getUsername());
             user.setPassword(passwordEncoder.encode(newRegisterdUser.getPassword()));
             user.setRole(UserRole.PATIENT);
-            user.setAction(UserAction.PENDING);
+            user.setAction(UserAction.APPROVED);
             user.setEmail(newRegisterdUser.getEmail());
             user.setMobile(newRegisterdUser.getMobile());
             user.setRegistrationDate(LocalDate.now());

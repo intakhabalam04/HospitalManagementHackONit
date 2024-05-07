@@ -2,24 +2,66 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s; /* Add transition for background color */
+    background: linear-gradient(#5eb062,#34ac86) no-repeat;
+    height: 725px;
+
 }
 
 .content {
     max-width: 800px;
     margin: 50px auto;
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: #52e9ca;
+
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s; /* Add transition for box shadow */
+
+
 }
 
 h1 {
-    font-size: 36px;
+    font-size: 2.25rem; /* Equivalent to 36px */
     color: #333;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem; /* Equivalent to 20px */
+    transition: color 0.3s; /* Add transition for text color */
 }
 
 p {
-    font-size: 18px;
+    font-size: 1.125rem; /* Equivalent to 18px */
     color: #666;
+    transition: color 0.3s; /* Add transition for text color */
+}
+
+/* Hover effects */
+.content:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Increase box shadow on hover */
+}
+
+h1:hover {
+    color: #007bff; /* Change text color on hover */
+}
+
+p:hover {
+    color: #444; /* Change text color on hover */
+}
+
+.content h2 {
+    font-size: 1.75rem; /* Equivalent to 28px */
+    color: #333;
+    margin-bottom: 1rem; /* Equivalent to 16px */
+    transition: color 0.3s; /* Add transition for text color */
+}
+
+.content p {
+    font-size: 1.125rem; /* Equivalent to 18px */
+    color: #666;
+    transition: color 0.3s; /* Add transition for text color */
+}
+
+/* Hover effects */
+.content h2:hover {
+    color: #007bff; /* Change text color on hover */
 }

@@ -23,3 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
         sendMessageForm.reset();
     });
 });
+
+function backButton() {
+    window.history.back();
+}

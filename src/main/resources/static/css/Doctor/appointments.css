@@ -1,22 +1,44 @@
-
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+
+    transition: background-color 0.3s; /* Add transition for background color */
+    background: linear-gradient(#5eb062,#34ac86) no-repeat;
+    height: 775px;
+
 }
 
 .content {
     padding: 20px;
+     margin-left: 200px;
 }
 
-.appointments-list {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    gap: 20px;
+
+table.appointments-list {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
 }
 
-.appointment {
-    background-color: #f9f9f9;
-    padding: 10px;
-    border-radius: 5px;
+table.appointments-list, th, td {
+    border: 1px solid #ddd;
+}
+
+table.appointments-list th, table.appointments-list td {
+    padding: 12px;
+    text-align: left;
+}
+
+table.appointments-list th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+table.appointments-list tr:hover {
+    background-color: #f5f5f5;
+}
+
+.content h1{
+    text-align: center;
 }

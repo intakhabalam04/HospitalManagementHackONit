@@ -1,12 +1,15 @@
 package com.intakhab.hospitalmanagementhackonit.Controller;
 
+import com.intakhab.hospitalmanagementhackonit.Model.Contact;
 import com.intakhab.hospitalmanagementhackonit.Model.User;
 import com.intakhab.hospitalmanagementhackonit.Service.AuthService;
+import com.intakhab.hospitalmanagementhackonit.Service.ContactService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,32 +33,39 @@ public class AuthController {
     private String successView;
 
     private final AuthService authService;
+    private final ContactService contactService;
 
-    public AuthController(AuthService authService) {
+    public AuthController(AuthService authService, ContactService contactService) {
         this.authService = authService;
+        this.contactService = contactService;
     }
 
     @GetMapping("/register")
     public ModelAndView getRegisterPage() {
         String viewName = registerView;
-        Map<String,Object> model = new HashMap<>();
+        Map<String, Object> model = new HashMap<>();
         model.put("NewUser", new User());
-        return new ModelAndView(viewName,model);
+        return new ModelAndView(viewName, model);
+    }
+
+    @GetMapping("/")
+    public ModelAndView goToHomPage() {
+        return new ModelAndView(new RedirectView("/home"));
     }
 
     @GetMapping("login")
     public ModelAndView getLoginPage() {
         String viewName = loginView;
-        Map<String,Object> model = new HashMap<>();
+        Map<String, Object> model = new HashMap<>();
         model.put("LoginUser", new User());
         model.put("ForgotUser", new User());
 
-        return new ModelAndView(viewName,model);
+        return new ModelAndView(viewName, model);
     }
 
     @PostMapping("/register")
     public ModelAndView registerUser(@ModelAttribute("NewUser") User user) {
-        Map<String ,Object> model = new HashMap<>();
+        Map<String, Object> model = new HashMap<>();
         if (!authService.registerNewUser(user)) {
             return new ModelAndView(registerView, model);
         }
@@ -103,4 +113,37 @@ public class AuthController {
             default -> false;
         };
     }
+
+    @GetMapping("/home")
+    public ModelAndView getHomePage() {
+        return new ModelAndView("homePage");
+    }
+
+    @GetMapping("/about")
+    public ModelAndView getAboutPage() {
+        return new ModelAndView("about");
+    }
+
+    @GetMapping("/contact")
+    public ModelAndView getContactPage() {
+        return new ModelAndView("contact");
+    }
+
+    @GetMapping("/Doctor")
+    public ModelAndView getDoctorPage() {
+        return new ModelAndView("Doctor");
+    }
+
+    @PostMapping("/send_message")
+    public ResponseEntity<?> sendMessage(@RequestBody Contact contact) {
+        try {
+            contactService.sendMessage(contact);
+            return new ResponseEntity<>(new Contact(),HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
+
+
 }

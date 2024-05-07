@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(data => {
                 if (data.success) {
                     alert('Appointment booked successfully');
-                    window.reload();
+                    location.reload()
                 } else {
                     alert('Failed to book appointment');
                 }
@@ -75,6 +75,6 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
 
-        alert(`Appointment booked with doctor ID: ${selectedDoctorId} on ${selectedDate} at ${selectedTime}.`);
+        alert(`Appointment booked on ${selectedDate} at ${selectedTime}.Please wait for 10sec for the page to reload.`);
     });
 });

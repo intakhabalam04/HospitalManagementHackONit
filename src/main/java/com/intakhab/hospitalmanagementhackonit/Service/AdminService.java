@@ -1,6 +1,8 @@
 package com.intakhab.hospitalmanagementhackonit.Service;
 
+import com.intakhab.hospitalmanagementhackonit.Dto.AppointmentDto;
 import com.intakhab.hospitalmanagementhackonit.Dto.DoctorDto;
+import com.intakhab.hospitalmanagementhackonit.Model.Appointment;
 import com.intakhab.hospitalmanagementhackonit.Model.Doctor;
 
 import java.util.List;
@@ -14,4 +16,6 @@ public interface AdminService {
     void deleteDoctor(UUID id);
 
     void updateDoctor(Doctor existingDoctor, Doctor doctor);
+
+    List<AppointmentDto> getAppointments();
 }

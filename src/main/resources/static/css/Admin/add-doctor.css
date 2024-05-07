@@ -1,6 +1,13 @@
-
+body{
+    background: linear-gradient(#5eb062,#34ac86) no-repeat;
+    height: 667px;
+}
 .content {
-    margin: 20px;
+    margin-top: 100px;
+    /* margin: 20px; */
+    margin-left: 500px;
+
+
 }
 
 .form-group {
@@ -10,26 +17,31 @@
 label {
     display: block;
     font-weight: bold;
+    margin-bottom: 15px;
+    font-size: 17px;
 }
 
 input[type="text"],
 input[type="tel"],
 input[type="email"] {
-    width: 100%;
+    width: 50%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-button {
+#adsb {
     padding: 10px 20px;
     background-color: #007bff;
-    color: #fff;
+    color: #050505;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
+    margin-left: 200px;
+    font-size: 17px;
 }
 
-button:hover {
+#adsb:hover {
     background-color: #0056b3;
+    color: rgb(250, 247, 247);
 }

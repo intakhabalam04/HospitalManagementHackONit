@@ -1,74 +1,73 @@
+/* General Styles */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f4f4f4; /* Light background color */
 }
 
+/* Sidebar Styles */
 .sidebar {
-    height: 100%;
-    width: 280px;
+    height: 100vh; /* Full viewport height */
+    width: 220px; /* Sidebar width */
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #1A1C20;
-    overflow-y: auto;
-    z-index: 1000;
-    transition: width 0.3s;
+    background-color: #35a3bb;
+    color: #fff;
+    padding-top: 20px;
+    z-index: 1000; /* Ensure sidebar appears above content */
+    overflow-y: auto; /* Enable scrollbar if content exceeds height */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Add shadow for depth */
+    transform: translateX(-100%); /* Hide sidebar off-screen by default */
+    transition: transform 0.3s, width 0.3s; /* Smooth width and transform transition */
+    margin-left: 200px;
+}
+
+.sidebar.show {
+    transform: translateX(0); /* Move sidebar into view */
 }
 
 .sidebar h2 {
-    color: #fff;
-    padding: 15px;
+    margin: 0;
+    padding: 10px;
     text-align: center;
-    margin-bottom: 30px;
+    font-size: 1.9rem;
+    color: rgb(29, 28, 28);
+    font-family: cursive;
 }
 
 .sidebar ul {
     list-style-type: none;
     padding: 0;
-    margin-bottom: 30px;
+    margin-top: 20px;
 }
 
 .sidebar li {
-    padding: 10px 0;
+    padding: 10px;
+    transition: background-color 0.3s; /* Smooth hover transition */
 }
 
+/* .sidebar li:hover {
+    background-color: #555; 
+    
+} */
+
 .sidebar a {
-    color: #ddd;
+    color: #fff;
     text-decoration: none;
     display: block;
     padding: 10px 20px;
-    transition: 0.3s;
-    border-radius: 5px;
+}
+.sidebar a:hover{
+    color:black;
+    background-color: aqua;
+
 }
 
-.sidebar a:hover {
-    background-color: #2C2E33;
-}
-
-.sidebar a.active {
-    background-color: #3F4045;
-    color: #fff;
-}
-
-.content {
-    margin-left: 280px;
-    padding: 20px;
-    transition: margin-left 0.3s;
-}
-
-@media (max-width: 768px) {
-    .sidebar {
-        width: 0;
-    }
-
-    .content {
-        margin-left: 0;
-    }
-}
-
+/* Logout Button Styles */
 .sidebar li button {
-    color: #ddd;
+    color: #fff;
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -77,8 +76,29 @@ body {
     width: 100%;
     text-align: left;
     transition: background-color 0.3s;
+    font-size: 17px;
 }
 
 .sidebar li button:hover {
-    background-color: #2C2E33;
+    background-color: aqua;
+    color: black;
+}
+
+/* Sidebar Animation */
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%); /* Start off-screen */
+    }
+    to {
+        transform: translateX(0); /* Move into view */
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0); /* Start in view */
+    }
+    to {
+        transform: translateX(-100%); /* Move off-screen */
+    }
 }

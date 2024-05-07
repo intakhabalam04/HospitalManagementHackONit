@@ -1,5 +1,6 @@
 package com.intakhab.hospitalmanagementhackonit.ServiceImpl;
 
+import com.intakhab.hospitalmanagementhackonit.Dto.AppointmentDto;
 import com.intakhab.hospitalmanagementhackonit.Dto.DoctorDto;
 import com.intakhab.hospitalmanagementhackonit.Model.Appointment;
 import com.intakhab.hospitalmanagementhackonit.Model.Doctor;
@@ -31,6 +32,33 @@ public class DoctorServiceImpl implements DoctorService {
         return doctors.stream()
                 .map(this::convertToDto)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<AppointmentDto> getDoctorsAppointments() {
+        List<Doctor> doctors = doctorRepo.findAll();
+        return doctors.stream()
+                .flatMap(doctor -> doctor.getAppointment().stream()
+                        .map(appointment -> convertToDto(appointment, doctor)))
+                .collect(Collectors.toList());
+    }
+
+    private AppointmentDto convertToDto(Appointment appointment, Doctor doctor) {
+        AppointmentDto appointmentDto = new AppointmentDto();
+        appointmentDto.setId(appointment.getId());
+        appointmentDto.setPatientName(appointment.getPatientName());
+        appointmentDto.setAge(appointment.getAge());
+        appointmentDto.setSymptoms(appointment.getSymptoms());
+        appointmentDto.setGender(appointment.getGender());
+        appointmentDto.setConsultationFee(appointment.getConsultationFee());
+        appointmentDto.setAppointmentDate(appointment.getAppointmentDate());
+        appointmentDto.setAppointmentTime(appointment.getAppointmentTime());
+        appointmentDto.setDoctorId(doctor.getId());
+        appointmentDto.setUserId(appointment.getUser().getId());
+        appointmentDto.setDoctorName(doctor.getName());
+        appointmentDto.setEmail(doctor.getEmail());
+        appointmentDto.setMobile(doctor.getMobile());
+        return appointmentDto;
     }
 
     private DoctorDto convertToDto(Doctor doctor) {

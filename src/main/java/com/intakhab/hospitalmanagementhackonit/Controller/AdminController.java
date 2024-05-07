@@ -45,7 +45,7 @@ public class AdminController {
         Doctor doctor = doctorService.getDoctor(id);
         if (doctor == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"success\": false}");
-        }else {
+        } else {
             return ResponseEntity.ok().body(doctor);
         }
     }
@@ -55,8 +55,8 @@ public class AdminController {
         Doctor existingDoctor = doctorService.getDoctor(id);
         if (existingDoctor == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"success\": false}");
-        }else {
-            adminService.updateDoctor(existingDoctor,doctor);
+        } else {
+            adminService.updateDoctor(existingDoctor, doctor);
             return ResponseEntity.ok().body("{\"success\": true}");
         }
     }
@@ -97,12 +97,14 @@ public class AdminController {
     }
 
 
-
-
     @GetMapping("/messages")
     public ModelAndView messages() {
         return new ModelAndView("Admin/messages");
     }
 
+    @GetMapping("/appointments")
+    public ResponseEntity<?> getAppointments() {
+        return ResponseEntity.ok().body(adminService.getAppointments());
+    }
 
 }
