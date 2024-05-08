@@ -1,6 +1,7 @@
 body,
 html {
-    background-color: white;
+    background-color: rgb(175, 241, 219);
+    background-color: #f9f9f9;
     font-family: 'Playfair Display', serif;
     overflow-x: hidden !important;
     margin: 0px !important;
@@ -25,7 +26,7 @@ html {
     justify-content: space-between;
     align-items: center;
     padding: 0 25px 0 25px;
-    background-color: white;
+    background-color: rgb(139 ,209 ,247);
     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.10);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -506,14 +507,11 @@ li span {
 
 
     /*FOOTER*/
-    .footer {
-        padding-bottom: 40px;
-        background-color: #000;
-    }
+  
 }
 .nav h2{
     font-size: 22px;
-    color: #05cbf2;
+    color: #1d05f2;;
     font-family: cursive;
 }
 .landingText h2{
@@ -525,4 +523,16 @@ li span {
 }
 .cardcontent h2{
     text-align: center;
+}
+.footer{
+    padding-bottom: 40px;
+    background-color: #333;
+    color: #fff;
+}
+.footer-links a,.social-links a {
+    /* margin-top: 10px; */
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    margin-top: 10px;
 }
