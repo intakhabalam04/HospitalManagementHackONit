@@ -1,6 +1,7 @@
 body,
 html {
     background-color: rgb(175, 241, 219);
+    background-color: #f9f9f9;
     font-family: 'Playfair Display', serif;
     overflow-x: hidden !important;
     margin: 0px !important;
@@ -506,10 +507,7 @@ li span {
 
 
     /*FOOTER*/
-    .footer {
-        padding-bottom: 40px;
-        background-color: #000;
-    }
+  
 }
 .nav h2{
     font-size: 22px;
@@ -525,4 +523,16 @@ li span {
 }
 .cardcontent h2{
     text-align: center;
+}
+.footer{
+    padding-bottom: 40px;
+    background-color: #333;
+    color: #fff;
+}
+.footer-links a,.social-links a {
+    /* margin-top: 10px; */
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    margin-top: 10px;
 }
