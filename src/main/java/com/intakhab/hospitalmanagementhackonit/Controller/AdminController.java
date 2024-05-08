@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -28,7 +30,11 @@ public class AdminController {
 
     @GetMapping("/home")
     public ModelAndView home() {
-        return new ModelAndView("Admin/home");
+        String viewName = "Admin/home";
+        Map<String, Object> model = new HashMap<>();
+        model.put("doctorCount",10);
+
+        return new ModelAndView(viewName,model);
     }
 
     @GetMapping("/doctor-list")

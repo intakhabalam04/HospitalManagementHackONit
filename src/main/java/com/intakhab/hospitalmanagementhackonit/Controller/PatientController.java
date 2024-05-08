@@ -2,10 +2,7 @@ package com.intakhab.hospitalmanagementhackonit.Controller;
 
 import com.intakhab.hospitalmanagementhackonit.Model.Appointment;
 import com.intakhab.hospitalmanagementhackonit.Model.ChatBot;
-import com.intakhab.hospitalmanagementhackonit.Service.AppointmentService;
-import com.intakhab.hospitalmanagementhackonit.Service.ChatBotService;
-import com.intakhab.hospitalmanagementhackonit.Service.DoctorService;
-import com.intakhab.hospitalmanagementhackonit.Service.SecurityService;
+import com.intakhab.hospitalmanagementhackonit.Service.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,13 +15,15 @@ import java.util.Map;
 @RequestMapping("/patient")
 public class PatientController {
 
+    private final UserService userService;
     private final DoctorService doctorService;
     private final AppointmentService appointmentService;
 
     private final ChatBotService chatBotService;
     private final SecurityService securityService;
 
-    public PatientController(DoctorService doctorService, AppointmentService appointmentService, ChatBotService chatBotService, SecurityService securityService) {
+    public PatientController(UserService userService, DoctorService doctorService, AppointmentService appointmentService, ChatBotService chatBotService, SecurityService securityService) {
+        this.userService = userService;
         this.doctorService = doctorService;
         this.appointmentService = appointmentService;
         this.chatBotService = chatBotService;
@@ -101,5 +100,17 @@ public class PatientController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error: " + e.getMessage());
         }
+    }
+
+    @GetMapping("/videocall")
+    public ModelAndView videoCall(@RequestParam String roomID, @RequestParam String appointmentid) {
+        boolean appointmentStatus = userService.updateAppointmentStatus(appointmentid,roomID);
+        System.out.println(appointmentStatus);
+        if (!appointmentStatus) {
+            return new ModelAndView("redirect:/patient/appointment-history");
+        }
+        Map<String, Object> model = new HashMap<>();
+        model.put("pName", securityService.currentUser().getName());
+        return new ModelAndView("videocall", model);
     }
 }

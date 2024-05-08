@@ -1,6 +1,7 @@
 package com.intakhab.hospitalmanagementhackonit.ServiceImpl;
 
 import com.intakhab.hospitalmanagementhackonit.Dto.AppointmentDto;
+import com.intakhab.hospitalmanagementhackonit.Enum.AppointmentStatus;
 import com.intakhab.hospitalmanagementhackonit.Enum.PaymentStatus;
 import com.intakhab.hospitalmanagementhackonit.Model.Appointment;
 import com.intakhab.hospitalmanagementhackonit.Model.Doctor;
@@ -50,10 +51,12 @@ public class AppointmentServiceImpl implements AppointmentService {
         appointment1.setAppointmentDate(appointment.getAppointmentDate());
         appointment1.setAppointmentTime(appointment.getAppointmentTime());
         appointment1.setPaymentStatus(PaymentStatus.PENDING);
+        appointment1.setAppointmentStatus(AppointmentStatus.PAYMENT_PENDING);
 
         Doctor doctor = doctorService.getDoctor(appointment.getDoctorid());
         appointment1.setDoctor(doctor);
         appointment1.setConsultationFee(doctor.getConsultancyFee());
+        appointment1.setRoomID(doctor.getRoomID());
 
         User currentUser = securityService.currentUser();
         appointment1.setUser(currentUser);
@@ -131,6 +134,8 @@ public class AppointmentServiceImpl implements AppointmentService {
         appointmentDto.setDoctorName(appointment.getDoctor().getName());
         appointmentDto.setConsultationFee(appointment.getConsultationFee());
         appointmentDto.setPaymentStatus(appointment.getPaymentStatus().toString());
+        appointmentDto.setAppointmentStatus(appointment.getAppointmentStatus().toString());
+        appointmentDto.setRoomID(appointment.getRoomID());
         return appointmentDto;
     }
 }

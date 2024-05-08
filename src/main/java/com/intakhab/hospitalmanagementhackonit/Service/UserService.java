@@ -8,4 +8,6 @@ public interface UserService {
     User findByMobile(String phoneNumber);
 
     User findByEmail(String emailId);
+
+    boolean updateAppointmentStatus(String appointmentid, String roomID);
 }

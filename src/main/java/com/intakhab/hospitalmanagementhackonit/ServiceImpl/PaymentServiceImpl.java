@@ -1,5 +1,6 @@
 package com.intakhab.hospitalmanagementhackonit.ServiceImpl;
 
+import com.intakhab.hospitalmanagementhackonit.Enum.AppointmentStatus;
 import com.intakhab.hospitalmanagementhackonit.Enum.PaymentStatus;
 import com.intakhab.hospitalmanagementhackonit.Model.Appointment;
 import com.intakhab.hospitalmanagementhackonit.Model.Doctor;
@@ -33,6 +34,7 @@ public class PaymentServiceImpl implements PaymentService {
     public void updatePaymentStatus(UUID patientId) {
         Appointment appointment = appointmentRepo.findById(patientId).orElseThrow();
         appointment.setPaymentStatus(PaymentStatus.COMPLETED);
+        appointment.setAppointmentStatus(AppointmentStatus.PENDING);
         appointmentRepo.save(appointment);
 
 

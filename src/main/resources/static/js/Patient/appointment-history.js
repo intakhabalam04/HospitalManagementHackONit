@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
 
     fetch('/patient/all-appointments')
         .then(response => response.json())
@@ -15,28 +15,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 // Check if payment status is "Pending"
                 if (appointment.paymentStatus.toString() === 'PENDING') {
-                    console.log('1')
-                    // Create a new cell
                     const cell = row.insertCell();
-                    // Create a new link element
                     const link = document.createElement('a');
-                    // Set the href attribute to '#'
                     link.href = '#';
-                    // Set the text content to 'Pending'
                     link.textContent = 'PENDING';
-                    // Add an event listener to the link
                     link.addEventListener('click', async function (event) {
-                        // Prevent the default action
                         event.preventDefault();
-                        // Call the paymentStart function
-                        try{
+                        try {
                             const res = await paymentStart(appointment.consultationFee);
-                            const paymentUpdateResponse =await fetch('/patient/verify_payment', {
-                                method: 'POST',
-                                headers: {
+                            const paymentUpdateResponse = await fetch('/patient/verify_payment', {
+                                method: 'POST', headers: {
                                     'Content-Type': 'application/json'
-                                },
-                                body: JSON.stringify({
+                                }, body: JSON.stringify({
                                     appointmentId: appointment.id,
                                     paymentId: res.razorpay_payment_id,
                                     orderId: res.razorpay_order_id,
@@ -58,6 +48,23 @@ document.addEventListener("DOMContentLoaded", function() {
                 } else {
                     // If payment status is not "Pending", just add the status text
                     row.insertCell().textContent = appointment.paymentStatus;
+                }
+
+                if (appointment.appointmentStatus.toString() === 'PENDING') {
+                    // Create a new cell
+                    const cell = row.insertCell();
+                    // Create a new link element
+                    const link = document.createElement('a');
+                    // Set the href attribute to the video call URL
+                    link.href = `http://localhost:2024/patient/videocall?roomID=${appointment.roomID}&appointmentid=${appointment.id}`;
+                    // Set the text content to 'Video Call'
+                    link.textContent = 'Meet Now';
+                    link.title = 'Click here to start a video call'
+                    link.target = '_blank';
+                    // Add the link to the cell
+                    cell.appendChild(link);
+                }else{
+                    row.insertCell().textContent = appointment.appointmentStatus;
                 }
             });
         });

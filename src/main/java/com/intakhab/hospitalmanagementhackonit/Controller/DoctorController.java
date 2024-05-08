@@ -5,8 +5,10 @@ import com.intakhab.hospitalmanagementhackonit.Service.SecurityService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,6 +41,16 @@ public class DoctorController {
     @GetMapping("/doctors-appointments")
     public ResponseEntity<?> getDoctorsAppointments(){
         return ResponseEntity.ok(doctorService.getDoctorsAppointments());
+    }
+
+    @GetMapping("/videocall")
+    public ModelAndView videocall(@RequestParam String roomID){
+        System.out.println("1");
+        String viewName = "videocall";
+        System.out.println("2");
+        Map<String, Object> model = new HashMap<>();
+        System.out.println("3");
+        return new ModelAndView(viewName);
     }
 
 }

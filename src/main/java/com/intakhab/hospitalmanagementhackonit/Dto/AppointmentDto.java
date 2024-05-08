@@ -19,11 +19,13 @@ public class AppointmentDto {
     private String gender;
     private int consultationFee;
     private LocalDate appointmentDate;
-    private LocalTime appointmentTime;
+    private String appointmentTime;
     private UUID doctorId;
     private UUID userId;
     private String doctorName;
     private String email;
     private String mobile;
     private String paymentStatus;
+    private String appointmentStatus;
+    private String roomID;
 }

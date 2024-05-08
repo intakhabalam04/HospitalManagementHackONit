@@ -21,7 +21,7 @@ public class Doctor {
     private String specialization;
     private String mobile;
     private int consultancyFee;
-
+    private String roomID;
     @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;

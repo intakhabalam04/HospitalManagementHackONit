@@ -19,4 +19,5 @@ public class DoctorDto {
     private int consultancyFee;
     private UUID userId;
     private List<UUID> appointmentIds;
+    private String roomID;
 }
