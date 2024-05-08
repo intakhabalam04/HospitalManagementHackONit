@@ -5,7 +5,8 @@ body {
 
     transition: background-color 0.3s; /* Add transition for background color */
     background: linear-gradient(#5eb062,#34ac86) no-repeat;
-    height: 775px;
+    height: 100vh; 
+    transition: background-color 0.3s;
 
 }
 
