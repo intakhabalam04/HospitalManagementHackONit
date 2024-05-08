@@ -10,7 +10,8 @@
     font-family: 'Playfair Display', serif;
     font-size: 16px;
     line-height: 1.6;
-    background-color: #f9f9f9;
+    background-color: rgb(175, 241, 219);
+    
   }
   
   .container {
@@ -100,7 +101,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 25px 0 25px;
-    background-color: white;
+    background-color: rgb(139 ,209 ,247);
     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.10);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -180,7 +181,7 @@
 }
 .nav h2{
     font-size: 22px;
-    color: #05cbf2;
+    color: #1d05f2;;
     font-family: cursive;
 }
 .nav .links .don {
