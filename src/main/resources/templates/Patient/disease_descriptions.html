@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Descriptions</title>
+    <link rel="stylesheet" th:href="@{/static/css/Patient/disease_descriptions.css}">
+</head>
+
+<body>
+<script>
+    function toggleDescription(id) {
+        var x = document.getElementById(id);
+        if (x.style.display === 'none') {
+            x.style.display = 'block';
+        } else {
+            x.style.display = 'none';
+        }
+    }
+</script>
+<h1 style='text-align: center; color: #333;'>Disease Descriptions</h1>
+<div class='disease-box' onclick='toggleDescription("desc_0")' style='background-color: #f5f5f5;'>
+    <h2 class='disease-title'> Influenza</h2>
+    <p id='desc_0' class='disease-description'>The Influenza is also the contagious illness that spreads through the
+        respiratory droplets. This could also happen when the infected person sneezes, or talks or coughs, or sneezes.
+        As a result, it could spreads rapidly in the crowded places such as the offices, the schools, the market, any
+        public transportation with other areas in high population density. Although in the influenza cases in the India
+        can also occur throughout a year, the flu virus would typically spread during winter months, in the month of
+        November to February, or after a monsoon season.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_1")' style='background-color: #e0e0e0;'>
+    <h2 class='disease-title'>Acidity</h2>
+    <p id='desc_1' class='disease-description'>Our stomach produces gastric acids to help digestion. However, their
+        corrosive effects are neutralised by producing natural bicarbonate and prostaglandins secreted in the mucous
+        lining. When the production of these chemicals is interrupted, it leads to damaged stomach lining, which causes
+        acidity. GERD occurs more commonly in people who are:
+        Overweight or obese because of high pressure on the abdomen
+        Pregnant because of the high abdominal pressure
+        Taking certain medications, including certain asthma medications, Ca channel blockers, antihistamines,
+        sedatives, and antidepressants
+        Smoking and being exposed to second-hand smoke
+        Consumption of excess tea or coffee
+        Complications such as GERD are treated with a combination of lifestyle modifications and pharmacological therapy
+        such as proton pump inhibitors and H2 receptor antagonist. Surgery is required in severe cases where
+        pharmacological therapy does not show any positive response.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_2")' style='background-color: #f5f5f5;'>
+    <h2 class='disease-title'>Acute leukemia</h2>
+    <p id='desc_2' class='disease-description'>This is the most common cause of cancer in children and teens which
+        affects the white blood cells. Abnormal white blood cells from the bone marrow travel through the blood stream
+        and cover up the healthy cells. This increases the chance of infection and susceptibility to other diseases due
+        to a weak immune system. Though the exact cause of childhood leukemia is not known, but one may have various
+        risk factors. Children with siblings with leukemia stand a higher chance to get one, if your child is being
+        treated with immuno-suppressants or have been exposed to high radiation it contributes being as a risk factor.
+        One cannot ignore the genetic risk factors too, which you can hardly defy. Excessive fatigue, infection and high
+        fever, recurrent cough should make you alert and get your baby checked.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_3")' style='background-color: #e0e0e0;'>
+    <h2 class='disease-title'>Appendicitis</h2>
+    <p id='desc_3' class='disease-description'>Appendicitis the inflammation and swelling of the appendix, a small tube
+        like structure protruding from the large intestine. It occurs when the appendix gets blocked with stool or
+        foreign particles passing through the intestine. Blockage may cause infection which results in painful swelling
+        of the appendix. The initial symptom of appendicitis is pain in the lower abdominal region on the right hand
+        side. The pain is sharp and intense. It originates from the navel (middle of the abdomen) and gradually starts
+        worsening over 6-24 hours. Appendectomy remains the only curative treatment of appendicitis but antibiotics do
+        play an important role in the treatment of patients with this acute appendicitis. The duration of the
+        administration of antibiotics is closely related to the stage of appendicitis at the time of the diagnosis. If
+        diagnosis of appendicitis takes a longer time, the pain may become severe as the infection spreads. If not
+        treated at the right time, the appendix may burst to release the pus to surrounding areas, which can be
+        life-threatening. Sometimes, a tender mass of pus (abscess) may form around the burst appendix.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_4")' style='background-color: #f5f5f5;'>
+    <h2 class='disease-title'>Asthma</h2>
+    <p id='desc_4' class='disease-description'>Asthma is a lung disorder that affects your airways and causes difficulty
+        in breathing. It is triggered by inflammation of the air passages. The inflammation causes the air passages to
+        become narrow. The narrowness is indicated by the noisy and whistling breathing, shortness of breath, chest
+        tightness and coughing.
+
+        There can be several triggers or factors that can aggravate the symptoms of asthma. Common factors include dust,
+        mites, pollen, smoke, pollution, weather change, cold & cough and respiratory infections. Asthma can be broadly
+        classified into two categories – specific and non-specific. Specific asthma hits you when you breathe in
+        allergens or irritants, while non-specific asthma is caused by exercise, weather conditions or genetic
+        predisposition. The exact cause of asthma is not known, but it is seen in families with a history of the
+        condition. Asthma cannot be cured, but it can be managed well with several treatment options to relieve the
+        symptoms and prevent severe attacks. </p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_5")' style='background-color: #e0e0e0;'>
+    <h2 class='disease-title'>Back pain</h2>
+    <p id='desc_5' class='disease-description'>Back pain refers to the pain arising in back and usually arises from the
+        muscles, joints, nerves, or other structures in the spine. Back pain is a fairly common condition that most
+        people suffer from these days. Medically the condition is as one where the person experiences pain or discomfort
+        in any part of the back. Incidentally, the lower back is a place where most people suffer from pain, commonly
+        caused due to improper posture or strain.
+
+        Back pain is something most of us suffer from at some point in our lives. While some aches may be acute (sudden
+        and quick to subside) others may be the start of a chronic condition. Here is all you need to know about back
+        pain and what it could probably indicate.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_6")' style='background-color: #f5f5f5;'>
+    <h2 class='disease-title'>Bad Breath</h2>
+    <p id='desc_6' class='disease-description'>Bad breath or Halitosis is a term used to describe noticeably unpleasant
+        odours exhaled in breathing. According to scientists smelling one’s own breath is not a good enough method to
+        detect foul breath. This is because most people get ‘acclimatized’ to their own bad breath but can successfully
+        identify it in others. Some useful self diagnosis methods involves asking some one close to tell you if you are
+        suffering from bad breath. Another method is to lick the back of your wrist and smell the saliva. Although these
+        methods may cause you to ‘overestimate’ the severity of your trouble, it’s better to be safe than sorry. You can
+        eat foods like apples, cloves, fennel seeds to prevent bad breath. Additionally, maintaining good oral hygiene
+        will go a long way in ensuring that you don't experience bad breath.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_7")' style='background-color: #e0e0e0;'>
+    <h2 class='disease-title'>Bell's Palsy</h2>
+    <p id='desc_7' class='disease-description'>Bell's palsy, a neurological disorder, may affect men and women of any
+        age, but statistics suggest that the condition is more likely to strike those above forty. Diabetics and people
+        with a compromised immune system are at a greater risk of suffering from the condition. Other factors that can
+        up your risk of Bell's palsy include pregnancy, lung infection and a family history of the condition.
+
+        Bell's palsy is a condition that leads to temporary weakness or paralysis of the facial nerves. Inflammation or
+        compression of the nerves responsible for controlling the muscles of your face can trigger this condition.
+        Bell's palsy causes one side of your face to sag or become stiff. So, your lip and eye movements become
+        restricted on the side of your face affected by this condition. Named after Scottish anatomist Charles Bell, the
+        first to be affected by Bell's palsy, this condition doesn't last for long. The symptoms resolve within a few
+        weeks. Rarely, it relapses.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_8")' style='background-color: #f5f5f5;'>
+    <h2 class='disease-title'>Bipolar disorder</h2>
+    <p id='desc_8' class='disease-description'>Bipolar disorder is a mood disorder, wherein the affected person
+        experiences extreme changes in mood, energy, concentration, activity levels and the ability to perform their
+        daily tasks. The mood changes range from periods of depression (feelings of hopelessness, sadness or
+        indifference) to mania (energised, irritable or elated behaviour). The condition can occur in adults as well as
+        in children and adolescents. However, the average age of onset is estimated to be about 25 years. Mood
+        fluctuations in individuals with bipolar disorder can affect their relationship with loved ones, friends and
+        colleagues. Early identification of the condition, following the prescribed treatment plan and maintaining a
+        healthy lifestyle can help individuals with bipolar disorder lead a normal life. Symptoms that may occur during
+        manic episodes include:
+        Increased energy
+        Elevated mood
+        Increased physical and mental activity
+        Racing thoughts and speech
+        Poor judgement
+        Decreased need for sleep
+        Erratic driving and increased recklessness
+        Treatment: Although there is no definitive cure for bipolar disorder, the following treatment options help to
+        manage and control the symptoms:
+        Medications: The doctor will prescribe certain medicines to control the symptoms. The following classes of drugs
+        may be prescribed:
+        Antipsychotics (control the symptoms)
+        Mood stabilisers (reduce the symptoms and prevent relapse)
+        Antidepressants (rarely used due to their tendency to trigger manic episodes or rapid cycling)
+        Anti-anxiety medicines (decrease the agitation occurring with manic episodes and instil a feeling of
+        calmness)</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_9")' style='background-color: #e0e0e0;'>
+    <h2 class='disease-title'>Bowel Cancer</h2>
+    <p id='desc_9' class='disease-description'>This cancer occurs when the cells of your large intestine (rectum and
+        colon) grow and divide abnormally, leading to malignant tumours. Typically, bowel cancer starts with small,
+        benign clumps of cells known as polyps. They develop on the inside lining of the colon and become cancerous over
+        time if left untreated. Like all other cancers, bowel cancer also has four stages. Several factors like genetic
+        mutation, age and lifestyle issues like sedentary habits, smoking and excessive alcohol intake may increase your
+        chance of getting bowel cancer.
+
+        Bowel Cancer Symptoms
+        This cancer may not show any symptom at the initial stage. However, the manifestations may become noticeable as
+        the condition progresses. The symptoms of bowel cancer may vary depending on the size and location of the
+        tumour. Here are a few red flags to watch out for:
+        Persistent diarrhoea or constipation
+        Bleeding rectum
+        Blood in the stool
+        Gas, cramps, or discomfort in the abdomen
+        Heavy feeling in the tummy
+        Unexplained fatigue or weight loss
+        Long-term change in the colour, consistency and shape of your stool
+        Irritable bowel syndrome
+        Iron deficiency
+    </p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_10")' style='background-color: #f5f5f5;'>
+    <h2 class='disease-title'>Breast cancer</h2>
+    <p id='desc_10' class='disease-description'>Breast cancer is a condition where breast cells divide and multiply
+        uncontrollably due to mutation in certain genes. Generally, cancer forms in the milk-producing glands (lobules)
+        of the breast or in the pathways (ducts)transporting the milk from glands to nipple. Fatty or the fibrous
+        connective tissues of the breast can also be the hotspot for cancerous cells. In some cases, cancer cells may
+        travel to the lymph nodes under your arms and spread to different parts of the body.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_11")' style='background-color: #e0e0e0;'>
+    <h2 class='disease-title'>Burns</h2>
+    <p id='desc_11' class='disease-description'>Burns are categorized as a type of damage to the skin and its underlying
+        tissues. Most skin burns are minor injuries that usually occur at work or home. Although kids are more prone to
+        such incidents, adults are no different. Burns are characterized by a burning sensation around the injured area
+        and severe skin damage. Although minor burns caused by spilling of hot water or touching a hot stove can be
+        treated at home, more serious burns require urgent medical attention to prevent complications.
+
+        Severe burns can cause severe or life-long complications. One of the most concerning problems is the body’s
+        inflammatory response to burns. A typical response protects the body from offenders like bacteria and virus.
+        Yes, often for severe burns, the body’s immune system may overreact, causing injury to be more powerful and
+        affects various organs like the heart and lungs. Shock is also something that can take place in case of a severe
+        drop in blood pressure. Infections are also a significant concern in burn victims and need critical and timely
+        care to recover. Untreated infections may result in sepsis.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_12")' style='background-color: #f5f5f5;'>
+    <h2 class='disease-title'>Cancer</h2>
+    <p id='desc_12' class='disease-description'>Cancer is caused by unchecked cell growth in the body. Cancer is one of
+        India's leading causes of death, with approximately 1.16 million new cases diagnosed each year. The three most
+        common cancers in India are breast, lung, and cervical cancer.
+        Smoking, drinking alcohol, eating a lot of processed and red meat, and being exposed to toxins from the
+        environment are all cancer risk factors in India. Although it is frequently difficult to find high-quality
+        cancer care in India, early diagnosis and treatment can lead to better results.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_13")' style='background-color: #e0e0e0;'>
+    <h2 class='disease-title'>Cardiovascular Diseases</h2>
+    <p id='desc_13' class='disease-description'>Cardiovascular disease (CVD) is any disease involving the heart or blood
+        vessels.[3] CVDs constitute a class of diseases that includes: coronary artery diseases (e.g. angina, heart
+        attack), heart failure, hypertensive heart disease, rheumatic heart
+        disease, cardiomyopathy, arrhythmia, congenital heart disease, valvular heart disease, carditis, aortic
+        aneurysms, peripheral artery disease, thromboembolic disease, and venous thrombosis. It is estimated that up to
+        90% of CVD may be preventable. </p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_14")' style='background-color: #f5f5f5;'>
+    <h2 class='disease-title'>Cataracts</h2>
+    <p id='desc_14' class='disease-description'>The crystalline lens of the eye is clear and transparent. The lens
+        focuses the light into the retina to create a sharp image, which helps people see objects clearly. In certain
+        circumstances, the lens develops cloudiness or opacity. This obstructs light from being transmitted into the
+        retina, causing blurring of vision. This condition is known as a cataract. Usually, cataracts do not cause any
+        problems at an early stage as the cloudiness affects only a small part of the lens. But, as the cataract grows,
+        they affect more parts of the lens, making it difficult for a patient to see objects. Both eyes usually get
+        affected, but cataracts do not spread from one eye to another. A cataract might progress quicker in one eye than
+        the other.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_15")' style='background-color: #e0e0e0;'>
+    <h2 class='disease-title'>Cervix cancer</h2>
+    <p id='desc_15' class='disease-description'>Cervical cancer has beaten breast cancer as the leading cause of cancer
+        deaths in women in India; it kills around 33,000 women every year in India. Cervical cancer is known to occur
+        because of a virus called the Human Papilloma Virus (HPV) transmitted through sexual contact. Bad local hygiene,
+        too many children, not enough spacing between children, low nutrition levels and early marriage all contribute
+        to the risk factors. The high risk group includes girls who have had premature sex as teenagers, those who have
+        had multiple pregnancies or multiple sex partners and don’t use contraceptives. The disease remains asymptomatic
+        for a long time till it starts invading neighbouring tissues. Cervical cancer is the commonest cancer in Indian
+        women and a quarter of the world’s cervical cancer patients live in India!Caused by infection with the Human
+        Papilloma Virus( HPV), cervical cancer involves the opening of the uterus into the vagina. It occurs more
+        commonly in women who start sexual activity at a young age and is also more common in women with many
+        childbirths and partners. </p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_16")' style='background-color: #f5f5f5;'>
+    <h2 class='disease-title'>Chicken Pox</h2>
+    <p id='desc_16' class='disease-description'>The typical chickenpox symptom is a rash that develops into painful,
+        fluid-filled blisters that eventually crust over to form scabs. The rash may initially appear on the face, back,
+        and chest before spreading to every part of the body, including the genital area, eyelids, and inside of the
+        mouth. Typically, it takes a week or so for every blister to turn into a scab.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_17")' style='background-color: #e0e0e0;'>
+    <h2 class='disease-title'>Chronic respiratory diseases</h2>
+    <p id='desc_17' class='disease-description'>Chronic respiratory diseases (CRDs) affect the airways and other
+        structures of the lungs. Some of the most common are chronic obstructive pulmonary disease (COPD), asthma,
+        occupational lung diseases and pulmonary hypertension. In addition to tobacco smoke, other risk factors include
+        air pollution, occupational chemicals and dusts, and frequent lower respiratory infections during childhood.
+        CRDs are not curable; however, various forms of treatment that help open the air passages and improve shortness
+        of breath can help control symptoms and improve daily life for people living with these conditions. The WHO
+        Global Alliance against CRDs (GARD) vision is “a world in which all people breathe freely”. GARD focuses on the
+        needs of people with CRDs in low- and middle-income countries. The aim of the WHO Chronic Respiratory Diseases
+        Programme is to support Member States in their efforts to reduce the toll of morbidity, disability and premature
+        mortality related to chronic respiratory diseases, specifically asthma and chronic obstructive pulmonary
+        disease.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_18")' style='background-color: #f5f5f5;'>
+    <h2 class='disease-title'>Cirrhosis</h2>
+    <p id='desc_18' class='disease-description'>In this condition, scar tissue replaces your healthy liver cells. Caused
+        by an infection of alcohol addiction, cirrhosis takes time to develop. Build-up of scar tissues blocks blood
+        flow to the liver and impairs its functions. The liver of a person with cirrhosis cannot produce protein and
+        other substances, process hormones and nutrients or filter out toxins. Though there is no cure for the
+        condition, spotting the symptoms early on will help you manage it better. Symptoms are: Lack of appetite and
+        weight loss, Nausea
+        Swollen ankles and legs (caused by fluid and salt retention), Frequent bleeding and bruising,Redness in the
+        hands and palms, Yellowing of skin and eyes (jaundice), Itchy skin, Poor memory, Lack of concentration, Low
+        libido, Shrink in testicles.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_19")' style='background-color: #e0e0e0;'>
+    <h2 class='disease-title'>Cleft lip and palate</h2>
+    <p id='desc_19' class='disease-description'>Cleft lip and/or palate are the most common birth defects of the mouth.
+        A cleft lip occurs when the two Structures or processes that make up the lip do not completely fuse before
+        birth. Usually, a cleft lip and palate are identifiable at birth and may affect one or both sides of the face.
+        It might appear as a small notch in the lip that extends via the upper gum into the bottom of the nasal septum.
+        However, in some cases, cleft occurs at the back of the mouth (which in turn is covered by the mouth lining). In
+        this type of cleft lip and palate, you might experience signs such as difficulty in swallowing, speaking (nasal
+        voice) and a high risk of ear infections. Cleft lip or cleft palate requires treatment from a number of medical
+        specialists from various specialities. This cleft team will include the following members.
+        Paediatrician
+        Plastic surgeon to perform surgeries
+        Pediatric speech pathologist
+        Audiologist to monitor hearing
+        Dental specialist for routine dental care
+        Prosthodontists make necessary changes required to eat and speak by making artificial teeth or dental appliances
+        Orthodontist to reposition teeth</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_20")' style='background-color: #f5f5f5;'>
+    <h2 class='disease-title'>Colour blindness</h2>
+    <p id='desc_20' class='disease-description'>Colour blindness is a condition where a person cannot figure out the
+        difference between certain colours. This happens because he/she may be born without certain colour sensitive
+        pigments in their eyes. These pigments are usually present in the cones of the eye, which are present at the
+        back of the eyeball.
+        The eye has a number of components, and one of the most important parts of the eye is the retina. The retina is
+        placed at the back of the eyeball and is packed with nerve endings that carry impulses to the brain along with
+        two types of photoreceptor cells, called the rods and cones. Colour-blindness is a hereditary condition that
+        affects mostly the male population. The gene that causes colour-blindness is present on the X chromosome. Since
+        women have two X chromosomes and men have only one, they are more likely to suffer from the condition.
+        Although colour-blindness is usually an inherited disease, there are certain conditions of the eye that could
+        lead to colour-blindness. Conditions such as cataract can lead to ‘acquired colour-blindness'. Usually, a
+        person’s vision comes back to normal once the condition has been reversed with surgery.
+        Damage to the brain or eye can also cause colour blindness. Medications that harm the eye can also lead to this
+        eye disorder.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_21")' style='background-color: #e0e0e0;'>
+    <h2 class='disease-title'>Dengue</h2>
+    <p id='desc_21' class='disease-description'>Urban areas are where dengue fever most frequently occurs. However, it
+        might be found in the country. The virus is typically spread by mosquitoes during and soon after the rainy
+        season. During the day, mosquitoes are most active. They are typically found indoors, close to human habitation.
+        Currently, this illness poses a risk to about half of the world's population.
+
+        There is a virus that causes dengue fever. People contract the virus by mosquito bites, specifically from the
+        Aedes species.A serious flu-like condition is brought on by dengue fever. It could resemble other illnesses like
+        malaria or the flu. A sickness often lasts three to seven days.
+
+        Only a very tiny percentage of dengue fever cases are severe.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_22")' style='background-color: #f5f5f5;'>
+    <h2 class='disease-title'>Depression</h2>
+    <p id='desc_22' class='disease-description'>Depression with symptoms of psychosis is a type of depression that is
+        severe. People with this type of depression experience symptoms of psychosis such as hallucinations (seeing or
+        hearing things that are not real) or delusions (Beliefs that are false). Depression can affect a person
+        emotionally as well as physically. Common symptoms of depression include unhappiness, loss of interest in
+        activities which were earlier pleasurable, loss of appetite, lack of energy and motivation, difficulty in
+        concentrating, inability to make decisions and sleep issues (mainly insomnia). Chronic, untreated depression can
+        manifest through suicidal thoughts. Apart from these, there are other red flags of depression. Symptoms:
+        Pharmacotherapy, Psychotherapy, Brain stimulating therapy.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_23")' style='background-color: #e0e0e0;'>
+    <h2 class='disease-title'>Diarrhea</h2>
+    <p id='desc_23' class='disease-description'>Diarrhea, also spelled diarrhoea or diarrhœa, is the condition of having
+        at least three loose, liquid, or watery bowel movements in a day. It often lasts for a few days and can result
+        in dehydration due to fluid loss. </p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_24")' style='background-color: #f5f5f5;'>
+    <h2 class='disease-title'>Epilepsy</h2>
+    <p id='desc_24' class='disease-description'>The primary symptom of epilepsy is seizures, which typically lasts for a
+        few minutes. However, seizures may vary depending on the part and total area of the brain affected. The major
+        type of seizures and symptoms observed in the corresponding types are discussed below: Lose consciousness, Fall
+        to the ground, Unable to temporarily breathe,Have jerking movements
+        , Lose bowel or bladder control. The doctors may find it difficult to quickly diagnose epilepsy as other
+        conditions such as migraines and fainting occur with similar symptoms. In most cases, epilepsy is diagnosed only
+        when the person has had at least two seizures. Blood tests: It is performed to rule out possible causes of
+        seizures such as diabetes or low blood sugar.
+        Electroencephalogram (EEG): This test records the brain’s electrical activity.
+        Magnetic resonance imaging (MRI): This test takes images of the brain and helps to confirm epilepsy as the cause
+        of seizures.
+        Video EEG: This test records a video while conducting a regular EEG. The video recording is performed in the
+        hospital where the doctor closely monitors an individual's behaviour during a seizure.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_25")' style='background-color: #e0e0e0;'>
+    <h2 class='disease-title'>Fatty liver disease</h2>
+    <p id='desc_25' class='disease-description'>Fatty liver disease is a silent medical condition, which means there are
+        usually no symptoms. In such cases, the disease is identified from routine health check up indicating fatty
+        liver with ultrasound, CT scan or MRI of the abdomen. Patients should visit the doctor for further
+        investigations even if they do not have any symptoms. In case you experience the following symptoms, visit the
+        doctor. Fatigue, General feeling of being unwell, Right sided upper abdominal discomfort. Diagnosis: Blood test:
+        Some liver enzymes act as markers which can be detected using liver function tests. Some liver enzymes such as
+        SGOT (aspartate transaminase -AST) and SGPT (alanine transaminase- ALT) might be elevated. Blood tests exclude
+        other causes of fatty liver including blood sugar, lipid profile and thyroid function tests. They also check for
+        viral hepatitis B and C which co exist in some patients with fatty liver disease without producing any symptoms.
+        Ultrasound of the abdomen: Ultrasound uses sound waves to detect structural abnormalities of the liver. A fatty
+        liver will appear ‘echogenic,’ more dense than usual, when visualised through ultrasound. Fibroscan: It is a
+        non-invasive test similar to ultrasound that gives valuable information about the liver and helps quantify the
+        amount of fat and degree of scarring (fibrosis ) in the liver. It takes few minutes to perform, is painless and
+        result is available immediately.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_26")' style='background-color: #f5f5f5;'>
+    <h2 class='disease-title'>Fever</h2>
+    <p id='desc_26' class='disease-description'>Fever is a rise in body temperature above the normal temperature,
+        usually caused by infection. Normal body temperature is around 37°C (give or take a degree, but this can vary
+        from person to person). There may also be minor fluctuations over the course of the day and night.
+        The fever triggered by a viral or bacterial infection is caused by chemicals produced by the immune system,
+        which reset the body’s thermostat to a higher level. The symptoms of fever can include:
+
+        feeling unwell
+        feeling hot and sweaty
+        shivering or shaking
+        chattering teeth
+        flushed face.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_27")' style='background-color: #e0e0e0;'>
+    <h2 class='disease-title'>Food allergy</h2>
+    <p id='desc_27' class='disease-description'>Food allergies can develop at any age. While some childhood allergies
+        disappear later in life, a few may last forever. According to experts, children who outgrow one type of food
+        allergy may develop a more severe and persistent type of allergy to the same food. According to researchers,
+        high vitamin D levels in pregnancy could trigger a food allergy in the baby. Including solid food besides breast
+        milk in a baby’s diet after the 17th week of birth helps develop a stronger immune system to fight food
+        allergies. Sympotms: Wheat and Corn Allergy
+        You could have this allergy if you notice the following symptoms on eating anything that contains wheat and
+        corn:
+        Indigestion, flatulence, stomach ache and diarrhoea
+        Hyperacidity and stomach ulcers
+        Hyperactivity or aggressive behaviour
+        Fatigue (tiredness) and depression
+        Muscle pain and cramps
+        Asthma
+        Eczema (red, bumpy, itchy, and dry skin)</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_28")' style='background-color: #f5f5f5;'>
+    <h2 class='disease-title'>Food poisoning</h2>
+    <p id='desc_28' class='disease-description'>Foods contaminated with viruses, bacteria, parasites and harmful
+        chemicals cause food poisoning. These agents can spread to food anytime during the process of growing food to
+        preparing food. Foods containing microorganisms are raw meat and eggs, unpasteurized dairy products and fruit
+        juices, fish and shellfish, raw fruits and vegetables, processed meats such as hot dogs, and foods that are not
+        properly sealed. Microorganisms can spread from raw foods to other foods through hands, utensils, cutting board,
+        and kitchen surface. Microorganisms that cause food poisoning are:
+        Viruses: Norovirus and hepatitis A virus.
+        Bacteria: Salmonella, Clostridium, Campylobacter, Vibrio, Listeria, Staphylococcus aureus, and E. coli.
+        Parasites like Toxoplasma gondii, Giardia, and Cryptosporidium.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_29")' style='background-color: #e0e0e0;'>
+    <h2 class='disease-title'>Fractures</h2>
+    <p id='desc_29' class='disease-description'>A fracture is a break in the bone’s continuity, which occurs when a bone
+        counters a force stronger than it can bear as in trauma because of a fall/fight/vehicular accident. Fractures
+        may be caused when the bones get weak because of conditions such as osteoporosis, brittle bone disease,
+        osteomalacia, and bone tumours. The symptoms vary depending on the type of fracture. These include –
+        Displaced or non-displaced: A person with a displaced fracture will notice a disfigurement (a small protrusion)
+        of the area that is fractured. For a non-displaced fracture, one will only notice a swelling in the region.
+        Open or closed fracture: The open fracture is the easiest to identify because of the wound seen on the person’s
+        skin. For the closed fracture, one will be able to see the broken bone pushing through the skin.
+        Greenstick fracture: Usually associated with immense pain and inability to use the fractured part, a greenstick
+        fracture requires considerable care and attention. The person will not notice the usual deformity seen with
+        other fractures.
+        Comminuted fracture: A person with this fracture type will notice bruising, pain and swelling. The person might
+        hear a snap or a crack when the bone breaks. There might be certain disfigurement of the area.
+        Stress fracture: Here the patient will experience symptoms such as dull aching pain that gradually develops: one
+        that increases with weight-bearing activity and goes away with rest, pain and tenderness around the area of the
+        fracture.
+        Pathological fracture: In this type of fracture, the person will experience sudden symptoms associated with that
+        particular type of fracture while he/she might be experiencing pain along the region of the break for a while
+        (usually associated with the weakening of the bones)
+        In addition to all these specific symptoms as per the type of the common symptoms that are reported these are
+        pain, tenderness, inability to put stress on the fractured area and painful active or passive movements of the
+        same.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_30")' style='background-color: #f5f5f5;'>
+    <h2 class='disease-title'>Frozen shoulder</h2>
+    <p id='desc_30' class='disease-description'>A frozen shoulder, also known as adhesive capsulitis, is a joint problem
+        that causes stiffness, pain, and loss of motion in the shoulder. This may lead to a severe disability and cause
+        prolonged pain if left untreated.
+
+        The reasons behind the frozen shoulder condition are unknown. However, it may occur because of immobilization of
+        the shoulder for a long, long time due to injury, surgery, or illness. In many cases, the cause is obscure.
+        However, with proper treatment, you can usually unfreeze the shoulder. The recovery takes time and patience. The
+        symptoms occur in stages, as mentioned above. However, you can experience one or more of these over time:
+
+        Pain in the shoulder
+
+        Limitation to the shoulder’s movement
+
+        Not being able to function independently while doing everyday tasks like dressing up, combing hair or getting
+        ready.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_31")' style='background-color: #e0e0e0;'>
+    <h2 class='disease-title'>Gallstones</h2>
+    <p id='desc_31' class='disease-description'>Often, gallstones do not show any symptoms. They are called silent
+        gallstones and usually require no treatment. However, if the gallstones obstruct one of the bile ducts, the pain
+        in the abdomen can be sudden and severe. It can last for a few minutes or a few hours. Symptoms are: Pain caused
+        in the centre of your abdomen, Pain caused under your right-hand side may spread from there to your shoulder
+        blade. There is no way to prevent the formation of gallstones. However, you can decrease the possibility of
+        developing gallstones by having a balanced diet, maintaining an average weight, exercising regularly, and
+        reducing your alcohol consumption. Talk to your doctor about cholesterol management. Avoiding fatty foods will
+        not prevent gallstones but decrease the frequency of attacks.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_32")' style='background-color: #f5f5f5;'>
+    <h2 class='disease-title'>Gastritis</h2>
+    <p id='desc_32' class='disease-description'>Your stomach wall is lined with cells that are differentiated to produce
+        more acid and to secrete certain enzymes that help in breakdown of food you eat. In gastritis, this cell lining
+        (mucosa) gets inflamed and swollen. As a result, the stomach is unable to produce the required amount of acids
+        and enzymes to carry out digestion. This inflammation can either last for a short while (acute gastritis) or may
+        continue to affect your digestive system for a long time (chronic gastritis). Risk factors of gastritis include
+        stress and obesity. A person who has had a past gastrointestinal surgery is also at risk of developing the
+        condition. Besides, some diseases like zollinger Ellison disease in which there is an increase in stomach acid
+        production and reduction of protective factors like mucin or bicarbonates can also increase the risk of
+        gastritis.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_33")' style='background-color: #e0e0e0;'>
+    <h2 class='disease-title'>Glaucoma</h2>
+    <p id='desc_33' class='disease-description'>Glaucoma is a disease that is the result of a number of mechanisms that
+        produce increased pressure within the eye. This elevated eye pressure causes damage to the optic nerve over
+        time. Unfortunately, the damage caused by glaucoma to the optic nerve is irreversible. There are no symptoms
+        associated with most forms of glaucoma, which is why it is also referred to as the ‘silent thief of vision’.
+
+        The eye is a vital organ in our body. Like a camera, the eye captures information about shape, colour and
+        movement, and relays it to the brain. The brain then processes this information to enable us to ‘see’ the
+        world. </p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_34")' style='background-color: #f5f5f5;'>
+    <h2 class='disease-title'>Gum disease</h2>
+    <p id='desc_34' class='disease-description'>Gum disease is an inflammation of the gums that can progress to affect
+        the bone that surrounds and supports your teeth. It is mainly caused by the germs in plaque. Apart from this,
+        there are few factors that cause gum disease such as -
+        Lack of oral hygiene: It is one of the most common causes of gum disease. Poor oral hygiene causes plaque and
+        tartar to get deposited on your teeth, causing irritation in the gums thereby leading to gum disease.
+        Dental problems: Some of the common dental issues such as improper position of teeth, faulty or irritating tooth
+        fillings and dentures, partially impacted wisdom tooth and a missing tooth can cause gum disease.
+        Diabetes: If your blood sugar levels are not within control, you are more likely to get gum disease. Although
+        the exact reason is still unknown, there has been a strong relation between diabetes and gum disease.Here’s how
+        diabetes affects your teeth and oral health.
+        Certain medications: Medications like antihistamines, antidepressants, some seizure medications,
+        immune-suppressants, chemotherapy drugs and medicines for high blood pressure and birth control products are
+        some drugs that cause gum bleeding, dry mouth and ulcers, making you susceptible to gum disease. Read more about
+        gum problems due to medications.
+        Hormonal changes: You may suffer from gum disease due to hormonal changes that mainly occur during puberty,
+        pregnancy and menstruation.
+        Stress: When you are stressed out, there is an increased production of hormones that reduce saliva production
+        and also decrease immunity thereby predisposing you to gum disease. </p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_35")' style='background-color: #e0e0e0;'>
+    <h2 class='disease-title'>Heart Attack</h2>
+    <p id='desc_35' class='disease-description'>he muscles of your heart constantly need oxygen-rich blood which is
+        ensured by your coronary arteries. This blood supply gets blocked when your arteries become narrow due to the
+        build-up of plaque. It is formed by fat, calcium, proteins, and inflammatory cells. The outer layer of the
+        plaque deposit is hard while the inner layer is soft. The outer shell breaks in case the plaque is hard. This is
+        known as rupture, a condition that leads to the formation of blood clots around the plaque. If a blood clot
+        blocks your artery, then blood supply to your heart is cut which, in turn, depletes the cardiac muscles of
+        oxygen. This causes the muscle to die, resulting in permanent damage. The intensity of damage depends on the
+        time gap between treatment and the attack. After a heart attack the cardiac muscles start repairing themselves.
+        On an average, it takes them about 2 months to heal. Apart from this, there could be another condition that can
+        lead to a heart attack: Spasm in your coronary artery (ischemia). This can also restrict blood supply to the
+        heart and can occur even if you don’t have any coronary artery disease. However, this is a rare occurrence.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_36")' style='background-color: #f5f5f5;'>
+    <h2 class='disease-title'>Hepatitis</h2>
+    <p id='desc_36' class='disease-description'>The Hepatitis could indicate an inflammation of the liver. As we all
+        know, liver is considered to a vital organ that aims in processing the nutrients, it filters your blood, and
+        then it fights infections. When liver is also inflamed or even damaged, its function could be affected. With
+        Heavy alcohol use, consuming toxins, and some medications, there are certain medical conditions that will cause
+        hepatitis. However, if the hepatitis is often caused by the concerned virus, it could be hepatitis A, the
+        hepatitis B, and the hepatitis C, with Hepatitis B being the most common.
+
+        Many of the people who are suffering from hepatitis who do not have any corresponding symptoms and are not aware
+        if infected. In case the symptoms that occur with an acute infection, it would include 2 weeks to about 6 months
+        after an exposure. The Symptoms of an acute hepatitis includes fever loss of appetite, fatigue, vomiting, nausea
+        with abdominal pain, and dark urine, with light-colored stools, and joint pain, and also jaundice.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_37")' style='background-color: #e0e0e0;'>
+    <h2 class='disease-title'>Hepatitis A</h2>
+    <p id='desc_37' class='disease-description'>Lack of safe water and poor sanitation are the main predisposing factors
+        of Hepatitis A. The virus spreads by the faeco–oral route and is transmitted through food and water contaminated
+        with infected faeces or by foods prepared by an infected person. Insufficiently cooked shellfish is another
+        common source. It can also be acquired through close personal contact with an infected individual or through
+        certain unsafe sex practices. Less commonly, sewage-contaminated water can cause waterborne epidemics of the
+        disease.
+
+        Once ingested, the virus enters the blood through the inner lining of the intestine and reaches the liver where
+        it multiplies. It is then secreted into the bile and released in stool. The incubation period, i.e. time between
+        first contact with the virus and development of symptoms, of the virus is usually 14–28 days and is the most
+        infective period of the disease.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_38")' style='background-color: #f5f5f5;'>
+    <h2 class='disease-title'>Hepatitis B</h2>
+    <p id='desc_38' class='disease-description'>The symptoms of hepatitis B range from mild to life-threatening. The
+        severity of the symptoms depends on the age of the infected person. The infection usually does not show any
+        symptoms in a majority of children aged below five years and in adults with a weakened immune system. However,
+        the symptoms are often seen in 30-50% of infected people above five years of age. Some of the common symptoms of
+        hepatitis B are given below:
+        Confusion
+        Fever
+        Nausea
+        Vomiting
+        Loss of appetite
+        Fatigue
+        Joint pain
+        Hepatitis B primarily spreads from one person to another when the hepatitis B virus present in the blood or body
+        fluids (saliva, vaginal secretions or semen) of an infected person enters the bloodstream of a healthy person.
+        Some of the common routes of transmission of hepatitis B virus are as follows:
+        Sharp instruments
+        Shared toothbrush and razors
+        Needles
+        Unprotected sex with an infected person</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_39")' style='background-color: #e0e0e0;'>
+    <h2 class='disease-title'>Hepatitis C</h2>
+    <p id='desc_39' class='disease-description'>Hepatitis C usually occurs if the blood from a person infected with HCV
+        gets into the bloodstream of a healthy individual. The virus can spread in the following ways:
+        Having unprotected sex with a person affected with the same
+        Sharing needles that aren’t sterilized and have been used by an infected person
+        Through blood which wasn’t screened for the virus (though blood banks screen for this virus now, people who had
+        a transfusion done before the year 1992 are at a risk for the same)
+        Being born to a mother who suffers from hepatitis C.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_40")' style='background-color: #f5f5f5;'>
+    <h2 class='disease-title'>Hepatitis E</h2>
+    <p id='desc_40' class='disease-description'>Hepatitis E is found worldwide and different genotypes of the hepatitis
+        E virus determine differences in epidemiology. For example, genotype 1 is usually seen in developing countries
+        and causes community level outbreaks while genotype 3 is usually seen in the developed countries and does not
+        cause outbreaks. Globally, 70 000 deaths and 3.4 million cases of acute hepatitis E are attributable to
+        infection with hepatitis E virus genotypes 1 and 2. There are three stages or phases of hepatitis E. The
+        symptoms of hepatitis E vary as per the phase. The phases are as follows:
+        Prodromal Phase: This phase is characterised by rash, fever, oedema (swelling), joint pain or arthritis.
+        Preicteric Phase: This phase is characterised by fatigue, anorexia (loss of appetite), muscle pain or myalgia,
+        nausea, vomiting, cough, abdominal pain, diarrhoea (loose stools), fever, light stool colour and dark urine.
+        Icteric Phase: This phase is characterised by worsening of nausea, vomiting, anorexia, yellowing of skin and
+        whites of the eye called jaundice, developing skin lesions, and chances of other symptoms subsiding.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_41")' style='background-color: #e0e0e0;'>
+    <h2 class='disease-title'>Hernia</h2>
+    <p id='desc_41' class='disease-description'>Hernia develops when an organ protrudes through an opening or weak area
+        of muscle. This condition predominantly develops after surgery. The primary site for hernia is the abdomen, but
+        it can also develop in the groins, thighs, near the belly button or even in the lungs. The symptoms of hernia
+        include lower abdominal pain, cough and pressure in the abdomen. Surgery is the only option available to get rid
+        of such a problem. One of the most glaring and important symptoms is the formation of a bulge or lump on the
+        surface of the body associated with pain. This usually happens only in areas like the stomach, groin or a part
+        that has had some kind of surgical procedure. Other signs include a painful swelling that does not reduce on its
+        own or on being pushed back, nausea, vomiting and abdominal bloating. If left untreated, apart from being
+        extremely painful and uncomfortable it can lead to twisting or torsion of the part that come out of the
+        herniated space. If that is not treated at the earliest, the organ can die and become gangrenous which can then
+        lead to the spread of toxins throughout the body, a condition also known as septicaemia. So getting treated
+        quickly and appropriately is of utmost importance.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_43")' style='background-color: #e0e0e0;'>
+    <h2 class='disease-title'>Malaria </h2>
+    <p id='desc_43' class='disease-description'>Malaria disease is the life threatening blood disease which is
+        mosquito-borne disease. The symptoms of malaria also include any fever with chills, and also headaches. The
+        treatment is generally involving the antimalarial medications. Malaria disease will also include headaches. It
+        would progress to further cause any severe or even life threatening complications. How this disease can affect
+        the people would vary widely. Moreover, there are people that either have mild or even no symptoms, but later on
+        become ill in extreme severity.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_44")' style='background-color: #f5f5f5;'>
+    <h2 class='disease-title'>Mental health disorder</h2>
+    <p id='desc_44' class='disease-description'>Each year, a large number of people in India are impacted by mental
+        health disorders like schizophrenia, anxiety, and depression. Even though mental illness is very common in
+        India, some people may be deterred from getting the right care and support because of the stigma surrounding
+        mental health.
+        The stigma connected with mental illness is a complicated problem in India due to a number of factors. Lack of
+        awareness and comprehension of mental health disorders is the main factor contributing to stigma.
+        The majority of Indians still think that mental illness is a sign of weakness or a personal failing rather than
+        a medical condition that needs to be treated.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_45")' style='background-color: #e0e0e0;'>
+    <h2 class='disease-title'>Mouth Ulcers</h2>
+    <p id='desc_45' class='disease-description'>Mouth ulcers appear as small round lesions (or sores) in the oral cavity
+        (mouth). Generally the lesions are red, white or grey in colour. In medical term, these are also known as
+        apthous ulcers. Mouth ulcers are usually not very painful. The sizes of such ulcers vary and so the time of
+        healing. The proper cause for the manifestation of moth ulcers is not known but factors like stress, smoking and
+        tissue damage may augment the chances of such ulcers. In addition to that intake of some fruits (citrus fruits)
+        and vegetables may worsen the condition. Dental problems (sharp tooth or braces) may also lead to mouth ulcers.
+        In pathological states like malnutrition, vitamin and iron deficiency and gastrointestinal disease mouth ulcers
+        are also visible. Generally, the ulcers subside automatically but in some cases specific treatment is
+        recommended.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_46")' style='background-color: #f5f5f5;'>
+    <h2 class='disease-title'>Myopia</h2>
+    <p id='desc_46' class='disease-description'>Myopia is a condition where a person is unable to see objects that are
+        at a distance from them. Also known as short-sightedness, it occurs when the eyeball elongates to such an extent
+        that the light entering the eye no more refracts through the lens properly. This in turn, causes the light rays
+        to inappropriately reach the retina, leading to blurred vision. This condition occurs in 3.19% people under the
+        age of fifteen, while 20% of people above the age of 15 years suffer from it in India. Myopic patients are
+        unable to see distant objects clearly, although they can see nearer objects better. This condition is often
+        diagnosed in childhood. Children may complain of not being able to clearly see the words on the blackboard or
+        images on the movie screen or television. Parents need to be aware of the fact that if their child is not
+        performing well at school or is disinterested in sports or other activities, poor eyesight due to myopia may be
+        the reason.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_47")' style='background-color: #e0e0e0;'>
+    <h2 class='disease-title'>neoplasm</h2>
+    <p id='desc_47' class='disease-description'>A neoplasm is a type of abnormal and excessive growth of tissue. The
+        process that occurs to form or produce a neoplasm is called neoplasia. The growth of a neoplasm is uncoordinated
+        with that of the normal surrounding tissue, and persists in growing abnormally, even if the original trigger is
+        removed.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_48")' style='background-color: #f5f5f5;'>
+    <h2 class='disease-title'>Oral cancer</h2>
+    <p id='desc_48' class='disease-description'>Oral cancer includes cancers of the lips, cheeks, tongue, floor of the
+        mouth, hard and soft palate, sinuses and throat (pharynx). It may originate in any of the tissues of the mouth
+        or may be a result of metastasis from a different part of the body. If not diagnosed and treated early, they can
+        be life threatening. Oral cancer is caused due to various factors such as -
+
+        Tobacco use - Most cases of oral cancer are linked to one or the other form of tobacco use (cigarettes,
+        smokeless tobacco, chewing tobacco, dipping snuff, cigars, bidis, etc.). The longer the duration you use these,
+        the higher the risk. Tobacco contains around 4,000 chemical constituents among which more than two dozen are
+        known carcinogens (cancer-causing chemicals). It is the single biggest culprit in the development of almost all
+        pre-cancerous lesions. In India, the incidence of head and neck cancers is extremely high due to rampant
+        tobacco-chewing habit in the form of gutka, quid, misri, snuff, etc. Read about tobacco-free world — imagine a
+        world without cancer, heart disease and unwanted deaths!
+
+        Alcohol consumption - Heavy alcohol use is another big culprit. Alcohol is known to irritate the lining inside
+        the mouth or gums to a certain extent. And the risk increases if you use both alcohol and tobacco. Here are few
+        side effects of alcohol everyone should know about.
+
+        Lack of vitamin D - Sunlight helps the skin produce vitamin D and facilitates calcium absorption by the body.
+        But did you know that sun exposure over long periods of time may increase the risk of lip cancer?
+
+        Nutritional deficiency - Some studies also suggest that not eating enough fruits and vegetables may increase the
+        chance of getting oral cancer. Read about top nutritional deficiencies in India.
+
+        Chronic irritation - From rough teeth, dentures, fillings, etc. has been considered to a risk factor for
+        Leukoplakia (a premalignant lesion).
+
+        Human Papilloma Viruses - (HPV 16 and HPV 18) which cause cervical cancer are also being linked to cancer of the
+        oropharynx (throat, base of tongue, tonsils and soft palate). These viruses are passed from person to person
+        through sexual contact. Cancer at the base of the tongue, at the back of the throat, in the tonsils or in the
+        soft palate may be linked with HPV infection.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_49")' style='background-color: #e0e0e0;'>
+    <h2 class='disease-title'>Osteogenesis imperfecta</h2>
+    <p id='desc_49' class='disease-description'>Osteogenesis imperfecta (OI), also known as brittle bone disease, is a
+        rare genetic disease affecting the connective tissue and bones. In this disease, bones become extremely fragile
+        and break or fracture easily (osteoporosis). Infants born with OI may have fragile bones, abnormal bones, and
+        other problems. There is a variation in the symptoms and severity of OI from person to person. Osteogenesis
+        imperfecta can result in more severe complications. Signs and symptoms range from mild to severe.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_50")' style='background-color: #f5f5f5;'>
+    <h2 class='disease-title'>Ovarian cysts</h2>
+    <p id='desc_50' class='disease-description'>Ovaries, an essential part of the female reproductive system, produce
+        eggs or ova and secrete both oestrogen and progesterone. These hormones are responsible for the development of
+        the female body and regulate the menstrual cycle; moreover, they play an important part in pregnancy. In the
+        ovaries, cysts are small sac-like structures that might contain water, gas or semi-solid substances and might
+        not necessarily represent a tumour. Ovarian cysts can be physiological, benign or malignant. Often, these cysts
+        seem to be asymptomatic and remain tucked in the organ without showing any signs or symptoms. A woman might not
+        even know that she has developed cysts until it is too late and requires urgent treatment. Not all cysts require
+        a surgical procedure. There are two possible complications associated with ovarian cysts.
+        Rupture of the ovarian cyst: Ovarian cysts do spontaneously rupture; however, in rare instances, there could be
+        bleeding depending on the size of the blood vessels involved, which could call for medical care. The presence of
+        sharp, sudden pain in the lower belly may indicate that an ovarian cyst has ruptured. This can lead to
+        considerable amount of blood and fluid loss from the body. In certain cases, the rupture of a cyst may not cause
+        any symptoms.
+        Ovarian torsion: Ovarian torsion is the blockage of blood supply to the ovary because of the twisting of the
+        fallopian tube by the ovarian cyst; it is a rare medical emergency.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_51")' style='background-color: #e0e0e0;'>
+    <h2 class='disease-title'>Paralysis</h2>
+    <p id='desc_51' class='disease-description'>Paralysis refers to the loss of muscle function and is usually
+        accompanied by sensory loss in the affected area. It’s usually caused by damage to the central nervous system
+        especially the spinal cord. Causes include stroke, trauma, nerve damage, polio, multiple sclerosis, etc.
+        Paralysis can occur either partially or fully. Lower half paralysis is called paraplegia and paralysis of both
+        arms and legs is called quadriplegia. It happens because the brain can’t send messages to the different parts of
+        the body for various reasons. If the nerve fibres are damaged the paralysis is usually irreversible.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_52")' style='background-color: #f5f5f5;'>
+    <h2 class='disease-title'>Parkinson's disease</h2>
+    <p id='desc_52' class='disease-description'>People with Parkinson’s disease suffer loss of nerve cells in the brain
+        that are responsible for releasing a brain chemical or neurotransmitter called dopamine. Dopamine is a
+        signalling chemical required for coordination and control of body movements.
+        Once the neurons start dying, the production of dopamine is reduced causing loss of movement control and
+        coordination in people suffering from the condition. But what exactly triggers death of those neurons is still a
+        mystery. Scientists have found out several genes that were responsible for causing the disease in some cases.
+        Large population studies have indicated that people who have a family member or a relative suffering from the
+        disease have a higher chance of developing the condition themselves. However, this is just an observation and
+        further research on the inheritance aspect of Parkinson’s disease is underway. In Parkinson’s disease the basic
+        characteristic symptoms are those of tremors (trembling or shaking), stiffness, and slowness of movement, these
+        are called motor symptoms. The non-motor symptoms might include difficulties in maintaining posture and balance,
+        soft speech, problems with urinating, slow bowel movements and sleep disturbances. A characteristic of
+        Parkinson’s is that the symptoms can change from day to day and sometimes even from hour to hour. Oral
+        medications to a certain extent can help manage Parkinson’s symptoms. But remember as one ages and the disease
+        advances, medication alone won’t be of help to control the symptoms. The effects of oral medications wane out
+        with the progression of the disease but they are the first line of treatment in managing Parkinson’s disease
+        like Levodopa, Dopmanine agonists, MAO-B, COMT Inhibitors.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_53")' style='background-color: #e0e0e0;'>
+    <h2 class='disease-title'>Pericarditis</h2>
+    <p id='desc_53' class='disease-description'>Pericarditis is a disorder in which inflammation of the pericardium
+        occurs. The pericardium is a sac or membrane-like structure comprising two thin layers of tissue around the
+        heart. The function of the pericardium is to protect and lubricate the heart and keep it in its position; the
+        pericardium also ensures the proper functioning of the heart, The space between the two thin layers is filled
+        with fluid to avoid friction while the heartbeats. Therefore, these two layers move against each other without
+        any irritation. The primary sign of pericarditis is chest pain as pericardium inflammation causes rubbing the
+        pericardium against the heart. The pain can be similar to the pain felt in a heart attack. Pericarditis can be
+        acute (lasts for a shorter period) or chronic (lasts for longer, i.e., it develops over time). Both acute and
+        chronic pericarditis impair the heart’s functioning. Rarely, pericarditis can lead to serious consequences,
+        including abnormal heart rhythm and/or death. In most cases, mild pericarditis occurs, which subsides on its own
+        with rest or primary treatment. Men between 16 years to 65 years of age are at a higher risk of contracting
+        pericarditis. Early diagnosis of pericarditis can prevent further complications.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_54")' style='background-color: #f5f5f5;'>
+    <h2 class='disease-title'>Peripheral vascular disease</h2>
+    <p id='desc_54' class='disease-description'>Peripheral vascular disease is caused by narrowing or blockage of blood
+        vessels supplying blood to the limbs due to deposition of fatty substances, cholesterol and other cellular waste
+        on the walls of blood vessels to harden and form a plaque (also known as atherosclerosis). As a result, blood
+        supply to the limbs is obstructed or reduced, making it difficult for the person to perform physical activities.
+        Symptoms are: Decreased blood supply leads to pain in the affected limbs called as claudication. Initially, the
+        pain occurs only with exertion but later as the disease progresses the person may feel severe pain even while
+        resting. Apart from pain in the limbs, there can be local and trophic changes in the affected limb like pallor
+        (paleness of the skin), redness, motor paralysis (in ability to perform daily function like moving the limb),
+        loss of hair and ulcers over the skin. PVD is a treatable condition in most of the cases, says Dr Vineet. The
+        goal of the treatment is to relieve claudication (lowered blood flow to the limbs during exercise) and prevent
+        severe blockage that might lead to gangrene and limb amputation. A patient can either be treated with medication
+        or surgery, depending on the severity of the condition.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_55")' style='background-color: #e0e0e0;'>
+    <h2 class='disease-title'>Piles</h2>
+    <p id='desc_55' class='disease-description'>The exact reason of hemorrhoidal symptoms is poorly understood. But
+        there are a lot of factors that contribute to piles other than constipation. The prevalence of piles is found in
+        around 4% of the population in US, but it is mentioned in literature that half the population above fifty will
+        have symptoms of piles some time in their life. In most cases, piles get cured on their own with the help of
+        dietary and lifestyle changes without the need for any treatment. High fibre intake by including cereals,
+        fibrous fruits and vegetables in the diet helps in making the stool softer and relieving strain due to
+        constipation. Surgical intervention may be required in extreme cases. ‘There have been maximum advances in
+        management of hemorrhoids ranging from stappled hemorrhoidectomy, radiofrequency, Doppler guided hemorrhoidal
+        artery ligation and lasers.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_56")' style='background-color: #f5f5f5;'>
+    <h2 class='disease-title'>Pneumonia</h2>
+    <p id='desc_56' class='disease-description'>Pneumonia has the potential to be fatal and quite dangerous. Respiratory
+        failure, sepsis, and lung abscess are among the complications from pneumonia that older adults, children, those
+        with compromised immune systems, and those with other medical conditions are more prone to experience.
+        Prevention is the key to fighting pneumonia. In one to two weeks, some people feel better and can resume their
+        regular activities. It can take a month or more for others. For around one month, most people still experience
+        fatigue. Discuss when you can resume your regular activities with your healthcare practitioner.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_57")' style='background-color: #e0e0e0;'>
+    <h2 class='disease-title'>Polycystic ovary syndrome (PCOS)</h2>
+    <p id='desc_57' class='disease-description'>Polycystic ovary syndrome (PCOS) is one of the most common endocrine and
+        metabolic disorders in premenopausal women. This condition produces an abnormal amount of male sex hormones,
+        namely, androgens, usually present in women in small amounts. PCOS is a disorder characterized by increased
+        androgen levels, menstrual irregularities, or the presence of small cysts on ovaries. Signs and symptoms of PCOS
+        may vary as per the type of condition; however, commonly occurring signs include the following:
+
+        · Irregular menstrual cycles - This can include absent periods, periods that infrequently occur, heavy periods,
+        or unpredictable periods.
+
+        · Infertility
+
+        · Obesity
+
+        · Excessive hair growth on the face, chest, and abdomen
+
+        · Severe acne and oily skin</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_58")' style='background-color: #f5f5f5;'>
+    <h2 class='disease-title'>Prostate cancer</h2>
+    <p id='desc_58' class='disease-description'>Prostate cancer forms in tissues of the prostate, a gland in the male
+        reproductive system, and is one of the leading causes of cancer in men above 60. Most cases could be
+        slow-growing and may even go undetected and not cause any problems. However, some could be aggressive and spread
+        to other parts of the body and are difficult to treat. It usually presents with difficulty and pain during
+        urination, blood in the urine, along with sexual dysfunction. Advanced cases may present with bone pain in
+        addition to the urinary symptoms. Prostate cancer is very rare before the age of 40, but the risk increases with
+        age. Most cases are detected in the late 60s. It usually presents with difficulty and pain during urination,
+        blood in the urine, along with sexual dysfunction. There may be no symptoms in many early cases, and it may be
+        detected incidentally on performing a rectal exam, blood test, scan and biopsy. Advanced cases may present with
+        bone pain in addition to the urinary symptoms. Surgery: The operation performed to remove the cancerous tissue
+        is called Radical prostatectomy. Depending on the extent, patient factors and expertise available, it can be
+        performed via a fairly long cut in the abdomen, keyhole surgery (laparoscopically) or even with Robotic surgical
+        methods, which is available at a few centres in India as well. The surgery has good success rates in expert
+        hands but may have long term side effects like sexual dysfunction, urinary incontinence and narrowing of the
+        urethra. Sometimes orchidectomy (removal of the testes) is advised in advanced disease to minimize the effects
+        of testosterone on the growth and spread of cancer.
+        Radiotherapy: Can be administered as a primary modality via needles implanted into the prostate under ultrasound
+        guidance or as an external beam. Radiation can be administered after surgery if the resection of cancer tissue
+        has not been complete.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_59")' style='background-color: #e0e0e0;'>
+    <h2 class='disease-title'>Pyelonephritis/ Kidney Infection</h2>
+    <p id='desc_59' class='disease-description'>Pyelonephritis is often known as a Urinary Tract Infection (UTI) that
+        spreads to the kidney and is commonly caused by the bacteria Escherichia coli. Given that the kidneys are
+        closely associated with the urinary tract, it’s likely that an infection of the urinary tract could harm the
+        kidneys as well. ‘Kidneys commonly get infected and inflamed when the bacteria spread up the urinary tract or
+        travel through the bloodstream to reach the kidneys,’ says Dr Avinash Ignatius, a Senior Consultant Nephrologist
+        with DaVita NephroLife, Pune. It can also result from obstruction of the ureters(Tubes that allow drainage of
+        urine from the kidney to the bladder), causing backflow of urine into the kidneys and ureters.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_60")' style='background-color: #f5f5f5;'>
+    <h2 class='disease-title'>Retinoblastoma or eye tumor</h2>
+    <p id='desc_60' class='disease-description'>Retinoblastoma is a rare type of eye cancer that happens in early
+        childhood before the age of five. It usually develops due to some malfunctioning of the retina. This type of
+        cancer is usually curable. But if untreated can travel to other parts of the body. Often children suffering from
+        this type of cancer will have a whitish reflex in the eyes. Children with retinoblastoma are usually affected in
+        one eye. but in rare cases a child can be affected in both eyes too. If treatment is delayed one might have to
+        even undergo expulsion of the diseased eye to prevent the disease from spreading to other parts of the body.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_61")' style='background-color: #e0e0e0;'>
+    <h2 class='disease-title'>Rheumatic heart disease</h2>
+    <p id='desc_61' class='disease-description'>Rheumatic heart disease (RHD) is a type of rare heart disease found in
+        children of age group 5-15 years, which occurs due to the inflammation of heart. This inflammation is caused due
+        to an infection of Streptococcus bacteria that leads to symptoms like sore throat (strep throat) and fever
+        called rheumatic fever.
+
+        The problem starts with a person suffering from a condition called rheumatic feveras a child. Since this fever
+        is often very slight it is ignored. The child may subsequently have joint pain and active rheumatic carditis (a
+        condition where the heart is inflamed due to infection). The child may also have shortness of breath and chest
+        pain with high fever. The downside to this disease is that these symptoms are short lived and subside quickly,
+        and since it does not recur it is often ignored. By the time one notices the first symptom of rheumatic fever to
+        the time they notice something gravely wrong and visit a doctor, it is usually quite late and the heart valve is
+        affected. One of the first valves to be affected is the mitral valve.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_62")' style='background-color: #f5f5f5;'>
+    <h2 class='disease-title'>Sensitive Teeth</h2>
+    <p id='desc_62' class='disease-description'>Tooth sensitivity is a common dental problem that affects a lot of
+        people. If your teeth pain every time you eat something cold, hot or drink acidic drinks, then that means you
+        have sensitive teeth. It can be discomforting, which is why you need it to get treated as soon as possible.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_63")' style='background-color: #e0e0e0;'>
+    <h2 class='disease-title'>Stroke</h2>
+    <p id='desc_63' class='disease-description'>Stroke is a medical condition in which poor blood flow to the brain
+        causes cell death. There are two main types of stroke: ischemic, due to lack of blood flow, and hemorrhagic, due
+        to bleeding. Both cause parts of the brain to stop functioning properly.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_64")' style='background-color: #f5f5f5;'>
+    <h2 class='disease-title'>Stroke</h2>
+    <p id='desc_64' class='disease-description'>Stroke is a medical emergency that arises when arteries that supply
+        blood to the brain get affected. As a result a part of the brain doesn't receive sufficient blood supply.
+        Without blood and nutrient supply, the brain cells get affected and can die within a few minutes. Stroke often
+        results in long-term dysfunction of the body part controlled by the affected brain area. There are two main
+        types of strokes: ischemic stroke and haemorrhagic stroke. An ischemic stroke is caused due to a block (blood
+        clot) in the blood vessel whereas a haemorrhagic stroke is caused by bleeding through a tear in the blood
+        vessel.Symptoms: Numbness
+        Weakness or paralysis on one side of the body
+        Sudden confusion
+        Severe headache
+        Trouble in speaking, understanding, seeing and walking
+        Dizziness or loss of balance The severity of a stroke and the presence of other risk factors determine what
+        treatment a patient has to undergo. Here are some ways in which it is treated:
+        Lifestyle changes: If a person has suffered from a stroke, he/she may have to make major lifestyle changes like
+        giving up smoking and alcohol, not eating foods high in fat and sugar and exercising regularly.
+        Medications: Certain medicines are prescribed to some patients to reduce the risk of blood clot formation. Some
+        of them are antiplatelet drugs like aspirin and anticoagulants like warfarin.
+        Surgery: In cases where the stroke is severe, surgery might be required to resume normal blood flow. Surgeries
+        are performed to unblock the artery (angioplasty) or prevent bleeding in the brain (craniotomy).
+        Physiotherapy: Often, the patient has to undergo physiotherapy to resume daily activities.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_65")' style='background-color: #e0e0e0;'>
+    <h2 class='disease-title'>Swine flu</h2>
+    <p id='desc_65' class='disease-description'>Swine flu, known as pandemic influenza or swine influenza, is an
+        influenza virus that makes individuals ill. It is a respiratory disease caused by the H1N1 virus. The symptoms
+        of swine flu are similar to regular flu caused by influenza. It takes ~1–4 days for the symptoms to appear
+        (incubation period). The symptoms of swine flu includes cold, cough, fever, fatigue, headache, sore throat,
+        cough leading to shortness of breath, decreased appetite, vomiting, or diarrhoea (loose stools). Anti-viral
+        drugs such as Oseltamivir (Tamiflu) and Zamanivir (Relenza) are used to treat swine flu. Tamiflu is a tablet and
+        relenza is a nasal spray. Additional treatment with antibiotics may be required if pneumonia or chest infections
+        develop. In case you do not need admission to a hospital, you are required to follow the ensuing precautions and
+        hand and respiratory hygiene.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_66")' style='background-color: #f5f5f5;'>
+    <h2 class='disease-title'>Thyroid Cancer</h2>
+    <p id='desc_66' class='disease-description'>Thyroid cancer is a rare type of cancer that affects the thyroid gland,
+        a small gland present at the base of the neck. One of the common symptoms of this cancer is a painless lump or
+        swelling in the neck. Although it is not a common type of cancer, it accounts to 1 – 5% of all cancers. Thyroid
+        cancer usually does not any significant signs and symptoms in its initial stage. And in most cases, a lump or
+        swelling in the neck manifests as one of the common signs of thyroid cancer. However, as the condition reaches
+        its advanced stage, you may experience –
+        Sore throat
+        Difficulty in swallowing
+        Unexplained hoarseness
+        Trouble breathing
+        Pain in the neck
+        Frequent cough (not related to cold)</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_67")' style='background-color: #e0e0e0;'>
+    <h2 class='disease-title'>Tuberculosis</h2>
+    <p id='desc_67' class='disease-description'>The Tuberculosis (TB) disease is the bacterial infection that spread by
+        inhaling the tiny droplets which would be transmitted by cough or any sneeze of the infected person.It is
+        considered to serious condition that could be cured if a proper treatment is administered. The TB disease mainly
+        affects the lungs. However, it would also affect different parts of your body, including glands, the bones and
+        the nervous system. The TB, costly affects the lungs with most contagious type, it would usually only spread
+        after any prolonged exposure to someone with any illness.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_68")' style='background-color: #f5f5f5;'>
+    <h2 class='disease-title'>Typhoid </h2>
+    <p id='desc_68' class='disease-description'>The Typhoid fever is an enteric fever, caused by the bacteria
+        salmonella. The Typhoid fever is rare in the places where it is appropriately sanitized or where the human waste
+        disposal is effectively managed. It is known to be a serious health threat, especially for the children, in
+        places where it is more common.</p>
+</div>
+<div class='disease-box' onclick='toggleDescription("desc_69")' style='background-color: #e0e0e0;'>
+    <h2 class='disease-title'>Wilms’ tumor or cancer of the kidney</h2>
+    <p id='desc_69' class='disease-description'>Wilms’ tumor or nephroblastoma referred as cancer of kidney often occurs
+        in children and rarely in adults. It can happen either in one or both the kidneys. In most cases the causes of
+        Wilms’ tumor is unknown. But very rarely a child suffering from Wilms’ tumor may have specific congenital
+        malformations, like a absences of the iris in the eyes, abnormalities of the genitals or one side of the body
+        may appear slightly larger than the other. Children with this type of cancer will have a relatively large
+        swollen abdomen. With Wilms’ tumor there may be blood in your child’s urine or your child may suffer from high
+        blood pressure. Recurring stomach upset along with weight loss and sheer loss of appetite should make you reach
+        for your doctor’s opinion.</p>
+</div>
+
+</body>
+</html>

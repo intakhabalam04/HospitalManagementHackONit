@@ -42,13 +42,14 @@ public class AdminServiceImpl implements AdminService {
             newDoctor.setSpecialization(doctor.getSpecialization());
             newDoctor.setConsultancyFee(doctor.getConsultancyFee());
             newDoctor.setMobile(doctor.getMobile());
+            newDoctor.setRoomID("4569");
 
             User user = new User();
             user.setName(doctor.getName());
             user.setEmail(doctor.getEmail());
             user.setMobile(doctor.getMobile());
             user.setUsername(doctor.getEmail());
-            user.setPassword(passwordEncoder.encode("123456"));
+            user.setPassword(passwordEncoder.encode("1234"));
             user.setRole(UserRole.DOCTOR);
             user.setAction(UserAction.APPROVED);
             user.setRegistrationDate(java.time.LocalDate.now());

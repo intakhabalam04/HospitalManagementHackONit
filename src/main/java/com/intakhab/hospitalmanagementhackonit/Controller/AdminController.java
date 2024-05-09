@@ -5,6 +5,7 @@ import com.intakhab.hospitalmanagementhackonit.Model.Doctor;
 import com.intakhab.hospitalmanagementhackonit.Repository.DoctorRepo;
 import com.intakhab.hospitalmanagementhackonit.Service.AdminService;
 import com.intakhab.hospitalmanagementhackonit.Service.DoctorService;
+import com.intakhab.hospitalmanagementhackonit.Service.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,16 +24,21 @@ public class AdminController {
     private final AdminService adminService;
     private final DoctorService doctorService;
 
-    public AdminController(AdminService adminService, DoctorService doctorService) {
+    private final UserService userService;
+
+    public AdminController(AdminService adminService, DoctorService doctorService, UserService userService) {
         this.adminService = adminService;
         this.doctorService = doctorService;
+        this.userService = userService;
     }
 
     @GetMapping("/home")
     public ModelAndView home() {
         String viewName = "Admin/home";
         Map<String, Object> model = new HashMap<>();
-        model.put("doctorCount",10);
+        model.put("doctorCount",doctorService.getAllDoctors().size());
+        model.put("appointmentCount",doctorService.getTodayAppointmentsNo());
+        model.put("patientCount",userService.getPatientTillDate());
 
         return new ModelAndView(viewName,model);
     }
@@ -104,10 +110,7 @@ public class AdminController {
     }
 
 
-    @GetMapping("/messages")
-    public ModelAndView messages() {
-        return new ModelAndView("Admin/messages");
-    }
+
 
     @GetMapping("/appointments")
     public ResponseEntity<?> getAppointments() {

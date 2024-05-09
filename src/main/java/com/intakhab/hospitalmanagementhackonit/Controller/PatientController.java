@@ -2,6 +2,8 @@ package com.intakhab.hospitalmanagementhackonit.Controller;
 
 import com.intakhab.hospitalmanagementhackonit.Model.Appointment;
 import com.intakhab.hospitalmanagementhackonit.Model.ChatBot;
+import com.intakhab.hospitalmanagementhackonit.Model.Contact;
+import com.intakhab.hospitalmanagementhackonit.Model.MedicineSuggestion;
 import com.intakhab.hospitalmanagementhackonit.Service.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -113,4 +115,30 @@ public class PatientController {
         model.put("pName", securityService.currentUser().getName());
         return new ModelAndView("videocall", model);
     }
+
+    @PostMapping("/recommend")
+    public ResponseEntity<?> recommend(@RequestBody MedicineSuggestion medicineSuggestion) {
+        try {
+            return ResponseEntity.ok().body(doctorService.recommend(medicineSuggestion.getMedicine()));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error: " + e.getMessage());
+        }
+    }
+
+    @GetMapping("/recommend")
+    public ModelAndView recommend() {
+        return new ModelAndView("Patient/medicine-recommend");
+    }
+
+    @GetMapping("/diseases")
+    public ModelAndView diseaseDescription() {
+        return new ModelAndView("Patient/disease_descriptions");
+    }
+
+    @GetMapping("/messages")
+    public ModelAndView messages() {
+        return new ModelAndView("Admin/messages");
+    }
+
+
 }

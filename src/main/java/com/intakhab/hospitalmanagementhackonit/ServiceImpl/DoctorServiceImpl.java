@@ -4,12 +4,19 @@ import com.intakhab.hospitalmanagementhackonit.Dto.AppointmentDto;
 import com.intakhab.hospitalmanagementhackonit.Dto.DoctorDto;
 import com.intakhab.hospitalmanagementhackonit.Enum.PaymentStatus;
 import com.intakhab.hospitalmanagementhackonit.Model.Appointment;
+import com.intakhab.hospitalmanagementhackonit.Model.ChatBot;
 import com.intakhab.hospitalmanagementhackonit.Model.Doctor;
+import com.intakhab.hospitalmanagementhackonit.Model.MedicineSuggestion;
+import com.intakhab.hospitalmanagementhackonit.Repository.AppointmentRepo;
 import com.intakhab.hospitalmanagementhackonit.Repository.DoctorRepo;
 import com.intakhab.hospitalmanagementhackonit.Service.DoctorService;
+import lombok.Data;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -17,9 +24,12 @@ import java.util.stream.Collectors;
 public class DoctorServiceImpl implements DoctorService {
 
     private final DoctorRepo doctorRepo;
+    private static final String FLASK_SERVER_URL = "http://localhost:5001";
+    private final AppointmentRepo appointmentRepo;
 
-    public DoctorServiceImpl(DoctorRepo doctorRepo) {
+    public DoctorServiceImpl(DoctorRepo doctorRepo, AppointmentRepo appointmentRepo) {
         this.doctorRepo = doctorRepo;
+        this.appointmentRepo = appointmentRepo;
     }
 
     @Override
@@ -51,6 +61,31 @@ public class DoctorServiceImpl implements DoctorService {
             return null;
         }
         return convertToDto(doctor);
+    }
+
+    @Override
+    public MedicineSuggestion recommend(String medicine) {
+        System.out.println(medicine);
+        try {
+            RestTemplate restTemplate = new RestTemplate();
+            String url = FLASK_SERVER_URL + "/recommend";
+            String requestPayLoad = "{\"medicine\": \"" + medicine + "\"}";
+            ChatBotServiceImpl.ChatBotResponse response = restTemplate.postForObject(url, requestPayLoad, ChatBotServiceImpl.ChatBotResponse.class);
+            assert response != null;
+            System.out.println(response);
+            return new MedicineSuggestion(medicine,response.getResponse());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public int getTodayAppointmentsNo() {
+        return (int) appointmentRepo.findAll().stream()
+                .filter(appointment -> appointment.getAppointmentDate().equals(LocalDate.now()))
+                .filter(appointment -> appointment.getPaymentStatus().toString().equals(PaymentStatus.COMPLETED.toString()))
+                .count();
     }
 
     private AppointmentDto convertToDto(Appointment appointment, Doctor doctor) {

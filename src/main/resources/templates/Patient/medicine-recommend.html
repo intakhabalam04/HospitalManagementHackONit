@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicine Recommendation System</title>
+    <link rel="stylesheet" th:href="@{/static/css/Patient/medicine-recommend.css}">
+</head>
+<body>
+<div th:replace="~{Patient/fragments}"></div>
+<div class="container">
+    <h1>Medicine Recommendation System</h1>
+    <label for="medicineInput">Enter scientific medicine name/full name of the medicine:</label>
+    <input type="text" id="medicineInput" placeholder="Type here...">
+    <button id="btn1">Recommend</button>
+    <div id="recommendationResult"></div>
+</div>
+
+<script th:src="@{/static/js/Patient/medicine-recommend.js}"></script>
+</body>
+</html>

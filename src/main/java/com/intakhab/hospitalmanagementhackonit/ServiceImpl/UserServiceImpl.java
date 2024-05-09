@@ -2,6 +2,8 @@ package com.intakhab.hospitalmanagementhackonit.ServiceImpl;
 
 import com.intakhab.hospitalmanagementhackonit.Enum.AppointmentStatus;
 import com.intakhab.hospitalmanagementhackonit.Model.Appointment;
+import com.intakhab.hospitalmanagementhackonit.Model.Contact;
+import com.intakhab.hospitalmanagementhackonit.Model.Email;
 import com.intakhab.hospitalmanagementhackonit.Model.User;
 import com.intakhab.hospitalmanagementhackonit.Repository.AppointmentRepo;
 import com.intakhab.hospitalmanagementhackonit.Repository.UserRepo;
@@ -43,12 +45,19 @@ public class UserServiceImpl implements UserService {
             return false;
         }
         if (appointment.getAppointmentStatus().toString().equals(AppointmentStatus.PENDING.toString())) {
-//            appointment.setAppointmentStatus(AppointmentStatus.COMPLETED);
-//            appointmentRepo.save(appointment);
+            appointment.setAppointmentStatus(AppointmentStatus.COMPLETED);
+            appointmentRepo.save(appointment);
             return true;
         }
         return false;
     }
+
+    @Override
+    public int getPatientTillDate() {
+        return (int) userRepo.count();
+    }
+
+
 
     @Override
     public User findByUserName(String username) {

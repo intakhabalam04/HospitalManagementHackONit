@@ -1,5 +1,6 @@
 package com.intakhab.hospitalmanagementhackonit.Service;
 
+import com.intakhab.hospitalmanagementhackonit.Model.Contact;
 import com.intakhab.hospitalmanagementhackonit.Model.User;
 
 public interface UserService {
@@ -10,4 +11,7 @@ public interface UserService {
     User findByEmail(String emailId);
 
     boolean updateAppointmentStatus(String appointmentid, String roomID);
+
+    int getPatientTillDate();
+
 }

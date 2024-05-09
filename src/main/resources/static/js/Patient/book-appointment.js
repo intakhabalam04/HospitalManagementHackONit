@@ -93,8 +93,5 @@ document.addEventListener("DOMContentLoaded", function () {
             .catch(error => {
                 console.error('Error booking appointment:', error);
             });
-
-
-        alert(`Appointment booked on ${selectedDate} at ${selectedTime}.Please wait for 10sec for the page to reload.`);
     });
 });

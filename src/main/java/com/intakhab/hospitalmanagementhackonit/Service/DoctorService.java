@@ -3,6 +3,7 @@ package com.intakhab.hospitalmanagementhackonit.Service;
 import com.intakhab.hospitalmanagementhackonit.Dto.AppointmentDto;
 import com.intakhab.hospitalmanagementhackonit.Dto.DoctorDto;
 import com.intakhab.hospitalmanagementhackonit.Model.Doctor;
+import com.intakhab.hospitalmanagementhackonit.Model.MedicineSuggestion;
 
 import java.util.List;
 import java.util.UUID;
@@ -15,4 +16,8 @@ public interface DoctorService {
     List<AppointmentDto> getDoctorsAppointments();
 
     DoctorDto getDoctorDto(UUID id);
+
+    MedicineSuggestion recommend(String medicine);
+
+    int getTodayAppointmentsNo();
 }
