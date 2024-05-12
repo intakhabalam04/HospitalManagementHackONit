@@ -1,43 +1,55 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
+    background-color: #90def6;
 }
 
 .container {
     max-width: 1200px;
     margin: 20px auto;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    position: relative; 
+}
+
+h1 {
+    text-align: center;
+    z-index: 1; 
+    background-color: #cdcaca;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: rgb(10, 10, 10);
 }
 
 .split-form {
     display: flex;
     justify-content: space-between;
-    flex-wrap: nowrap; /* Add this line */
+    flex-wrap: nowrap;
+    margin-top: 20px;
 }
 
-.split-form h1 {
-    text-align: center; /* Center the title */
-    width: 100%; /* Make the title span the full width of the form */
-}
-
-.left-col,
-.right-col {
-    flex: 0 0 48%; /* Adjust the width as needed */
-    margin: 0 10px;
-    background-color: #fff;
+.left-col {
+    flex: 0 0 calc(50% - 25px); 
+    background-color: #52e9ca;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
+    margin-right: 25px; /* Adjust the margin */
+    transition: transform 0.3s ease; /* Add animation transition */
+}
+
+.right-col {
+    flex: 0 0 calc(50% - 25px); /* Adjust the width of the right column */
+    background-color: #52e9ca;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-left: 25px; /* Adjust the margin */
+    transition: transform 0.3s ease; /* Add animation transition */
 }
 
 .form-group {
     margin-bottom: 20px;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
 }
 
 input[type="text"],
@@ -55,17 +67,32 @@ input[type="radio"] {
     margin-right: 10px;
 }
 
-input[type="submit"] {
-    background-color: #4CAF50;
+.box-footer {
+    margin-top: 20px; /* Add space between cards and button */
+}
+
+.btn {
+    background-color: #2313ad;
     color: white;
     border: none;
     padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    display: block; /* Make the button a block element */
-    margin: 0 auto; /* Center the button */
+    display: block;
+    margin: 20px auto;
+    margin-right: 400px;
+    width: calc(30% - 25px); /* Equal width to columns */
+    transition: background-color 0.3s ease; 
+    margin-top: 40px;
 }
 
-input[type="submit"]:hover {
-    background-color: #45a049;
+.btn:hover {
+    background-color: #097de2;
+    transform: translateY(-5px);
+    color: black;
+}
+
+.left-col:hover,
+.right-col:hover {
+    transform: translateY(-5px); /* Add a slight upward lift on hover */
 }
