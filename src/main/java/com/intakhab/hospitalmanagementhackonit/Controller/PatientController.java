@@ -1,9 +1,6 @@
 package com.intakhab.hospitalmanagementhackonit.Controller;
 
-import com.intakhab.hospitalmanagementhackonit.Model.Appointment;
-import com.intakhab.hospitalmanagementhackonit.Model.ChatBot;
-import com.intakhab.hospitalmanagementhackonit.Model.Contact;
-import com.intakhab.hospitalmanagementhackonit.Model.MedicineSuggestion;
+import com.intakhab.hospitalmanagementhackonit.Model.*;
 import com.intakhab.hospitalmanagementhackonit.Service.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -140,5 +137,23 @@ public class PatientController {
         return new ModelAndView("Admin/messages");
     }
 
+    @GetMapping("/mental-health")
+    public ModelAndView getMentalHealthPage(){
+        return new ModelAndView("Patient/Mental-Health/act");
+    }
+
+    @GetMapping("/donate-blood")
+    public ModelAndView donateBloodPage(){
+        String viewName = "Patient/blood_donation";
+        Map<String, Object> model = new HashMap<>();
+        model.put("bloodDonate", new BloodDonation());
+        return new ModelAndView(viewName,model);
+    }
+
+    @PostMapping("/donate-blood")
+    public ModelAndView donateBlood(@ModelAttribute BloodDonation bloodDonation){
+        System.out.println(bloodDonation);
+        return new ModelAndView("redirect:/patient/donate-blood");
+    }
 
 }

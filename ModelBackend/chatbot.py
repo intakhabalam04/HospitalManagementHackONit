@@ -110,16 +110,25 @@ def family_floater_health_insurance_info():
 
 
 app = Flask(__name__)
-
 questions = [
     "Hi there! What's your name?",
-    "Hello, {}! How can I assist you today? (Enter symptoms that you have)",
-    "How many days have you been experiencing these symptoms?",
+    "Hello, {}! How can I assist you today?\nDo you have any of the following symptoms?\n1. Fever\n2. Common Cold\n3. "
+    "Diabetes\n4. Hypertension (High Blood Pressure)\n5. Influenza (Flu)\n6. Depression\nPlease enter the number(s) "
+    "of the symptom(s) you are experiencing, separated by commas (e.g., '1, 3')",
+    "\nHow many days have you been experiencing these symptoms?",
     "Do you have any other symptoms or concerns you'd like to share? (yes/no)"
 ]
 
 answers = {'symptoms': [], 'days': ''}
 current_question = 0
+symptom_map = {
+    '1': 'Fever',
+    '2': 'Common Cold',
+    '3': 'Diabetes',
+    '4': 'Hypertension (High Blood Pressure)',
+    '5': 'Influenza (Flu)',
+    '6': 'Depression'
+}
 
 
 @app.route('/chat', methods=['POST'])
@@ -134,10 +143,12 @@ def chat():
         current_question += 1
         response = questions[current_question].format(name)
     elif current_question == 1:
-        symptoms = user_input
-        answers['symptoms'].append(symptoms)
+        symptom_numbers = user_input
+        symptoms = [symptom_map[num] for num in symptom_numbers.split(',') if num in symptom_map]
+        symptoms_text = ", ".join(symptoms)
+        response = f'You mentioned experiencing the following symptoms: {symptoms_text}'
         current_question += 1
-        response = questions[current_question]
+        response += questions[current_question]
     elif current_question == 2:
         days = user_input
         answers['days'] = days
@@ -146,7 +157,7 @@ def chat():
     elif current_question == 3:
         if user_input.lower() == 'yes':
             response = "Enter another symptom:"
-            current_question = 1  # Ask for another symptom
+            current_question = 1
         else:
             print(answers)
             response = "Goodbye!"

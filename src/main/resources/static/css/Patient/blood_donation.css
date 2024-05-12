@@ -1,0 +1,71 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.split-form {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap; /* Add this line */
+}
+
+.split-form h1 {
+    text-align: center; /* Center the title */
+    width: 100%; /* Make the title span the full width of the form */
+}
+
+.left-col,
+.right-col {
+    flex: 0 0 48%; /* Adjust the width as needed */
+    margin: 0 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type="radio"] {
+    margin-right: 10px;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block; /* Make the button a block element */
+    margin: 0 auto; /* Center the button */
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
