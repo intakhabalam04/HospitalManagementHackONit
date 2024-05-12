@@ -8,12 +8,12 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import make_pipeline
 
 # LOAD DATASETS
-data = pd.read_csv("ModelBackend\Symptom2Disease.csv")
-disease_info = pd.read_csv("ModelBackend\disease_info.csv")
+data = pd.read_csv("Symptom2Disease.csv")
+disease_info = pd.read_csv("disease_info.csv")
 
-doctor_data = pd.read_csv("ModelBackend\Disease_Doctor_Data.csv")
+doctor_data = pd.read_csv("Disease_Doctor_Data.csv")
 
-recovery_steps = pd.read_csv("ModelBackend\health_conditions.csv")
+recovery_steps = pd.read_csv("health_conditions.csv")
 
 # TRAIN MODEL USING NAIVE BAYES ALGORITHM
 

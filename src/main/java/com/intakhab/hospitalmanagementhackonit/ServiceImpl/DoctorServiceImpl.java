@@ -48,6 +48,7 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public List<AppointmentDto> getDoctorsAppointments() {
         List<Doctor> doctors = doctorRepo.findAll();
+        
         return doctors.stream()
                 .flatMap(doctor -> doctor.getAppointment().stream().filter(appointment->appointment.getPaymentStatus().toString().equals(PaymentStatus.COMPLETED.toString()))
                         .map(appointment -> convertToDto(appointment, doctor)))

@@ -11,8 +11,16 @@
 <div class="container">
     <h1>Medicine Recommendation System</h1>
     <label for="medicineInput">Enter scientific medicine name/full name of the medicine:</label>
-    <input type="text" id="medicineInput" placeholder="Type here...">
-    <button id="btn1">Recommend</button>
+    <input type="text" id="medicineInput" list="medicineList" placeholder="Type here...">
+    <datalist id="medicineList">
+        <!-- Options will be populated here by JavaScript -->
+    </datalist>
+    <button id="btn1">Get Recommendation</button>
+
+    <div class="spinner" id="loadingSpinner">
+        <i class="fas fa-spinner fa-spin"></i>
+    </div>
+
     <div id="recommendationResult"></div>
 </div>
 

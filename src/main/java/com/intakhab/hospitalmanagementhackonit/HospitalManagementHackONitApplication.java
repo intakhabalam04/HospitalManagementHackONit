@@ -11,5 +11,4 @@ public class HospitalManagementHackONitApplication {
     public static void main(String[] args) {
         SpringApplication.run(HospitalManagementHackONitApplication.class, args);
     }
-
 }
