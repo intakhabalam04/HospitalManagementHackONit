@@ -156,4 +156,11 @@ public class PatientController {
         return new ModelAndView("redirect:/patient/donate-blood");
     }
 
+    @GetMapping("/donate-organs")
+    public ModelAndView organDonationPage(){
+        String viewName = "Patient/organ_donation";
+        Map<String, Object> model = new HashMap<>();
+        model.put("bloodDonate", new BloodDonation());
+        return new ModelAndView(viewName,model);
+    }
 }

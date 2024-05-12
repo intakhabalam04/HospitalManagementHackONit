@@ -8,12 +8,12 @@ body {
     margin: 20px auto;
     display: flex;
     flex-direction: column;
-    position: relative; 
+    position: relative;
 }
 
 h1 {
     text-align: center;
-} 
+}
 
 .split-form {
     display: flex;
@@ -23,7 +23,7 @@ h1 {
 }
 
 .left-col {
-    flex: 0 0 calc(50% - 25px); 
+    flex: 0 0 calc(50% - 25px);
     background-color: #52e9ca;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -76,7 +76,7 @@ input[type="radio"] {
     margin: 20px auto;
     margin-right: 400px;
     width: calc(30% - 25px); /* Equal width to columns */
-    transition: background-color 0.3s ease; 
+    transition: background-color 0.3s ease;
     margin-top: 40px;
 }
 
