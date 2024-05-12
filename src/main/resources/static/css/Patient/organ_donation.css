@@ -1,20 +1,22 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
+    background-color: #90def6;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
-    max-width: 800px;
-    margin: 50px auto;
+    max-width: 600px;
+    margin: 20px auto;
     padding: 20px;
-    background-color: #fff;
+    background-color: #52e9ca;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
     text-align: center;
-    color: #333;
+    color: #000000;
 }
 
 .form-group {
@@ -24,14 +26,15 @@ h1 {
 label {
     display: block;
     margin-bottom: 5px;
+    color: #000000;
 }
 
 input[type="text"],
-input[type="email"],
-input[type="tel"],
+input[type="date"],
 input[type="number"],
-select,
-textarea {
+input[type="email"],
+textarea,
+select {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -39,19 +42,54 @@ textarea {
     box-sizing: border-box;
 }
 
+textarea {
+    min-height: 100px;
+}
+
+input[type="radio"],
 input[type="checkbox"] {
     margin-right: 10px;
 }
 
 .btn {
-    background-color: #4CAF50;
+    background-color: #1492f3;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 10px 100px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 300px;
+}
+
+.btn:hover {
+    background-color: #096cde;
+}
+
+.signature-pad {
+    background-color: aliceblue;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#clearSignature {
+    margin-top: 10px;
+    background-color: #fd4c40;
+    color: white;
+    border: none;
+    padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
 }
 
-.btn:hover {
-    background-color: #45a049;
+#clearSignature:hover {
+    background-color: #d32f2f;
+}
+.checkbox-group {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-group label {
+    margin-right: 10px;
 }
