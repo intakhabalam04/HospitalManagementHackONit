@@ -56,7 +56,7 @@ body {
 }
 .nav .links .mainlink {
     /* color: #e0501b; */
-    margin-left: 80px;
+    margin-left: 60px;
     
 }
 
@@ -205,3 +205,15 @@ body {
     /* margin-bottom: 20px; */
     text-align: center;
 }
+.logo_img {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  .logo_img img {
+    height: 80px;
+    width: 80px;
+    border-radius: 50px;
+    margin-right: 10px;
+  }
