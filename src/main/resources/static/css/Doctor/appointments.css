@@ -2,19 +2,26 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-
-    transition: background-color 0.3s; /* Add transition for background color */
-    background: linear-gradient(#5eb062,#34ac86) no-repeat;
-    height: 100vh; 
     transition: background-color 0.3s;
-
+    background-color: #ddddd6;
 }
 
 .content {
     padding: 20px;
-     margin-left: 200px;
+    margin-top: 50px;
+    margin-left: 300px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    max-width: calc(80% - 200px);
+    overflow-x: auto; /* Add horizontal scroll if needed */
 }
 
+.content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
 
 table.appointments-list {
     width: 100%;
@@ -40,6 +47,14 @@ table.appointments-list tr:hover {
     background-color: #f5f5f5;
 }
 
-.content h1{
+.content h1 {
     text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+    transition: color 0.3s;
+}
+
+.content h1:hover {
+    color: #007bff;
 }

@@ -2,8 +2,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f8f8f8;
-    background: linear-gradient(#5eb062,#34ac86) no-repeat;
+    background-color: #ddddd6;
     height: 100vh;
     transition: background-color 0.3s;
 }
@@ -13,20 +12,22 @@ body {
     margin: 50px auto;
     padding: 20px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    /* background-color: #f9f9f9; */
+    border-radius: 10px;
     background-color: #52e9ca;
+    position: relative;
 }
 
 h1 {
     text-align: center;
     margin-bottom: 20px;
+    color: #333;
 }
 
 label {
     display: block;
     margin-bottom: 10px;
     margin-left: 10px;
+    color: #333;
 }
 
 input[type="text"] {
@@ -34,26 +35,29 @@ input[type="text"] {
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #adacac;
-    border-radius:8px;
+    border-radius: 8px;
     margin-left: 5px;
 }
 
-#btn1{
+#btn1 {
     display: block;
     width: 50%;
     padding: 10px;
     border: none;
     border-radius: 8px;
     background-color: #007bff;
-    color: #000000;
+    color: #ffffff;
     cursor: pointer;
     text-align: center;
-    margin-left: 150px;
+    margin: 0 auto;
+    transition: background 0.3s, transform 0.2s ease;
+    margin-top: 10px;
 }
 
 #btn1:hover {
-    background: linear-gradient(#0cc6eb,#2c7ff4) no-repeat;
-    color: rgb(252, 250, 250);
+    background: linear-gradient(#0cc6eb, #2c7ff4);
+    transform: scale(1.05); /* Scale up on hover */
+    color: black;
 }
 
 #recommendationResult {
@@ -62,6 +66,7 @@ input[type="text"] {
     border: 1px solid #ccc;
     border-radius: 3px;
     background-color: #dfdcdc;
+    color: #333;
 }
 
 .spinner {
@@ -72,4 +77,21 @@ input[type="text"] {
     transform: translate(-50%, -50%);
     font-size: 24px;
     color: black;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.spinner.active {
+    display: block;
+    opacity: 0.7;
+    animation: spin 1s linear infinite; /* Rotate spinner */
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }

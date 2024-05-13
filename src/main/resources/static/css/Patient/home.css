@@ -2,69 +2,60 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
-    transition: background-color 0.3s; /* Add transition for background color */
-    background: linear-gradient(#5eb062,#34ac86) no-repeat;
-    height: 100vh; 
+    background-color: #ddddd6;
     transition: background-color 0.3s;
-
 }
 
 .content {
     max-width: 800px;
-    margin: 50px auto;
+    margin: 30px auto;
     padding: 20px;
     background-color: #52e9ca;
-
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s; /* Add transition for box shadow */
-
-
+    transition: box-shadow 0.3s;
 }
 
 h1 {
-    font-size: 2.25rem; /* Equivalent to 36px */
+    font-size: 2.25rem;
     color: #333;
-    margin-bottom: 1.25rem; /* Equivalent to 20px */
-    transition: color 0.3s; /* Add transition for text color */
+    margin-bottom: 1.25rem;
+    transition: color 0.3s;
 }
 
 p {
-    font-size: 1.125rem; /* Equivalent to 18px */
+    font-size: 1.125rem;
     color: #666;
-    transition: color 0.3s; /* Add transition for text color */
+    transition: color 0.3s;
 }
 
-/* Hover effects */
 .content:hover {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Increase box shadow on hover */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
 h1:hover {
-    color: #007bff; /* Change text color on hover */
+    color: #007bff;
 }
 
 p:hover {
-    color: #444; /* Change text color on hover */
+    color: #444;
 }
 
 .content h2 {
-    font-size: 1.75rem; /* Equivalent to 28px */
+    font-size: 1.75rem;
     color: #333;
-    margin-bottom: 1rem; /* Equivalent to 16px */
-    transition: color 0.3s; /* Add transition for text color */
+    margin-bottom: 1rem;
+    transition: color 0.3s;
 }
 
 .content p {
-    font-size: 1.125rem; /* Equivalent to 18px */
+    font-size: 1.125rem;
     color: #666;
-    transition: color 0.3s; /* Add transition for text color */
+    transition: color 0.3s;
 }
 
-/* Hover effects */
 .content h2:hover {
-    color: #007bff; /* Change text color on hover */
+    color: #007bff;
 }
 
 .btn2 {
@@ -76,8 +67,10 @@ p:hover {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.2s ease; /* Added transition for transform */
 }
+
 .btn2:hover {
     background-color: #0056b3;
+    transform: scale(1.05); /* Scale up on hover */
 }

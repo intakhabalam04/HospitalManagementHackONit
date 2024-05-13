@@ -2,9 +2,8 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f8f8f8;
-    background: linear-gradient(#5eb062,#34ac86) no-repeat;
-    height: 100vh; 
+    background-color: #ddddd6;
+    height: 100vh;
     transition: background-color 0.3s;
 }
 
@@ -12,12 +11,10 @@ body {
     max-width: 800px;
     margin: 50px auto;
     padding: 20px;
-    background-color: #fff;
+    background-color: #52e9ca;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
-    background-color: #52e9ca;
-
 }
 
 .content:hover {
@@ -85,13 +82,11 @@ select {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s;
     margin-left: 200px;
-    font-size: 18px;
-
+    transition: background-color 0.3s;
+    font-size: 17px;
 }
 
-button:hover {
-    background-color: #3db1d5;
-    color: #333;
+#btn:hover {
+    background-color: #0725bb;
 }
