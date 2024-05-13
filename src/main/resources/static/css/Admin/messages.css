@@ -3,31 +3,28 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center; /* Horizontally center content */
-    align-items: center; /* Vertically center content */
+    justify-content: center;
+    align-items: center;
     height: 100vh;
-    text-align: center;
-    background: linear-gradient(#5eb062,#34ac86) no-repeat;
-    height: 100vh; 
+    /* text-align: center; */
+    background-color: #ddddd6;
     transition: background-color 0.3s;
-
 }
 
 .content {
     margin: 20px;
     padding: 20px;
-    background-color: #cfcaca;
+    background-color: #1be0c6;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    width: 30%; /* Adjust width as needed */
+    width: 30%;
     transition: transform 0.3s ease;
 }
 
 .content:hover {
-    transform: translateY(-5px); /* Move content up slightly on hover */
+    transform: translateY(-5px);
 }
-
 
 .form-group {
     margin-bottom: 15px;
@@ -40,7 +37,7 @@ label {
 
 input[type="text"],
 textarea {
-    width: 50%; /* Adjust width for 100% */
+    width: 95%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -55,8 +52,10 @@ button {
     background-color: #007bff;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    margin-left: 160px;
 }
 
 button:hover {
@@ -68,10 +67,6 @@ button:hover {
     border: 1px solid #ddd;
     padding: 10px;
     border-radius: 5px;
-}
-
-.sidebar ul{
-    margin-right: 50px;
 }
 
 a {
@@ -88,21 +83,19 @@ a:hover {
 .previous {
     background-color: #f1f1f1;
     color: black;
+    border-radius: 50%;
+    margin-right: 10px;
 }
 
 .next {
     background-color: #04AA6D;
     color: white;
-}
-
-.round {
     border-radius: 50%;
 }
 
-#pr{
-    margin-right: 400px;
+#header h1 {
+    text-align: center;
 }
-
-#header h1{
+h1{
     text-align: center;
 }

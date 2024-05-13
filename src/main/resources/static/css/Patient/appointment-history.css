@@ -2,11 +2,9 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(#5eb062,#34ac86) no-repeat;
-    height: 100vh; 
+    background-color: #ddddd6;
     transition: background-color 0.3s;
 }
-
 
 .content {
     max-width: 800px;
@@ -15,6 +13,11 @@ body {
     background-color: #52e9ca;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.content:hover {
+    transform: translateY(-5px);
 }
 
 h1 {
@@ -38,7 +41,6 @@ h1 {
 
 #appointmentTable td a {
     color: #ce3f3f;
-    /*text-decoration: none;*/
 }
 
 #appointmentTable th {
@@ -54,4 +56,3 @@ h1 {
     background-color: #e0e0e0;
     cursor: pointer;
 }
-
