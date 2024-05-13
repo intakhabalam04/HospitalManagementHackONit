@@ -68,11 +68,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         const res = await paymentStart(appointmentFee);
 
                         const paymentUpdateResponse = await fetch('/patient/verify_payment', {
-                            method: 'POST',
-                            headers: {
+                            method: 'POST', headers: {
                                 'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
+                            }, body: JSON.stringify({
                                 appointmentId: data.appointmentId,
                                 paymentId: res.razorpay_payment_id,
                                 orderId: res.razorpay_order_id,
@@ -96,6 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+/*
 
 const button1 = document.getElementById('btn1')
 
@@ -111,3 +110,6 @@ function getLocation(position){
 function failedLocation(){
     console.log('failed')
 }
+
+*/
+

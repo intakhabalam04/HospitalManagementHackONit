@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blood Donation List</title>
+  <link rel="stylesheet" th:href="@{/static/css/Admin/blood_donor_list.css}">
+</head>
+<body>
+<!--<div th:replace="~{Admin/fragments}"></div>-->
+<div class="content">
+  <h1>Blood Donor List</h1>
+  <!-- Table structure for displaying blood donation details -->
+  <table id="bloodDonationTable">
+    <!-- Table headers -->
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Date of Birth</th>
+        <th>Blood Group</th>
+        <th>Weight</th>
+        <th>street</th>
+        <th>area</th>
+        <th>city</th>
+        <th>pincode</th>
+        <th>Mobile</th>
+      </tr>
+    </thead>
+    <!-- Table body -->
+    <tbody id="bloodDonationList">
+    </tbody>
+  </table>
+</div>
+<script th:src="@{/static/js/Admin/blood_donor_list.js}"></script>
+</body>
+</html>

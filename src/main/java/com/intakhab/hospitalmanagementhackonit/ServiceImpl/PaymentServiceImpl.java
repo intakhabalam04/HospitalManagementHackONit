@@ -75,7 +75,7 @@ public class PaymentServiceImpl implements PaymentService {
         message1.append("Consultation Fee: ").append(doctor.getConsultancyFee()).append("\n\n");
         message1.append("Please be prepared for the appointment.\n\n");
         message1.append("You can join the video call using the following link:\n");
-        message1.append("http://localhost:2024/doctor/videocall?roomID=4569\n\n");
+        message1.append("http://localhost:8080/doctor/videocall?roomID=4569\n\n");
 
         message1.append("Best Regards,\n");
         message1.append("Your Hospital Management Team");

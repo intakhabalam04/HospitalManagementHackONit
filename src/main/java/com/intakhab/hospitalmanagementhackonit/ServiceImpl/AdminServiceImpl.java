@@ -5,32 +5,32 @@ import com.intakhab.hospitalmanagementhackonit.Dto.DoctorDto;
 import com.intakhab.hospitalmanagementhackonit.Enum.PaymentStatus;
 import com.intakhab.hospitalmanagementhackonit.Enum.UserAction;
 import com.intakhab.hospitalmanagementhackonit.Enum.UserRole;
+import com.intakhab.hospitalmanagementhackonit.Model.BloodDonation;
 import com.intakhab.hospitalmanagementhackonit.Model.Doctor;
+import com.intakhab.hospitalmanagementhackonit.Model.OrganDonation;
 import com.intakhab.hospitalmanagementhackonit.Model.User;
-import com.intakhab.hospitalmanagementhackonit.Repository.AppointmentRepo;
-import com.intakhab.hospitalmanagementhackonit.Repository.DoctorRepo;
-import com.intakhab.hospitalmanagementhackonit.Repository.UserRepo;
+import com.intakhab.hospitalmanagementhackonit.Repository.*;
 import com.intakhab.hospitalmanagementhackonit.Service.AdminService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
 public class AdminServiceImpl implements AdminService {
 
     private final DoctorRepo doctorRepo;
     private final PasswordEncoder passwordEncoder;
     private final UserRepo userRepo;
     private final AppointmentRepo appointmentRepo;
+    private final BloodDonationRepo bloodDonationRepo;
+    private final OrganDonationRepo organDonationRepo;
 
-    public AdminServiceImpl(DoctorRepo doctorRepo, PasswordEncoder passwordEncoder, UserRepo userRepo, AppointmentRepo appointmentRepo) {
-        this.doctorRepo = doctorRepo;
-        this.passwordEncoder = passwordEncoder;
-        this.userRepo = userRepo;
-        this.appointmentRepo = appointmentRepo;
-    }
+
 
     @Override
     public boolean addDoctor(Doctor doctor) {
@@ -142,5 +142,15 @@ public class AdminServiceImpl implements AdminService {
             e.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    public List<BloodDonation> getBloodDonations() {
+        return bloodDonationRepo.findAll();
+    }
+
+    @Override
+    public List<OrganDonation> getOrganDonations() {
+        return organDonationRepo.findAll();
     }
 }

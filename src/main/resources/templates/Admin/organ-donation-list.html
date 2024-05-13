@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organ Donation List</title>
+  <link rel="stylesheet" th:href="@{/static/css/Admin/organ_donor_list.css}">
+</head>
+<body>
+<!--<div th:replace="~{Admin/fragments}"></div>-->
+<div class="content">
+  <h1>Organ Donor List</h1>
+  <!-- Table structure for displaying organ donation details -->
+  <table id="organDonationTable">
+    <!-- Table headers -->
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Date of Birth</th>
+        <th>Blood Type</th>
+        <th>Weight</th>
+        <th>Address</th>
+        <th>Mobile</th>
+        <th>Organs</th>
+      </tr>
+    </thead>
+    <!-- Table body -->
+    <tbody id="organDonationList">
+    </tbody>
+  </table>
+</div>
+<script th:src="@{/static/js/Admin/organ_donor_list.js}"></script>
+</body>
+</html>

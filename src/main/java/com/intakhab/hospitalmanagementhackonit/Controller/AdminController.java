@@ -1,7 +1,9 @@
 package com.intakhab.hospitalmanagementhackonit.Controller;
 
 import com.intakhab.hospitalmanagementhackonit.Dto.DoctorDto;
+import com.intakhab.hospitalmanagementhackonit.Model.BloodDonation;
 import com.intakhab.hospitalmanagementhackonit.Model.Doctor;
+import com.intakhab.hospitalmanagementhackonit.Model.OrganDonation;
 import com.intakhab.hospitalmanagementhackonit.Repository.DoctorRepo;
 import com.intakhab.hospitalmanagementhackonit.Service.AdminService;
 import com.intakhab.hospitalmanagementhackonit.Service.DoctorService;
@@ -12,10 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @RestController
 @RequestMapping("/admin")
@@ -36,11 +35,11 @@ public class AdminController {
     public ModelAndView home() {
         String viewName = "Admin/home";
         Map<String, Object> model = new HashMap<>();
-        model.put("doctorCount",doctorService.getAllDoctors().size());
-        model.put("appointmentCount",doctorService.getTodayAppointmentsNo());
-        model.put("patientCount",userService.getPatientTillDate());
+        model.put("doctorCount", doctorService.getAllDoctors().size());
+        model.put("appointmentCount", doctorService.getTodayAppointmentsNo());
+        model.put("patientCount", userService.getPatientTillDate());
 
-        return new ModelAndView(viewName,model);
+        return new ModelAndView(viewName, model);
     }
 
     @GetMapping("/doctor-list")
@@ -110,11 +109,32 @@ public class AdminController {
     }
 
 
-
-
     @GetMapping("/appointments")
     public ResponseEntity<?> getAppointments() {
         return ResponseEntity.ok().body(adminService.getAppointments());
+    }
+
+    @GetMapping("/blood-donations")
+    public ModelAndView bloodDonations() {
+        return new ModelAndView("Admin/blood_donation_list");
+    }
+
+    @GetMapping("/organ-donations")
+    public ModelAndView organDonations() {
+        return new ModelAndView("Admin/organ-donation-list");
+    }
+
+
+    @GetMapping("/blood-donations-list")
+    public ResponseEntity<?> getBloodDonations() {
+        List<BloodDonation> bloodDonations = adminService.getBloodDonations();
+        return ResponseEntity.ok().body(bloodDonations);
+    }
+
+    @GetMapping("/organ-donations-list")
+    public ResponseEntity<?> getOrganDonations() {
+        List<OrganDonation> organDonations = adminService.getOrganDonations();
+        return ResponseEntity.ok().body(organDonations);
     }
 
 }
