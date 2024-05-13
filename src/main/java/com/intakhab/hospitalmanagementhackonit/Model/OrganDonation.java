@@ -9,24 +9,30 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.util.UUID;
 
-@Entity
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class BloodDonation {
+@NoArgsConstructor
+@Entity
+public class OrganDonation {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String name;
     @Enumerated(EnumType.STRING)
     private Gender gender;
-    private LocalDate dateOfBirth;
-    private String bloodGroup;
+    private LocalDate dob;
+    private String blood_type;
     private float weight;
-    private boolean diseases;
-    private String street;
-    private String area;
-    private String city;
-    private int pincode;
+    private String address;
     private String mobile;
+    private String organs;
+    private boolean registered_donor;
+    private String reason;
+    private boolean discussion;
+    private boolean awareness;
+    private String medical_condition;
+    private String preferences;
+    private boolean diseases;
+    @Lob
+    private String signatureData;
 }

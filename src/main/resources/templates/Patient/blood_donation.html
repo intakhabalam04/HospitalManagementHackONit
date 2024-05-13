@@ -10,11 +10,11 @@
 <body>
 <div class="container">
     <h1>Blood Donation Form</h1>
-    <form method="post" class="split-form" th:object="${bloodDonate}" th:action="@{/patient/donate-blood}">
+    <form method="post" class="split-form">
         <div class="left-col">
             <div class="form-group">
                 <label>Name</label>
-                <input th:field="*{name}" type="text" class="form-control" id="name" name="name"
+                <input type="text" class="form-control" id="name" name="name"
                        placeholder="Enter Name" required="">
             </div>
             <div class="form-group">
@@ -24,13 +24,13 @@
             </div>
             <div class="form-group">
                 <label>Date of Birth</label>
-                <input th:field="*{dateOfBirth}" type="text" class="form-control hasDatepicker" id="datepicker1"
-                       name="datepicker1"
+                <input type="date" class="form-control hasDatepicker" id="datepicker1"
+                       name="dob"
                        placeholder="YYYY-MM-DD" required="">
             </div>
             <div class="form-group">
                 <label>Blood Group</label>
-                <select th:field="*{bloodGroup}" name="bloodgroup">
+                <select name="bloodgroup" id="bloodGroup">
                     <option value="1">A1+</option>
                     <option value="1">A1+</option>
                     <option value="1">A1+</option>
@@ -53,26 +53,33 @@
             </div>
             <div class="form-group">
                 <label>Weight</label>
-                <input th:field="*{weight}" type="number" class="form-control" id="weight" name="weight"
+                <input type="number" class="form-control" id="weight" name="weight"
                        placeholder="Enter weight"
                        required="">
+            </div>
+            <div class="form-group">
+                <label>Do you have any specific diseases?</label>
+                <div>
+                    <input type="radio" name="diseases" value="Yes" required> Yes
+                    <input type="radio" name="diseases" value="No" required> No
+                </div>
             </div>
         </div>
         <div class="right-col">
             <div class="form-group">
                 <label>Street</label>
-                <input th:field="*{street}" type="text" class="form-control" id="street" name="street"
+                <input type="text" class="form-control" id="street" name="street"
                        placeholder="Enter street"
                        required="">
             </div>
             <div class="form-group">
                 <label>Area</label>
-                <input th:field="*{area}" type="text" class="form-control" id="area" name="area"
+                <input type="text" class="form-control" id="area" name="area"
                        placeholder="Enter area name" required="">
             </div>
             <div class="form-group">
                 <label>City</label>
-                <select th:field="*{city}" name="city" class="form-control">
+                <select name="city" class="form-control" id="city">
                     <option value="10">Adilabad</option>
                     <option value="477">Agra</option>
                     <option value="70">Ahmedabad</option>
@@ -83,20 +90,20 @@
             </div>
             <div class="form-group">
                 <label>Pincode</label>
-                <input th:field="*{pincode}" type="number" class="form-control" maxlength="6" id="pincode"
+                <input type="number" class="form-control" maxlength="6" id="pincode"
                        name="pincode"
                        placeholder="Enter pincode" required="">
             </div>
             <div class="form-group">
                 <label>Mobile</label>
-                <input th:field="*{mobile}" type="number" class="form-control" maxlength="10" id="mobile" name="mobile"
+                <input type="number" class="form-control" maxlength="10" id="mobile" name="mobile"
                        placeholder="Enter mobile" required="">
             </div>
         </div>
         <div class="box-footer text-center">
         </div>
     </form>
-    <button type="submit" class="btn btn-primary">Register</button>
+    <button id="registerBtn" class="btn btn-primary" onclick="register()">Register</button>
 </div>
 
 <script th:src="@{/static/js/Patient/blood_donation.js}"></script>
