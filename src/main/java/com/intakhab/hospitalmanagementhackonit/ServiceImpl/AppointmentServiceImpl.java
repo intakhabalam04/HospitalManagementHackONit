@@ -14,31 +14,21 @@ import com.intakhab.hospitalmanagementhackonit.Service.AppointmentService;
 import com.intakhab.hospitalmanagementhackonit.Service.DoctorService;
 import com.intakhab.hospitalmanagementhackonit.Service.EmailService;
 import com.intakhab.hospitalmanagementhackonit.Service.SecurityService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class AppointmentServiceImpl implements AppointmentService {
 
     private final DoctorService doctorService;
     private final AppointmentRepo appointmentRepo;
     private final DoctorRepo doctorRepo;
-
     private final UserRepo userRepo;
     private final SecurityService securityService;
-
-    private final EmailService emailService;
-
-    public AppointmentServiceImpl(DoctorService doctorService, AppointmentRepo appointmentRepo, DoctorRepo doctorRepo, UserRepo userRepo, SecurityService securityService, EmailService emailService) {
-        this.doctorService = doctorService;
-        this.appointmentRepo = appointmentRepo;
-        this.doctorRepo = doctorRepo;
-        this.userRepo = userRepo;
-        this.securityService = securityService;
-        this.emailService = emailService;
-    }
 
     @Override
     public Appointment bookAppointment(Appointment appointment) {

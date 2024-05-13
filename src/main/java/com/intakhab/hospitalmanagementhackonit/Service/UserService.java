@@ -1,6 +1,8 @@
 package com.intakhab.hospitalmanagementhackonit.Service;
 
+import com.intakhab.hospitalmanagementhackonit.Model.BloodDonation;
 import com.intakhab.hospitalmanagementhackonit.Model.Contact;
+import com.intakhab.hospitalmanagementhackonit.Model.OrganDonation;
 import com.intakhab.hospitalmanagementhackonit.Model.User;
 
 public interface UserService {
@@ -14,4 +16,7 @@ public interface UserService {
 
     int getPatientTillDate();
 
+    OrganDonation saveOrganDonation(OrganDonation organDonation);
+
+    BloodDonation saveBloodDonation(BloodDonation bloodDonation);
 }

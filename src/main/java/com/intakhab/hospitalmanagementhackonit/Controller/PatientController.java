@@ -2,6 +2,7 @@ package com.intakhab.hospitalmanagementhackonit.Controller;
 
 import com.intakhab.hospitalmanagementhackonit.Model.*;
 import com.intakhab.hospitalmanagementhackonit.Service.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,22 +13,14 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/patient")
+@RequiredArgsConstructor
 public class PatientController {
 
     private final UserService userService;
     private final DoctorService doctorService;
     private final AppointmentService appointmentService;
-
     private final ChatBotService chatBotService;
     private final SecurityService securityService;
-
-    public PatientController(UserService userService, DoctorService doctorService, AppointmentService appointmentService, ChatBotService chatBotService, SecurityService securityService) {
-        this.userService = userService;
-        this.doctorService = doctorService;
-        this.appointmentService = appointmentService;
-        this.chatBotService = chatBotService;
-        this.securityService = securityService;
-    }
 
     @GetMapping("/home")
     public ModelAndView home() {
@@ -150,10 +143,21 @@ public class PatientController {
         return new ModelAndView(viewName,model);
     }
 
-    @PostMapping("/donate-blood")
-    public ModelAndView donateBlood(@ModelAttribute BloodDonation bloodDonation){
-        System.out.println(bloodDonation);
-        return new ModelAndView("redirect:/patient/donate-blood");
+    @PostMapping("/blood-donation")
+    public ResponseEntity<?> registerBloodDonation(@RequestBody BloodDonation bloodDonation) {
+        try{
+            System.out.println(bloodDonation);
+            BloodDonation savedBloodDonation = userService.saveBloodDonation(bloodDonation);
+            Map<String, Object> response = new HashMap<>();
+            response.put("success", true);
+            response.put("bloodDonationId", savedBloodDonation.getId());
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        }catch (Exception e) {
+            Map<String, Object> response = new HashMap<>();
+            response.put("success", false);
+            response.put("message", e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+        }
     }
 
     @GetMapping("/donate-organs")
@@ -163,4 +167,25 @@ public class PatientController {
         model.put("bloodDonate", new BloodDonation());
         return new ModelAndView(viewName,model);
     }
+
+    @PostMapping("/donate-organs")
+    public ResponseEntity<?> donateOrgans(@RequestBody OrganDonation organDonation) {
+        try {
+            System.out.println(organDonation);
+            OrganDonation savedOrganDonation = userService.saveOrganDonation(organDonation);
+            Map<String, Object> response = new HashMap<>();
+            response.put("success", true);
+            response.put("organDonationId", savedOrganDonation.getId());
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        } catch (Exception e) {
+            Map<String, Object> response = new HashMap<>();
+            response.put("success", false);
+            response.put("message", e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+        }
+    }
+
+
+
+
 }

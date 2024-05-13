@@ -1,27 +1,26 @@
 package com.intakhab.hospitalmanagementhackonit.ServiceImpl;
 
 import com.intakhab.hospitalmanagementhackonit.Enum.AppointmentStatus;
-import com.intakhab.hospitalmanagementhackonit.Model.Appointment;
-import com.intakhab.hospitalmanagementhackonit.Model.Contact;
-import com.intakhab.hospitalmanagementhackonit.Model.Email;
-import com.intakhab.hospitalmanagementhackonit.Model.User;
+import com.intakhab.hospitalmanagementhackonit.Model.*;
 import com.intakhab.hospitalmanagementhackonit.Repository.AppointmentRepo;
+import com.intakhab.hospitalmanagementhackonit.Repository.BloodDonationRepo;
+import com.intakhab.hospitalmanagementhackonit.Repository.OrganDonationRepo;
 import com.intakhab.hospitalmanagementhackonit.Repository.UserRepo;
 import com.intakhab.hospitalmanagementhackonit.Service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
+
     private final UserRepo userRepo;
     private final AppointmentRepo appointmentRepo;
-
-    public UserServiceImpl(UserRepo userRepo, AppointmentRepo appointmentRepo) {
-        this.userRepo = userRepo;
-        this.appointmentRepo = appointmentRepo;
-    }
+    private final OrganDonationRepo organDonationRepo;
+    private final BloodDonationRepo bloodDonationRepo;
 
     @Override
     public User findByMobile(String phoneNumber) {
@@ -41,7 +40,7 @@ public class UserServiceImpl implements UserService {
             return false;
         }
         Appointment appointment = optionalAppointment.get();
-        if(!appointment.getDoctor().getRoomID().equals(roomID)){
+        if (!appointment.getDoctor().getRoomID().equals(roomID)) {
             return false;
         }
         if (appointment.getAppointmentStatus().toString().equals(AppointmentStatus.PENDING.toString())) {
@@ -57,6 +56,28 @@ public class UserServiceImpl implements UserService {
         return (int) userRepo.count();
     }
 
+    @Override
+    public OrganDonation saveOrganDonation(OrganDonation organDonation) {
+
+        try {
+            organDonation.setSignatureData("");
+            return organDonationRepo.save(organDonation);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+    @Override
+    public BloodDonation saveBloodDonation(BloodDonation bloodDonation) {
+        try{
+            return bloodDonationRepo.save(bloodDonation);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
 
 
     @Override
