@@ -4,48 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Organ Donation Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" th:href="@{/static/css/Doctor/prescription.css}">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js"></script>
 </head>
 <body>
 <div th:replace="~{Doctor/fragments}"></div>
 
-<h2>Item Table</h2>
+<div class="container">
+    <h2>Patient Data</h2>
 
-<div>
-    <table>
+    <table class="table table-bordered">
+        <thead>
         <tr>
-            <th>Item</th>
-            <th>Description</th>
-            <th>Price</th>
+            <th>Patient Name</th>
+            <th>age</th>
+            <th>Symptons</th>
+            <th>gender</th>
+            <th>Action</th>
         </tr>
-        <tr>
-            <td>Item 1</td>
-            <td>Description of Item 1</td>
-            <td>$10</td>
-        </tr>
-        <tr>
-            <td>Item 2</td>
-            <td>Description of Item 2</td>
-            <td>$15</td>
-        </tr>
-        <tr>
-            <td>Item 3</td>
-            <td>Description of Item 3</td>
-            <td>$20</td>
-        </tr>
-        <tr>
-            <td>Item 4</td>
-            <td>Description of Item 4</td>
-            <td>$25</td>
-        </tr>
-        <tr>
-            <td>Item 5</td>
-            <td>Description of Item 5</td>
-            <td>$30</td>
-        </tr>
+        </thead>
     </table>
+</div>
 
+<!-- Add this code inside the body tag -->
+<div id="prescriptionModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Write Prescription</h2>
+    <textarea id="prescriptionText" rows="10" cols="50"></textarea>
+    <button id="savePrescription">Save</button>
+  </div>
 </div>
 
 <script th:src="@{/static/js/Doctor/prescription.js}"></script>

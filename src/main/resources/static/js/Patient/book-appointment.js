@@ -41,8 +41,10 @@ document.addEventListener("DOMContentLoaded", function () {
         const patientName = document.getElementById('patientName').value;
         const age = document.getElementById('age').value;
         const symptoms = document.getElementById('symptoms').value;
-        const gender = document.querySelector('input').value;
+        const gender = document.getElementById('gender').value;
         const appointmentFee = consultancyFeeInput.value;
+
+        console.log(gender)
 
         const appointmentDetails = {
             doctorid: selectedDoctorId,
@@ -63,7 +65,6 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(response => response.json())
             .then(async data => {
                 if (data.success) {
-                    console.log(data.appointmentId)
                     try {
                         const res = await paymentStart(appointmentFee);
 

@@ -36,4 +36,5 @@ public class Appointment {
     private AppointmentStatus appointmentStatus;
     private String roomID;
     private boolean isPrescriptionGiven;
+    private String prescription;
 }

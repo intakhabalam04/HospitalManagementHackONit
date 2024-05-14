@@ -2,15 +2,15 @@ package com.intakhab.hospitalmanagementhackonit.ServiceImpl;
 
 import com.intakhab.hospitalmanagementhackonit.Dto.AppointmentDto;
 import com.intakhab.hospitalmanagementhackonit.Dto.DoctorDto;
+import com.intakhab.hospitalmanagementhackonit.Enum.AppointmentStatus;
 import com.intakhab.hospitalmanagementhackonit.Enum.PaymentStatus;
-import com.intakhab.hospitalmanagementhackonit.Model.Appointment;
-import com.intakhab.hospitalmanagementhackonit.Model.ChatBot;
-import com.intakhab.hospitalmanagementhackonit.Model.Doctor;
-import com.intakhab.hospitalmanagementhackonit.Model.MedicineSuggestion;
+import com.intakhab.hospitalmanagementhackonit.Model.*;
 import com.intakhab.hospitalmanagementhackonit.Repository.AppointmentRepo;
 import com.intakhab.hospitalmanagementhackonit.Repository.DoctorRepo;
 import com.intakhab.hospitalmanagementhackonit.Service.DoctorService;
+import com.intakhab.hospitalmanagementhackonit.Service.EmailService;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -21,16 +21,14 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class DoctorServiceImpl implements DoctorService {
 
     private final DoctorRepo doctorRepo;
     private static final String FLASK_SERVER_URL = "http://localhost:5001";
     private final AppointmentRepo appointmentRepo;
+    private final EmailService emailService;
 
-    public DoctorServiceImpl(DoctorRepo doctorRepo, AppointmentRepo appointmentRepo) {
-        this.doctorRepo = doctorRepo;
-        this.appointmentRepo = appointmentRepo;
-    }
 
     @Override
     public Doctor getDoctor(UUID id) {
@@ -40,19 +38,14 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public List<DoctorDto> getAllDoctors() {
         List<Doctor> doctors = doctorRepo.findAll();
-        return doctors.stream()
-                .map(this::convertToDto)
-                .collect(Collectors.toList());
+        return doctors.stream().map(this::convertToDto).collect(Collectors.toList());
     }
 
     @Override
     public List<AppointmentDto> getDoctorsAppointments() {
         List<Doctor> doctors = doctorRepo.findAll();
-        
-        return doctors.stream()
-                .flatMap(doctor -> doctor.getAppointment().stream().filter(appointment->appointment.getPaymentStatus().toString().equals(PaymentStatus.COMPLETED.toString()))
-                        .map(appointment -> convertToDto(appointment, doctor)))
-                .collect(Collectors.toList());
+
+        return doctors.stream().flatMap(doctor -> doctor.getAppointment().stream().filter(appointment -> appointment.getPaymentStatus().toString().equals(PaymentStatus.COMPLETED.toString())).map(appointment -> convertToDto(appointment, doctor))).collect(Collectors.toList());
     }
 
     @Override
@@ -74,7 +67,7 @@ public class DoctorServiceImpl implements DoctorService {
             ChatBotServiceImpl.ChatBotResponse response = restTemplate.postForObject(url, requestPayLoad, ChatBotServiceImpl.ChatBotResponse.class);
             assert response != null;
             System.out.println(response);
-            return new MedicineSuggestion(medicine,response.getResponse());
+            return new MedicineSuggestion(medicine, response.getResponse());
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -83,10 +76,34 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public int getTodayAppointmentsNo() {
-        return (int) appointmentRepo.findAll().stream()
-                .filter(appointment -> appointment.getAppointmentDate().equals(LocalDate.now()))
-                .filter(appointment -> appointment.getPaymentStatus().toString().equals(PaymentStatus.COMPLETED.toString()))
-                .count();
+        return (int) appointmentRepo.findAll().stream().filter(appointment -> appointment.getAppointmentDate().equals(LocalDate.now())).filter(appointment -> appointment.getPaymentStatus().toString().equals(PaymentStatus.COMPLETED.toString())).count();
+    }
+
+    @Override
+    public List<AppointmentDto> prescriptionNeeded() {
+        return appointmentRepo.findAll().stream().filter(appointment -> appointment.getPaymentStatus().toString().equals(PaymentStatus.COMPLETED.toString())).filter(appointment -> appointment.getAppointmentStatus().toString().equals(AppointmentStatus.COMPLETED.toString())).filter(appointment -> !appointment.isPrescriptionGiven()).map(appointment -> convertToDto(appointment, appointment.getDoctor())).collect(Collectors.toList());
+    }
+
+    @Override
+    public Object savePrescription(UUID prescription, String prescriptionDetails) {
+
+        Appointment appointment = appointmentRepo.findById(prescription).orElse(null);
+        assert appointment != null;
+        appointment.setPrescription(prescriptionDetails);
+        appointment.setPrescriptionGiven(true);
+
+        System.out.println(appointment.getPrescription());
+        System.out.println(appointment.getPatientName());
+
+        Email email = new Email();
+        email.setSubject("Prescription for your appointment");
+        email.setMessage(prescriptionDetails);
+        email.setReceiver(appointment.getUser().getEmail());
+        emailService.sendEmail(email);
+
+        return appointmentRepo.save(appointment);
+
+
     }
 
     private AppointmentDto convertToDto(Appointment appointment, Doctor doctor) {
