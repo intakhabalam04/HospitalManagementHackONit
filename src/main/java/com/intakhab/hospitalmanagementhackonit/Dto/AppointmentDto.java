@@ -28,4 +28,5 @@ public class AppointmentDto {
     private String paymentStatus;
     private String appointmentStatus;
     private String roomID;
+    private boolean isPrescriptionGiven;
 }

@@ -50,6 +50,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 
         User currentUser = securityService.currentUser();
         appointment1.setUser(currentUser);
+        appointment1.setPrescriptionGiven(false);
 
         Appointment save = appointmentRepo.save(appointment1);
 
@@ -126,6 +127,7 @@ public class AppointmentServiceImpl implements AppointmentService {
         appointmentDto.setPaymentStatus(appointment.getPaymentStatus().toString());
         appointmentDto.setAppointmentStatus(appointment.getAppointmentStatus().toString());
         appointmentDto.setRoomID(appointment.getRoomID());
+        appointmentDto.setPrescriptionGiven(appointment.isPrescriptionGiven());
         return appointmentDto;
     }
 }

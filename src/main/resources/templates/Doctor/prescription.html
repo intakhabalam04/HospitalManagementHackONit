@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organ Donation Form</title>
+    <link rel="stylesheet" th:href="@{/static/css/Doctor/prescription.css}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js"></script>
+</head>
+<body>
+<div th:replace="~{Doctor/fragments}"></div>
+
+<h2>Item Table</h2>
+
+<div>
+    <table>
+        <tr>
+            <th>Item</th>
+            <th>Description</th>
+            <th>Price</th>
+        </tr>
+        <tr>
+            <td>Item 1</td>
+            <td>Description of Item 1</td>
+            <td>$10</td>
+        </tr>
+        <tr>
+            <td>Item 2</td>
+            <td>Description of Item 2</td>
+            <td>$15</td>
+        </tr>
+        <tr>
+            <td>Item 3</td>
+            <td>Description of Item 3</td>
+            <td>$20</td>
+        </tr>
+        <tr>
+            <td>Item 4</td>
+            <td>Description of Item 4</td>
+            <td>$25</td>
+        </tr>
+        <tr>
+            <td>Item 5</td>
+            <td>Description of Item 5</td>
+            <td>$30</td>
+        </tr>
+    </table>
+
+</div>
+
+<script th:src="@{/static/js/Doctor/prescription.js}"></script>
+</body>
+</html>

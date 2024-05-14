@@ -97,7 +97,6 @@ public class PatientController {
     @GetMapping("/videocall")
     public ModelAndView videoCall(@RequestParam String roomID, @RequestParam String appointmentid) {
         boolean appointmentStatus = userService.updateAppointmentStatus(appointmentid,roomID);
-        System.out.println(appointmentStatus);
         if (!appointmentStatus) {
             return new ModelAndView("redirect:/patient/appointment-history");
         }
@@ -184,6 +183,8 @@ public class PatientController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
         }
     }
+
+
 
 
 

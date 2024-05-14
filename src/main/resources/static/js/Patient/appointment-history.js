@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 row.insertCell().textContent = appointment.consultationFee;
                 row.insertCell().textContent = appointment.appointmentDate;
                 row.insertCell().textContent = appointment.appointmentTime;
-
                 // Check if payment status is "Pending"
                 if (appointment.paymentStatus.toString() === 'PENDING') {
                     const cell = row.insertCell();

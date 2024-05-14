@@ -35,6 +35,7 @@ public class PaymentServiceImpl implements PaymentService {
         Appointment appointment = appointmentRepo.findById(patientId).orElseThrow();
         appointment.setPaymentStatus(PaymentStatus.COMPLETED);
         appointment.setAppointmentStatus(AppointmentStatus.PENDING);
+        appointment.setPrescriptionGiven(false);
         appointmentRepo.save(appointment);
 
 

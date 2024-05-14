@@ -35,4 +35,5 @@ public class Appointment {
     @Enumerated(EnumType.STRING)
     private AppointmentStatus appointmentStatus;
     private String roomID;
+    private boolean isPrescriptionGiven;
 }

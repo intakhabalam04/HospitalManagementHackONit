@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -51,6 +50,13 @@ public class DoctorController {
         Map<String, Object> model = new HashMap<>();
         System.out.println("3");
         return new ModelAndView(viewName);
+    }
+
+    @GetMapping("/prescription")
+    public ModelAndView prescription(){
+        String viewName = "Doctor/prescription";
+        Map<String, Object> model = new HashMap<>();
+        return new ModelAndView(viewName,model);
     }
 
 }

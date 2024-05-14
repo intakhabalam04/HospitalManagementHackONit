@@ -45,6 +45,7 @@ public class UserServiceImpl implements UserService {
         }
         if (appointment.getAppointmentStatus().toString().equals(AppointmentStatus.PENDING.toString())) {
             appointment.setAppointmentStatus(AppointmentStatus.COMPLETED);
+            appointment.setPrescriptionGiven(false);
             appointmentRepo.save(appointment);
             return true;
         }
