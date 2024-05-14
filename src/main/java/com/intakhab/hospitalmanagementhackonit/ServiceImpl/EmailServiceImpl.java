@@ -2,11 +2,15 @@ package com.intakhab.hospitalmanagementhackonit.ServiceImpl;
 
 import com.intakhab.hospitalmanagementhackonit.Model.Email;
 import com.intakhab.hospitalmanagementhackonit.Service.EmailService;
+import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+
+import java.io.File;
 
 @Service
 public class EmailServiceImpl implements EmailService {
@@ -33,5 +37,23 @@ public class EmailServiceImpl implements EmailService {
             System.out.println("Error in sending email" + e.getMessage());
         }
         return false;
+    }
+
+    @Override
+    public void sendEmailWithAttachment(Email email, String attachmentPath) throws MessagingException {
+        MimeMessage message = javaMailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true);
+
+//        helper.setFrom(email.getSender());
+        helper.setTo(email.getReceiver());
+        helper.setSubject(email.getSubject());
+        helper.setText(email.getMessage());
+
+        // Add the attachment
+        FileSystemResource file = new FileSystemResource(new File(attachmentPath));
+        helper.addAttachment("prescription.pdf", file);
+
+        javaMailSender.send(message);
+
     }
 }

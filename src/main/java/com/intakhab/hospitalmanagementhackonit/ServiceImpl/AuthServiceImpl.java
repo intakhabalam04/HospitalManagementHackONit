@@ -68,7 +68,11 @@ public class AuthServiceImpl implements AuthService {
             String mailMsg = generateResetLink(token);
             String subject = "Here's the link to reset your password";
 
-            Email email = new Email(sender, user.getEmail(), subject, mailMsg);
+            Email email = new Email();
+            email.setSender(sender);
+            email.setReceiver(user.getEmail());
+            email.setSubject(subject);
+            email.setMessage(mailMsg);
 
             user.setToken(token);
             user.setTokenExpiryTime((System.currentTimeMillis() + tokenExpiryTime));

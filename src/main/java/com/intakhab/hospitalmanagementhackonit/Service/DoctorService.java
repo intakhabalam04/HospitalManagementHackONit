@@ -4,6 +4,7 @@ import com.intakhab.hospitalmanagementhackonit.Dto.AppointmentDto;
 import com.intakhab.hospitalmanagementhackonit.Dto.DoctorDto;
 import com.intakhab.hospitalmanagementhackonit.Model.Doctor;
 import com.intakhab.hospitalmanagementhackonit.Model.MedicineSuggestion;
+import jakarta.mail.MessagingException;
 
 import java.util.List;
 import java.util.UUID;
@@ -23,5 +24,5 @@ public interface DoctorService {
 
     List<AppointmentDto> prescriptionNeeded();
 
-    Object savePrescription(UUID prescription,String prescriptionDetails);
+    Object savePrescription(UUID prescription,String prescriptionDetails) throws MessagingException;
 }

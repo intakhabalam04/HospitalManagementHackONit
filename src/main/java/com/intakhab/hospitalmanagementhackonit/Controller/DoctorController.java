@@ -3,6 +3,7 @@ package com.intakhab.hospitalmanagementhackonit.Controller;
 import com.intakhab.hospitalmanagementhackonit.Model.Appointment;
 import com.intakhab.hospitalmanagementhackonit.Service.DoctorService;
 import com.intakhab.hospitalmanagementhackonit.Service.SecurityService;
+import jakarta.mail.MessagingException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -64,7 +65,7 @@ public class DoctorController {
     }
 
     @PostMapping("/save-prescription")
-    public ResponseEntity<?> savePrescription(@RequestBody Appointment appointment){
+    public ResponseEntity<?> savePrescription(@RequestBody Appointment appointment) throws MessagingException {
 
         return ResponseEntity.ok(doctorService.savePrescription(appointment.getId(),appointment.getPrescription()));
     }

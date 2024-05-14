@@ -102,7 +102,7 @@ public class PatientController {
 
     @GetMapping("/videocall")
     public ModelAndView videoCall(@RequestParam String roomID, @RequestParam String appointmentid) {
-        boolean appointmentStatus = userService.updateAppointmentStatus(appointmentid,roomID);
+        boolean appointmentStatus = userService.updateAppointmentStatus(appointmentid, roomID);
         if (!appointmentStatus) {
             return new ModelAndView("redirect:/patient/appointment-history");
         }
@@ -136,28 +136,28 @@ public class PatientController {
     }
 
     @GetMapping("/mental-health")
-    public ModelAndView getMentalHealthPage(){
+    public ModelAndView getMentalHealthPage() {
         return new ModelAndView("Patient/Mental-Health/act");
     }
 
     @GetMapping("/donate-blood")
-    public ModelAndView donateBloodPage(){
+    public ModelAndView donateBloodPage() {
         String viewName = "Patient/blood_donation";
         Map<String, Object> model = new HashMap<>();
         model.put("bloodDonate", new BloodDonation());
-        return new ModelAndView(viewName,model);
+        return new ModelAndView(viewName, model);
     }
 
     @PostMapping("/blood-donation")
     public ResponseEntity<?> registerBloodDonation(@RequestBody BloodDonation bloodDonation) {
-        try{
+        try {
             System.out.println(bloodDonation);
             BloodDonation savedBloodDonation = userService.saveBloodDonation(bloodDonation);
             Map<String, Object> response = new HashMap<>();
             response.put("success", true);
             response.put("bloodDonationId", savedBloodDonation.getId());
             return ResponseEntity.status(HttpStatus.CREATED).body(response);
-        }catch (Exception e) {
+        } catch (Exception e) {
             Map<String, Object> response = new HashMap<>();
             response.put("success", false);
             response.put("message", e.getMessage());
@@ -166,11 +166,11 @@ public class PatientController {
     }
 
     @GetMapping("/donate-organs")
-    public ModelAndView organDonationPage(){
+    public ModelAndView organDonationPage() {
         String viewName = "Patient/organ_donation";
         Map<String, Object> model = new HashMap<>();
         model.put("bloodDonate", new BloodDonation());
-        return new ModelAndView(viewName,model);
+        return new ModelAndView(viewName, model);
     }
 
     @PostMapping("/donate-organs")
@@ -192,16 +192,19 @@ public class PatientController {
 
 
     @GetMapping("/getPatientData")
-public ResponseEntity<?> getPatientData() {
-    try {
-        ChatBotDb data = userService.getPatientData();
-        return ResponseEntity.ok(data);
-    } catch (Exception e) {
-        return ResponseEntity.badRequest().body("Error: " + e.getMessage());
+    public ResponseEntity<?> getPatientData() {
+        try {
+            ChatBotDb data = userService.getPatientData();
+            return ResponseEntity.ok(data);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error: " + e.getMessage());
+        }
     }
-}
 
-
+    @GetMapping("/nearbyhospital")
+    public ModelAndView nearbyHospital() {
+        return new ModelAndView("Patient/nearbyhospital");
+    }
 
 
 }

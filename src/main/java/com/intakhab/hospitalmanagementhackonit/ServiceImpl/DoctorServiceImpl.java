@@ -9,11 +9,18 @@ import com.intakhab.hospitalmanagementhackonit.Repository.AppointmentRepo;
 import com.intakhab.hospitalmanagementhackonit.Repository.DoctorRepo;
 import com.intakhab.hospitalmanagementhackonit.Service.DoctorService;
 import com.intakhab.hospitalmanagementhackonit.Service.EmailService;
+import com.intakhab.hospitalmanagementhackonit.Service.UserService;
+import com.lowagie.text.*;
+import com.lowagie.text.pdf.ColumnText;
+import com.lowagie.text.pdf.PdfContentByte;
+import com.lowagie.text.pdf.PdfWriter;
+import jakarta.mail.MessagingException;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.FileOutputStream;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +35,7 @@ public class DoctorServiceImpl implements DoctorService {
     private static final String FLASK_SERVER_URL = "http://localhost:5001";
     private final AppointmentRepo appointmentRepo;
     private final EmailService emailService;
+    private final UserService userService;
 
 
     @Override
@@ -85,24 +93,130 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public Object savePrescription(UUID prescription, String prescriptionDetails) {
+    public Object savePrescription(UUID prescription, String prescriptionDetails) throws MessagingException {
 
         Appointment appointment = appointmentRepo.findById(prescription).orElse(null);
         assert appointment != null;
         appointment.setPrescription(prescriptionDetails);
         appointment.setPrescriptionGiven(true);
-
-        System.out.println(appointment.getPrescription());
-        System.out.println(appointment.getPatientName());
-
+        String pdfPath = "prescription.pdf";
         Email email = new Email();
         email.setSubject("Prescription for your appointment");
         email.setMessage(prescriptionDetails);
         email.setReceiver(appointment.getUser().getEmail());
-        emailService.sendEmail(email);
+        try {
+
+            Document document = new Document();
+            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(pdfPath));
+            document.open();
+
+            // Add an image
+            Image image = Image.getInstance("C:\\Users\\Intakhab Alam\\Desktop\\HospitalManagementHackONit\\src\\main\\resources\\static\\images\\logo_main.png");
+            image.scaleAbsolute(100f, 100f);
+            document.add(image);
+
+            // Add a heading
+            Font font = FontFactory.getFont(FontFactory.HELVETICA, 20, Font.BOLD);
+            Phrase heading = new Phrase("JANSEVAK", font);
+            ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_LEFT, heading, 300, 800, 0);
+
+            Font font1 = FontFactory.getFont(FontFactory.HELVETICA, 10, Font.BOLD);
+            Phrase heading1 = new Phrase("BRINGING THE FUTURE OF HEALTHCARE \n", font1);
+            ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_LEFT, heading1, 225, 785, 0);
+
+
+            Font font2 = FontFactory.getFont(FontFactory.HELVETICA, 9);
+            Phrase heading2 = new Phrase("teaminnovate.api@gmail.com\n", font2);
+            ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_LEFT, heading2, 240, 770, 0);
+
+            String patientName = "Patient Name : "+appointment.getPatientName();
+            Font patient = FontFactory.getFont(FontFactory.HELVETICA, 9);
+            Phrase patient1 = new Phrase(patientName, patient);
+            ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_LEFT, patient1, 150, 755, 0);
+
+            String appAge = "Age : "+appointment.getAge();
+            Font age = FontFactory.getFont(FontFactory.HELVETICA, 9);
+            Phrase age1 = new Phrase(appAge, age);
+            ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_LEFT, age1, 150, 740, 0);
+
+            String appGender = "Gender : "+appointment.getGender();
+            Font gender = FontFactory.getFont(FontFactory.HELVETICA, 9);
+            Phrase gender1 = new Phrase(appGender, gender);
+            ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_LEFT, gender1, 150, 725, 0);
+
+            String doctorName = "Doctor Name : "+appointment.getDoctor().getName();
+            Font d = FontFactory.getFont(FontFactory.HELVETICA, 9);
+            Phrase d1 = new Phrase(doctorName, d);
+            ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_LEFT, d1, 350, 755, 0);
+
+            PdfContentByte canvas = writer.getDirectContent();
+            canvas.setLineWidth(3f);
+            canvas.moveTo(40, 700);
+            canvas.lineTo(550, 700);
+            canvas.stroke();
+//
+            canvas.setLineWidth(1f);
+            canvas.moveTo(300, 700);
+            canvas.lineTo(300, 100);
+            canvas.stroke();
+
+            Font p = FontFactory.getFont(FontFactory.HELVETICA, 9);
+            Phrase p1 = new Phrase("PRESCRIPTION \n", p);
+            ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_LEFT, p1, 130, 680, 0);
+
+
+            // Split prescriptionDetails by commas
+            String[] details = prescriptionDetails.split(",");
+
+            // Create a new Phrase
+            Phrase prescriptionPhrase = new Phrase();
+
+            // Add each detail to the Phrase on a new line
+            Font prescriptionFont = FontFactory.getFont(FontFactory.HELVETICA, 9);
+            for (String detail : details) {
+                prescriptionPhrase.add(new Chunk(detail.trim() + "\n", prescriptionFont));
+            }
+
+            // Create a column and add prescriptionPhrase to the column
+            ColumnText column = new ColumnText(writer.getDirectContent());
+            column.setSimpleColumn(130, 660, 500, 36); // Adjust the rectangle as needed
+            column.addElement(prescriptionPhrase);
+            column.go();
+
+            // Split prescriptionDetails by commas
+            String[] details1 = appointment.getSymptoms().split(",");
+
+            // Create a new Phrase
+            Phrase prescriptionPhrase1 = new Phrase();
+
+            // Add each detail to the Phrase on a new line
+            Font prescriptionFont1 = FontFactory.getFont(FontFactory.HELVETICA, 9);
+            for (String detail : details1) {
+                prescriptionPhrase1.add(new Chunk(detail.trim() + "\n", prescriptionFont1));
+            }
+
+            // Create a column and add prescriptionPhrase to the column
+            ColumnText column1 = new ColumnText(writer.getDirectContent());
+            column.setSimpleColumn(350, 660, 500, 36);
+            column.addElement(prescriptionPhrase1);
+            column.go();
+
+            Font s = FontFactory.getFont(FontFactory.HELVETICA, 9);
+            Phrase s1 = new Phrase("SYMPTOMS \n", s);
+            ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_LEFT, s1, 350, 680, 0);
+
+
+            document.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        email.setAttachmentPath(pdfPath);
+        emailService.sendEmailWithAttachment(email,pdfPath);
+
 
         return appointmentRepo.save(appointment);
-
 
     }
 
@@ -137,3 +251,5 @@ public class DoctorServiceImpl implements DoctorService {
         return doctorDto;
     }
 }
+
+
