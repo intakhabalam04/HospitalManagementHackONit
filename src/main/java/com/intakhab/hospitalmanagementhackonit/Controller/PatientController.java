@@ -22,6 +22,7 @@ public class PatientController {
     private final ChatBotService chatBotService;
     private final SecurityService securityService;
 
+
     @GetMapping("/home")
     public ModelAndView home() {
         String viewName = "Patient/home";
@@ -33,6 +34,11 @@ public class PatientController {
     @GetMapping("/book-appointment")
     public ModelAndView bookAppointment() {
         return new ModelAndView("Patient/book-appointment");
+    }
+
+    @GetMapping("/book_appointment")
+    public ModelAndView bookAppointmentByChatbot() {
+        return new ModelAndView("Patient/book-appointment1");
     }
 
     @PostMapping("/book-appointment")
@@ -185,6 +191,15 @@ public class PatientController {
     }
 
 
+    @GetMapping("/getPatientData")
+public ResponseEntity<?> getPatientData() {
+    try {
+        ChatBotDb data = userService.getPatientData();
+        return ResponseEntity.ok(data);
+    } catch (Exception e) {
+        return ResponseEntity.badRequest().body("Error: " + e.getMessage());
+    }
+}
 
 
 

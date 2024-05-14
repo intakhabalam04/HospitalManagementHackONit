@@ -1,9 +1,6 @@
 package com.intakhab.hospitalmanagementhackonit.Service;
 
-import com.intakhab.hospitalmanagementhackonit.Model.BloodDonation;
-import com.intakhab.hospitalmanagementhackonit.Model.Contact;
-import com.intakhab.hospitalmanagementhackonit.Model.OrganDonation;
-import com.intakhab.hospitalmanagementhackonit.Model.User;
+import com.intakhab.hospitalmanagementhackonit.Model.*;
 
 public interface UserService {
     User findByUserName(String username);
@@ -19,4 +16,6 @@ public interface UserService {
     OrganDonation saveOrganDonation(OrganDonation organDonation);
 
     BloodDonation saveBloodDonation(BloodDonation bloodDonation);
+
+    ChatBotDb getPatientData();
 }

@@ -130,10 +130,11 @@ symptom_map = {
     '6': 'Depression'
 }
 
-
+user_symptoms = ""
 @app.route('/chat', methods=['POST'])
 def chat():
     global current_question
+    global user_symptoms
     print(current_question)
     data = request.get_data()
     user_input = json.loads(data)['input']
@@ -146,6 +147,7 @@ def chat():
         symptom_numbers = user_input
         symptoms = [symptom_map[num] for num in symptom_numbers.split(',') if num in symptom_map]
         symptoms_text = ", ".join(symptoms)
+        user_symptoms = symptoms_text
         response = f'You mentioned experiencing the following symptoms: {symptoms_text}'
         current_question += 1
         response += questions[current_question]
@@ -159,7 +161,7 @@ def chat():
             response = "Enter another symptom:"
             current_question = 1
         else:
-            print(answers)
+            # print(answers)
             response = "Goodbye!"
             current_question = 0  # Reset the conversation for the next interaction
             # Process the collected answers
@@ -241,14 +243,26 @@ def chat():
         else:
             response = "Invalid choice. Please enter a number between 1 and 6."
 
-        current_question = 0
-        response += "<br>\nEnter your name to start a new conversation:"
+        current_question = 9
+        response += "<br>\nDo you want to book an appointment with a doctor? (yes/no)"
+    elif current_question == 9:
+        if user_input.lower() == 'yes':
+            response = f'<a href="http://localhost:8080/patient/book_appointment" >Click here for Book appointment with the doctor</a>'
+        elif user_input.lower() == 'no':
+            response = "Okay, let me know if you need further assistance!"
+            current_question = 0
+        else:
+            response = "I'm sorry, I didn't understand that. Please respond with 'yes' or 'no'."
 
     else:
         response = "I'm sorry, I didn't understand that. Please respond with 'yes' or 'no'."
 
     response = response.replace('\n', '<br>')
-    return jsonify({"response": response})
+    return jsonify({
+        "response": response,
+        "questionNo": current_question,
+        "user_symptom": user_symptoms
+    })
 
 
 if __name__ == '__main__':

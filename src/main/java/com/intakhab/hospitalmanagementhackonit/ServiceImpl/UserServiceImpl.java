@@ -6,6 +6,8 @@ import com.intakhab.hospitalmanagementhackonit.Repository.AppointmentRepo;
 import com.intakhab.hospitalmanagementhackonit.Repository.BloodDonationRepo;
 import com.intakhab.hospitalmanagementhackonit.Repository.OrganDonationRepo;
 import com.intakhab.hospitalmanagementhackonit.Repository.UserRepo;
+import com.intakhab.hospitalmanagementhackonit.Service.ChatBotDbService;
+import com.intakhab.hospitalmanagementhackonit.Service.SecurityService;
 import com.intakhab.hospitalmanagementhackonit.Service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,8 @@ public class UserServiceImpl implements UserService {
     private final AppointmentRepo appointmentRepo;
     private final OrganDonationRepo organDonationRepo;
     private final BloodDonationRepo bloodDonationRepo;
+    private final ChatBotDbService chatBotDbService;
+    private final SecurityService securityService;
 
     @Override
     public User findByMobile(String phoneNumber) {
@@ -78,6 +82,11 @@ public class UserServiceImpl implements UserService {
             e.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    public ChatBotDb getPatientData() {
+        return chatBotDbService.getLatestChat();
     }
 
 
