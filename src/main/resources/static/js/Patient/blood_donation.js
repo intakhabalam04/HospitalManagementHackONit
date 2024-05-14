@@ -6,7 +6,7 @@ function register() {
     const diseases = document.querySelector('input[name="diseases"]:checked').value;
     const street = document.getElementById("street").value;
     const area = document.getElementById("area").value;
-    const city = document.getElementById("city").options[document.getElementById("city").selectedIndex].text;
+    const city = document.getElementById("city").value;
     const pincode = document.getElementById("pincode").value;
     const mobile = document.getElementById("mobile").value;
     const dateOfBirth = new Date(document.getElementById("datepicker1").value);
@@ -60,9 +60,40 @@ function register() {
         return response.json();
     }).then(json => {
         console.log(json);
-        // Handle the response here
+        showHospital(pincode)
     }).catch(e => {
         console.error('An error occurred', e);
     });
 
+}
+
+let hospitalsData = [];
+
+window.onload = function() {
+    fetch('/static/json/hositalsinindia.json')
+        .then(response => response.json())
+        .then(data => {
+            hospitalsData = data;
+        });
+}
+
+document.getElementById('pincode').addEventListener('change', function() {
+    const pincode = this.value;
+    const hospital = hospitalsData.find(hospital => hospital.Pincode == pincode);
+    if (hospital) {
+        document.getElementById('city').value = hospital.City;
+    }
+})
+
+
+function showHospital(pincode){
+    const hospital = hospitalsData.find(hospital => hospital.Pincode == pincode);
+    const hospitalNameDiv = document.getElementById('hospitalName');
+    if (hospital) {
+        hospitalNameDiv.textContent = `Donate at: ${hospital.Hospital}`;
+        hospitalNameDiv.className = 'hospital-found';
+    } else {
+        hospitalNameDiv.textContent = 'No hospital found for this pincode';
+        hospitalNameDiv.className = 'hospital-not-found';
+    }
 }

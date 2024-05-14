@@ -1,5 +1,7 @@
 // blood-donor-list.js
 
+
+
 window.onload = function() {
   fetch('/admin/blood-donations-list') // change this to your actual API endpoint
     .then(response => response.json())
@@ -25,3 +27,6 @@ function populateTable(data, tableId) {
     });
   });
 }
+
+
+;

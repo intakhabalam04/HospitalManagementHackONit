@@ -68,21 +68,14 @@
                        placeholder="Enter area name" required="">
             </div>
             <div class="form-group">
-                <label>City</label>
-                <select name="city" class="form-control" id="city">
-                    <option value="10">Adilabad</option>
-                    <option value="477">Agra</option>
-                    <option value="70">Ahmedabad</option>
-                    <option value="290">Ahmednagar</option>
-
-                    <option value="338">Zunheboto</option>
-                </select>
-            </div>
-            <div class="form-group">
                 <label>Pincode</label>
                 <input type="number" class="form-control" maxlength="6" id="pincode"
                        name="pincode"
                        placeholder="Enter pincode" required="">
+            </div>
+            <div class="form-group">
+                <label>City</label>
+                <input type="text" class="form-control" id="city" name="city" placeholder="Enter your city...">
             </div>
             <div class="form-group">
                 <label>Mobile</label>
@@ -94,6 +87,9 @@
         </div>
     </form>
     <button id="registerBtn" class="btn btn-primary" onclick="register()">Register</button>
+    <div id="hospitalName"></div>
+
+
 </div>
 
 <script th:src="@{/static/js/Patient/blood_donation.js}"></script>

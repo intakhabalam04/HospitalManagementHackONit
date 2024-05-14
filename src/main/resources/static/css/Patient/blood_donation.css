@@ -90,3 +90,20 @@ input[type="radio"] {
 .right-col:hover {
     transform: translateY(-5px); /* Add a slight upward lift on hover */
 }
+.hospital-found {
+    color: green;
+    font-weight: bold;
+    border: 2px solid green;
+    padding: 10px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.hospital-not-found {
+    color: red;
+    font-weight: bold;
+    border: 2px solid red;
+    padding: 10px;
+    margin-top: 10px;
+    text-align: center;
+}
