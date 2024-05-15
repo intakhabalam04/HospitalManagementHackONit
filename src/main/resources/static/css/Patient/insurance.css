@@ -1,0 +1,37 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.content {
+    width: 60%;
+    margin: 0 auto;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 10px;
+}
+
+input, select {
+    height: 30px;
+    margin-bottom: 15px;
+    padding: 5px;
+}
+
+button {
+    width: 100px;
+    height: 30px;
+    margin-top: 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}

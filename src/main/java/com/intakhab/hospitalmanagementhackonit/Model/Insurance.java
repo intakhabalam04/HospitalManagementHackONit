@@ -8,22 +8,25 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Data
 @Entity
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ChatBotDb {
+public class Insurance {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    private String symptom;
-    private UUID doctor;
-    private LocalDateTime chatBotTime;
-    private String patientName;
-    private int age;
+    private String name;
+    private LocalDate dob;
+    private String email;
     private String gender;
-    private String insurance;
+    private int pincode;
+    private int premium;
+    private int sumInsured;
+    private String insuranceName;
+    private LocalDate policyEndDate;
 }

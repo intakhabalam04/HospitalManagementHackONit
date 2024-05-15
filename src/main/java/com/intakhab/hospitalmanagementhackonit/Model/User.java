@@ -35,5 +35,8 @@ public class User {
     private long tokenExpiryTime;
     @OneToMany(mappedBy = "user")
     private List<Appointment> appointmentList;
+    private String gender;
+    @OneToMany
+    private List<Insurance> insuranceList;
 
 }

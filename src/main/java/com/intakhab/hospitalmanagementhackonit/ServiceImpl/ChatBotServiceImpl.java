@@ -4,6 +4,7 @@ import com.intakhab.hospitalmanagementhackonit.Model.ChatBot;
 import com.intakhab.hospitalmanagementhackonit.Model.ChatBotDb;
 import com.intakhab.hospitalmanagementhackonit.Model.User;
 import com.intakhab.hospitalmanagementhackonit.Repository.ChatBotRepo;
+import com.intakhab.hospitalmanagementhackonit.Repository.DoctorRepo;
 import com.intakhab.hospitalmanagementhackonit.Service.ChatBotDbService;
 import com.intakhab.hospitalmanagementhackonit.Service.ChatBotService;
 import com.intakhab.hospitalmanagementhackonit.Service.SecurityService;
@@ -22,11 +23,13 @@ public class ChatBotServiceImpl implements ChatBotService {
     private final ChatBotRepo chatBotRepo;
 
     private final SecurityService securityService;
+    private final DoctorRepo doctorRepo;
 
-    public ChatBotServiceImpl(ChatBotDbService chatBotDbService, ChatBotRepo chatBotRepo, SecurityService securityService) {
+    public ChatBotServiceImpl(ChatBotDbService chatBotDbService, ChatBotRepo chatBotRepo, SecurityService securityService, DoctorRepo doctorRepo) {
         this.chatBotDbService = chatBotDbService;
         this.chatBotRepo = chatBotRepo;
         this.securityService = securityService;
+        this.doctorRepo = doctorRepo;
     }
 
 
@@ -47,13 +50,18 @@ public class ChatBotServiceImpl implements ChatBotService {
                 User user = securityService.currentUser();
                 chatBotDb.setChatBotTime(LocalDateTime.now());
                 chatBotDb.setPatientName(user.getName());
+                chatBotDb.setGender(user.getGender());
+                chatBotDb.setDoctor(doctorRepo.findByName("Dr. Ashutosh Shukla").getId());
                 chatBotRepo.save(chatBotDb);
             } else if (response.getQuestionNo().equals("2")) {
                 ChatBotDb chatBotDb = chatBotDbService.getLatestChat();
                 chatBotDb.setSymptom(response.getUser_symptom());
                 chatBotRepo.save(chatBotDb);
+            }else if(response.getQuestionNo().equals("9")) {
+                ChatBotDb chatBotDb = chatBotDbService.getLatestChat();
+                chatBotDb.setInsurance(response.getInsurance());
+                chatBotRepo.save(chatBotDb);
             }
-
 
             return new ChatBot(message, response.getResponse());
         } catch (Exception e) {
@@ -67,6 +75,7 @@ public class ChatBotServiceImpl implements ChatBotService {
         private String response;
         private String questionNo;
         private String user_symptom;
+        private String insurance;
     }
 }
 

@@ -131,10 +131,12 @@ symptom_map = {
 }
 
 user_symptoms = ""
+insurance=""
 @app.route('/chat', methods=['POST'])
 def chat():
     global current_question
     global user_symptoms
+    global insurance
     print(current_question)
     data = request.get_data()
     user_input = json.loads(data)['input']
@@ -223,22 +225,28 @@ def chat():
     elif current_question == 8:
         plan_choice = user_input
         if plan_choice == "1":
-            link = "https://www.hdfcergo.com/campaigns/health-insurance-detail-new?&utm_source=google_search&utm_medium=cpc&utm_campaign=Health_Search_Core_Neev-Phrase&utm_adgroup=Individual-Insurance&adid=632971424547&utm_term=individual%20health%20insurance%20schemes&utm_network=g&utm_matchtype=p&utm_device=c&utm_location=9061800&utm_sitelink={sitelink}&utm_placement=&ci=googlesearch&SEM=1&gad_source=1&gclid=Cj0KCQjwltKxBhDMARIsAG8KnqVU3TbNruBXZjgxjSSZA1MpVrq2z7tdLsHHTtRPxUPqV_l41ZYiIlUaAkUUEALw_wcB"
+            insurance = "Individual Health Insurance"
+            link = 'http://localhost:8080/patient/insurance?plan=1'
             response = f'<a href="{link}" target="_blank">Click here for Individual Health Insurance</a>'
         elif plan_choice == "2":
-            link = "https://www.careinsurance.com/health-insurance/cr/family-medical-insurance-plan-new.html?agentId=20024747&utm_source=google&utm_medium=cpc&utm_campaign=ht_ind_family-103_AD_CR_DTTWO&utm_content=rta&utm_keyword=medical%20insurance%20family%20floater&s_kwcid=AL!10397!3!594005504055!e!!g!!medical%20insurance%20family%20floater&utm_term=11806780756&utm_adgroup=140965531132&gad_source=1&gclid=Cj0KCQjwltKxBhDMARIsAG8KnqVtaTHtvoAOPR7bCzkNVyXE9Ke4sKpKaqWao_AzZ0dIQwMxb0vVWqQaAuYJEALw_wcB"
+            insurance = "Family Floater Health Insurance"
+            link = 'http://localhost:8080/patient/insurance?plan=2'
             response = f'<a href="{link}" target="_blank">Click here for Family Floater Health Insurance</a>'
         elif plan_choice == "3":
-            link = "https://www.policybazaar.com/health-insurance/senior-citizen-health-insurance/"
+            insurance = "Senior Citizens Health Insurance"
+            link = 'http://localhost:8080/patient/insurance?plan=3'
             response = f'<a href="{link}" target="_blank">Click here for Senior Citizens Health Insurance</a>'
         elif plan_choice == "4":
-            link = "https://www.policybazaar.com/health-insurance/critical-illness-insurance/"
+            insurance = "Critical Illness Insurance"
+            link = 'http://localhost:8080/patient/insurance?plan=4'
             response = f'<a href="{link}" target="_blank">Click here for Critical Illness Insurance</a>'
         elif plan_choice == "5":
-            link = "https://sme.icicilombard.com/employee-benefit-insurance/group-health-insurance?utm_source=google&utm_medium=cpc&utm_campaign=IL_GHI_Generic_Exact_HC_11Apr24&utm_adgroup={adgroup}&utm_term=health%20insurance%20for%20groups&utm_matchtype=e&utm_device=c&utm_content={getquote}&gad_source=1&gclid=Cj0KCQjwltKxBhDMARIsAG8KnqWKKMrFeOiV49f-dQ41DhvSG_3oCyEaxa4wBEvicKUJyNwIorJAYFIaAskaEALw_wcB"
+            insurance = "Group Health Insurance Plan"
+            link = 'http://localhost:8080/patient/insurance?plan=5'
             response = f'<a href="{link}" target="_blank">Click here for Group Health Insurance Plan</a>'
         elif plan_choice == "6":
-            link = "https://www.sbigeneral.in/health-insurance/health-edge-insurance?utm_source=google&utm_medium=cpc&utm_campaign=pt-google-sbig-healthedge-gs-lead-core-women-em-in-all-25-April-23&utm_content=women-plan&gad_source=5&gclid=EAIaIQobChMI8O2a75fyhQMV_sg8Ah0FDw6gEAAYAiAAEgLR4vD_BwE"
+            insurance = "Maternity Health Insurance"
+            link = 'http://localhost:8080/patient/insurance?plan=6'
             response = f'<a href="{link}" target="_blank">Click here for Maternity Health Insurance</a>'
         else:
             response = "Invalid choice. Please enter a number between 1 and 6."
@@ -261,7 +269,8 @@ def chat():
     return jsonify({
         "response": response,
         "questionNo": current_question,
-        "user_symptom": user_symptoms
+        "user_symptom": user_symptoms,
+        "insurance": insurance
     })
 
 

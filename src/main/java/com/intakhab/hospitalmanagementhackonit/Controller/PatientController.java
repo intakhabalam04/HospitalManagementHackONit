@@ -206,5 +206,11 @@ public class PatientController {
         return new ModelAndView("Patient/nearbyhospital");
     }
 
+    @GetMapping("/insurance")
+    public ModelAndView insurance(@RequestParam int plan) {
+        System.out.println(plan);
+        return new ModelAndView("Patient/insurance");
+    }
+
 
 }

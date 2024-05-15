@@ -103,19 +103,21 @@ window.onload = function() {
         .then(response => response.json())
         .then(data => {
 
-            console.log(data);
             document.getElementById('patientName').value = data.patientName;
             // document.getElementById('age').value = data.age;
             document.getElementById('symptoms').value = data.symptom;
-            // document.getElementById('gender').value = data.gender;
+            document.getElementById('gender').value = data.gender.toLowerCase(); // set the gender value
             // For the doctor field, you need to select the option that matches the doctor's id
             let doctorSelect = document.getElementById('doctor');
             for (let i = 0; i < doctorSelect.options.length; i++) {
-                if (doctorSelect.options[i].value == data.doctorId) {
+                console.log(doctorSelect.options[i].value+'  '+data.doctor)
+                if (doctorSelect.options[i].value === data.doctor) {
                     doctorSelect.selectedIndex = i;
                     break;
                 }
             }
+
+            document.getElementById('consultancyFee').value = 600;
         })
         .catch(error => console.error('Error:', error));
 }

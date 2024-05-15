@@ -23,4 +23,5 @@ public class UserDto {
     private String token;
     private long tokenExpiryTime;
     private List<UUID> appointmentIds;
+    private String gender;
 }
