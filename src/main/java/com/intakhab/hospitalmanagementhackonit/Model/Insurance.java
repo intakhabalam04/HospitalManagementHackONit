@@ -1,9 +1,6 @@
 package com.intakhab.hospitalmanagementhackonit.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,4 +26,6 @@ public class Insurance {
     private int sumInsured;
     private String insuranceName;
     private LocalDate policyEndDate;
+    @ManyToOne
+    private User user;
 }

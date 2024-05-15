@@ -21,6 +21,7 @@ public class PatientController {
     private final AppointmentService appointmentService;
     private final ChatBotService chatBotService;
     private final SecurityService securityService;
+    private final InsuranceService insuranceService;
 
 
     @GetMapping("/home")
@@ -210,6 +211,32 @@ public class PatientController {
     public ModelAndView insurance(@RequestParam int plan) {
         System.out.println(plan);
         return new ModelAndView("Patient/insurance");
+    }
+
+    @PostMapping("/insurance")
+    public ResponseEntity<?> saveInsurance(@RequestBody Insurance insurance) {
+        try {
+            Insurance savedInsurance = insuranceService.saveInsurance(insurance);
+            Map<String, Object> response = new HashMap<>();
+            response.put("success", true);
+            response.put("insuranceId", savedInsurance.getId());
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        } catch (Exception e) {
+            Map<String, Object> response = new HashMap<>();
+            response.put("success", false);
+            response.put("message", e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+        }
+    }
+
+    @GetMapping("/insurance/{plan}")
+    public ResponseEntity<?> getInsurancePlan(@PathVariable int plan) {
+        Insurance insurance = insuranceService.getInsuranceByPlan(plan);
+        if (insurance != null) {
+            return ResponseEntity.ok(insurance);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Insurance plan not found");
+        }
     }
 
 
