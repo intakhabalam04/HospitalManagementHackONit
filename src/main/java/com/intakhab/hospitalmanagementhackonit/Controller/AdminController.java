@@ -36,7 +36,7 @@ public class AdminController {
         String viewName = "Admin/home";
         Map<String, Object> model = new HashMap<>();
         model.put("doctorCount", doctorService.getAllDoctors().size());
-        model.put("appointmentCount", doctorService.getTodayAppointmentsNo());
+//        model.put("appointmentCount", doctorService.getTodayAppointmentsNo());
         model.put("patientCount", userService.getPatientTillDate());
 
         return new ModelAndView(viewName, model);

@@ -36,7 +36,13 @@ public class InsuranceServiceImpl implements InsuranceService {
         insurance.setSumInsured(1000000);
         insurance.setPremium(5000);
 
-        Map<Integer, String> insurancePlans = Map.of(1, "Individual Health Insurance", 2, "Family Floater Health Insurance", 3, "Senior Citizens Health Insurance", 4, "Critical Illness Health Insurance", 5, "Group Health Insurance Plan", 6, "Maternity Health Insurance");
+        Map<Integer, String> insurancePlans = Map.of(
+                1, "Individual Health Insurance",
+                2, "Family Floater Health Insurance",
+                3, "Senior Citizens Health Insurance",
+                4, "Critical Illness Health Insurance",
+                5, "Group Health Insurance Plan",
+                6, "Maternity Health Insurance");
 
         insurance.setInsuranceName(insurancePlans.get(plan));
 

@@ -84,7 +84,9 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public int getTodayAppointmentsNo() {
-        return (int) appointmentRepo.findAll().stream().filter(appointment -> appointment.getAppointmentDate().equals(LocalDate.now())).filter(appointment -> appointment.getPaymentStatus().toString().equals(PaymentStatus.COMPLETED.toString())).count();
+        return (int) appointmentRepo.findAll().stream()
+                .filter(appointment -> appointment.getAppointmentDate().equals(LocalDate.now()))
+                .filter(appointment -> appointment.getPaymentStatus().toString().equals(PaymentStatus.COMPLETED.toString())).count();
     }
 
     @Override
