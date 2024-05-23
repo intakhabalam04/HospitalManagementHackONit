@@ -6,11 +6,9 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    /* text-align: center; */
     background-color: #ddddd6;
     transition: background-color 0.3s;
 }
-
 .content {
     margin: 20px;
     padding: 20px;
@@ -21,20 +19,16 @@ body {
     width: 30%;
     transition: transform 0.3s ease;
 }
-
 .content:hover {
     transform: translateY(-5px);
 }
-
 .form-group {
     margin-bottom: 15px;
 }
-
 label {
     display: block;
     font-weight: bold;
 }
-
 input[type="text"],
 textarea {
     width: 95%;
@@ -42,11 +36,9 @@ textarea {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
-
 textarea {
     resize: vertical;
 }
-
 button {
     padding: 10px 20px;
     background-color: #007bff;
@@ -57,42 +49,35 @@ button {
     transition: background-color 0.3s, color 0.3s;
     margin-left: 160px;
 }
-
 button:hover {
     background-color: #0056b3;
 }
-
 .message-item {
     margin-bottom: 10px;
     border: 1px solid #ddd;
     padding: 10px;
     border-radius: 5px;
 }
-
 a {
     text-decoration: none;
     display: inline-block;
     padding: 8px 16px;
 }
-
 a:hover {
     background-color: #ddd;
     color: black;
 }
-
 .previous {
     background-color: #f1f1f1;
     color: black;
     border-radius: 50%;
     margin-right: 10px;
 }
-
 .next {
     background-color: #04AA6D;
     color: white;
     border-radius: 50%;
 }
-
 #header h1 {
     text-align: center;
 }

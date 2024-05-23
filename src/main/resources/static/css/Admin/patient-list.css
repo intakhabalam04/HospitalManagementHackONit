@@ -1,31 +1,25 @@
 body{
     background-color: #ddddd6;
-    /* height: 100vh;  */
     transition: background-color 0.3s;
-
 }
 .content {
     margin-left: 225px;
     text-align: center;
 }
-
 .patient-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-gap: 20px;
 }
-
 .patient-item {
     background-color: #f5f5f5;
     padding: 15px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-
 .patient-item h3 {
     margin-bottom: 10px;
 }
-
 .patient-item p {
     margin: 5px 0;
 }

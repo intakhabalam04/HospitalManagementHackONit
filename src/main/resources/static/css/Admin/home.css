@@ -3,10 +3,8 @@ body {
     margin: 0;
     padding: 0;
     background-color: #ddddd6;
-    /* height: 100vh; */
     transition: background-color 0.3s;
 }
-
 .container {
     max-width: 1200px;
     margin: 20px auto;
@@ -14,22 +12,19 @@ body {
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s, background-color 0.3s; /* Add transition for box shadow and background color */
+    transition: box-shadow 0.3s, background-color 0.3s; 
     background-color: #52e9ca;
     margin-left: 225px;
 }
-
 .dashboard-heading {
     margin-bottom: 20px;
     text-align: center;
 }
-
 .dashboard-cards {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
 }
-
 .dashboard-card {
     width: 30%;
     margin-bottom: 20px;
@@ -40,20 +35,17 @@ body {
     padding: 20px;
     box-sizing: border-box;
     text-align: center;
-    transition: transform 0.3s, background-color 0.3s; /* Add transition for transform and background color */
+    transition: transform 0.3s, background-color 0.3s; 
 }
-
 .dashboard-card:hover {
-    transform: translateY(-5px); /* Move card up slightly on hover */
-    background-color: #e5e2e2; /* Lighten background color on hover */
+    transform: translateY(-5px); 
+    background-color: #e5e2e2; 
 }
-
 .dashboard-card h2,
 .dashboard-card h3 {
     margin-top: 0;
     text-align: center;
 }
-
 .dashboard-card p {
     margin-bottom: 10px;
 }
