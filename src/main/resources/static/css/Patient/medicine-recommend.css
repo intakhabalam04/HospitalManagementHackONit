@@ -6,7 +6,6 @@ body {
     height: 100vh;
     transition: background-color 0.3s;
 }
-
 .container {
     max-width: 600px;
     margin: 50px auto;
@@ -16,20 +15,17 @@ body {
     background-color: #52e9ca;
     position: relative;
 }
-
 h1 {
     text-align: center;
     margin-bottom: 20px;
     color: #333;
 }
-
 label {
     display: block;
     margin-bottom: 10px;
     margin-left: 10px;
     color: #333;
 }
-
 input[type="text"] {
     width: 95%;
     padding: 10px;
@@ -38,7 +34,6 @@ input[type="text"] {
     border-radius: 8px;
     margin-left: 5px;
 }
-
 #btn1 {
     display: block;
     width: 50%;
@@ -53,13 +48,11 @@ input[type="text"] {
     transition: background 0.3s, transform 0.2s ease;
     margin-top: 10px;
 }
-
 #btn1:hover {
     background: linear-gradient(#0cc6eb, #2c7ff4);
-    transform: scale(1.05); /* Scale up on hover */
+    transform: scale(1.05); 
     color: black;
 }
-
 #recommendationResult {
     margin-top: 20px;
     padding: 10px;
@@ -68,7 +61,6 @@ input[type="text"] {
     background-color: #dfdcdc;
     color: #333;
 }
-
 .spinner {
     display: none;
     position: absolute;
@@ -80,13 +72,11 @@ input[type="text"] {
     opacity: 0;
     transition: opacity 0.3s;
 }
-
 .spinner.active {
     display: block;
     opacity: 0.7;
-    animation: spin 1s linear infinite; /* Rotate spinner */
+    animation: spin 1s linear infinite;
 }
-
 @keyframes spin {
     from {
         transform: rotate(0deg);

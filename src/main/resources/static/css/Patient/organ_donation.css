@@ -4,7 +4,6 @@ body {
     margin: 0;
     padding: 0;
 }
-
 .container {
     max-width: 600px;
     margin: 20px auto;
@@ -13,22 +12,18 @@ body {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
 h1 {
     text-align: center;
     color: #000000;
 }
-
 .form-group {
     margin-bottom: 20px;
 }
-
 label {
     display: block;
     margin-bottom: 5px;
     color: #000000;
 }
-
 input[type="text"],
 input[type="date"],
 input[type="number"],
@@ -41,16 +36,13 @@ select {
     border-radius: 5px;
     box-sizing: border-box;
 }
-
 textarea {
     min-height: 100px;
 }
-
 input[type="radio"],
 input[type="checkbox"] {
     margin-right: 10px;
 }
-
 .btn {
     background-color: #1492f3;
     color: white;
@@ -61,17 +53,14 @@ input[type="checkbox"] {
     transition: background-color 0.3s ease;
     margin-left: 300px;
 }
-
 .btn:hover {
     background-color: #096cde;
 }
-
 .signature-pad {
     background-color: aliceblue;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
-
 #clearSignature {
     margin-top: 10px;
     background-color: #fd4c40;
@@ -81,7 +70,6 @@ input[type="checkbox"] {
     border-radius: 5px;
     cursor: pointer;
 }
-
 #clearSignature:hover {
     background-color: #d32f2f;
 }
@@ -89,7 +77,6 @@ input[type="checkbox"] {
     display: flex;
     align-items: center;
 }
-
 .checkbox-group label {
     margin-right: 10px;
 }

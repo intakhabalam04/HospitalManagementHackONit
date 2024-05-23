@@ -5,7 +5,6 @@ body {
     background-color: #ddddd6;
     transition: background-color 0.3s;
 }
-
 .content {
     max-width: 800px;
     margin: 50px auto;
@@ -15,43 +14,35 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
 }
-
 .content:hover {
     transform: translateY(-5px);
 }
-
 h1 {
     font-size: 36px;
     color: #333;
     margin-bottom: 20px;
 }
-
 #appointmentTable {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
-
 #appointmentTable th,
 #appointmentTable td {
     padding: 10px;
     text-align: left;
     border-bottom: 1px solid #ccc;
 }
-
 #appointmentTable td a {
     color: #ce3f3f;
 }
-
 #appointmentTable th {
     background-color: #007bff;
     color: #fff;
 }
-
 #appointmentTable tbody tr:nth-child(even) {
     background-color: #f2f2f2;
 }
-
 #appointmentTable tbody tr:hover {
     background-color: #e0e0e0;
     cursor: pointer;

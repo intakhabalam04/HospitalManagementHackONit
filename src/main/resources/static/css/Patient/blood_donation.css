@@ -10,42 +10,36 @@ body {
     flex-direction: column;
     position: relative;
 }
-
 h1 {
     text-align: center;
 }
-
 .split-form {
     display: flex;
     justify-content: space-between;
     flex-wrap: nowrap;
     margin-top: 20px;
 }
-
 .left-col {
     flex: 0 0 calc(50% - 25px);
     background-color: #52e9ca;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    margin-right: 25px; /* Adjust the margin */
-    transition: transform 0.3s ease; /* Add animation transition */
+    margin-right: 25px;
+    transition: transform 0.3s ease; 
 }
-
 .right-col {
-    flex: 0 0 calc(50% - 25px); /* Adjust the width of the right column */
+    flex: 0 0 calc(50% - 25px); 
     background-color: #52e9ca;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    margin-left: 25px; /* Adjust the margin */
-    transition: transform 0.3s ease; /* Add animation transition */
+    margin-left: 25px; 
+    transition: transform 0.3s ease;
 }
-
 .form-group {
     margin-bottom: 20px;
 }
-
 input[type="text"],
 input[type="email"],
 input[type="number"],
@@ -56,15 +50,12 @@ select {
     border-radius: 5px;
     box-sizing: border-box;
 }
-
 input[type="radio"] {
     margin-right: 10px;
 }
-
 .box-footer {
-    margin-top: 20px; /* Add space between cards and button */
+    margin-top: 20px;
 }
-
 .btn {
     background-color: #2313ad;
     color: white;
@@ -75,20 +66,18 @@ input[type="radio"] {
     display: block;
     margin: 20px auto;
     margin-right: 400px;
-    width: calc(30% - 25px); /* Equal width to columns */
+    width: calc(30% - 25px);
     transition: background-color 0.3s ease;
     margin-top: 40px;
 }
-
 .btn:hover {
     background-color: #097de2;
     transform: translateY(-5px);
     color: black;
 }
-
 .left-col:hover,
 .right-col:hover {
-    transform: translateY(-5px); /* Add a slight upward lift on hover */
+    transform: translateY(-5px);
 }
 .hospital-found {
     color: green;
@@ -98,7 +87,6 @@ input[type="radio"] {
     margin-top: 10px;
     text-align: center;
 }
-
 .hospital-not-found {
     color: red;
     font-weight: bold;
