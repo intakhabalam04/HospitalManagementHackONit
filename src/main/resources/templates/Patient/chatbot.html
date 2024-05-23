@@ -9,7 +9,6 @@
 </head>
 <body>
 <div class="chatbot-container">
-
     <div id="header">
         <a href="#" class="previous round" id="pr" onclick="backButton()">&#8249;</a>
         <h1>Welcome, <span th:text="${currentuser.name}"></span>!</h1>
@@ -26,13 +25,8 @@
                 <img class="send-icon" th:src="@{/static/images/send-message.png}" alt="">
             </button>
         </message-container>
-
     </div>
-
 </div>
-
 <script th:src="@{/static/js/Patient/chatbot.js}"></script>
 </body>
-
-
 </html>

@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patient Dashboard</title>
     <link rel="stylesheet" th:href="@{/static/css/Patient/fragments.css}">
 </head>
-
 <body id="frag">
 <div class="sidebar">
     <h2>Patient Dashboard</h2>
@@ -19,14 +17,9 @@
         <li><a href="/patient/recommend">Medicine Recommendation</a></li>
         <li><a href="/patient/mental-health">Metal Health</a></li>
         <li><a href="/patient/nearbyhospital">Near by hospital</a></li>
-<!--        <li><a href="/patient/messages">Messages</a></li>-->
         <li style="margin-top: auto;"><button onclick="logout()">Logout</button></li>
     </ul>
 </div>
-
 <script th:src="@{/static/js/Patient/fragments.js}"></script>
-
-
 </body>
-
 </html>

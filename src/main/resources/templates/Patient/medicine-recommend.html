@@ -13,17 +13,13 @@
     <label for="medicineInput">Enter scientific medicine name/full name of the medicine:</label>
     <input type="text" id="medicineInput" list="medicineList" placeholder="Type here...">
     <datalist id="medicineList">
-        <!-- Options will be populated here by JavaScript -->
     </datalist>
     <button id="btn1">Get Recommendation</button>
-
     <div class="spinner" id="loadingSpinner">
         <i class="fas fa-spinner fa-spin"></i>
     </div>
-
     <div id="recommendationResult"></div>
 </div>
-
 <script th:src="@{/static/js/Patient/medicine-recommend.js}"></script>
 </body>
 </html>

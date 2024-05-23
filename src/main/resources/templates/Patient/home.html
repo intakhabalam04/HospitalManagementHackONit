@@ -1,39 +1,30 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Patient Dashboard</title>
   <link rel="stylesheet" th:href="@{/static/css/Patient/home.css}">
 </head>
-
 <body>
 <div th:replace="~{Patient/fragments}"></div>
 <div class="content">
   <h1>Welcome, <span th:text="${currentuser.name}"></span>!</h1>
 </div>
-
 <div class="content">
   <h2>News and Updates</h2>
   <p>Stay tuned for the latest news and updates here.</p>
 </div>
-
 <div class="content">
   <h2>Save Others</h2>
   <p>Donate your Blood and Organs.</p>
   <button class="btn2" onclick="location.href='/patient/donate-blood'">Donate Blood</button>
   <button class="btn2" onclick="location.href='/patient/donate-organs'">Donate Organs</button>
 </div>
-
 <div class="content">
   <h2> Know more about Diseases </h2>
   <button class="btn2" onclick="location.href='/patient/diseases'">View Disease Descriptions</button>
 </div>
-
-
-
 <script th:src="@{/static/js/Patient/home.js}"></script>
 </body>
-
 </html>
