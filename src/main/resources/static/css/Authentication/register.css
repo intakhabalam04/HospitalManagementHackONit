@@ -1,17 +1,16 @@
 body::before {
     content: "";
-    position: fixed; /* Fixed/sticky position */
-    top: 0; /* Place the background at the top */
-    right: 0; /* Place the background at the right */
-    bottom: 0; /* Place the background at the bottom */
-    left: 0; /* Place the background at the left */
-    background-image: url('/static/images/bag.jpg'); /* The image used */
-    background-size: cover; /* Resize the background image to cover the entire container */
-    background-position: center; /* Center the background image */
-    filter: blur(5px); /* Apply a blur effect */
-    z-index: -1; /* Place the background behind the content */
+    position: fixed; 
+    top: 0; 
+    right: 0; 
+    bottom: 0;
+    left: 0;
+    background-image: url('/static/images/bag.jpg'); 
+    background-size: cover;
+    background-position: center; 
+    filter: blur(5px); 
+    z-index: -1; 
 }
-
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #f4f4f4;
@@ -21,7 +20,6 @@ body {
     align-items: center;
     height: 100vh;
 }
-
 .register-container {
     background-color: transparent;
     padding: 40px;
@@ -31,24 +29,20 @@ body {
     text-align: center;
     margin-top: 50px;
 }
-
 .register-container h2 {
     color: #000000;
     font-size: 30px;
 }
-
 .register-form {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
 }
-
 .register-form label {
     margin-bottom: 10px;
     font-weight: bold;
     color: #555;
 }
-
 .register-form input,
 .register-form textarea {
     padding: 12px;
@@ -59,7 +53,6 @@ body {
     width: 100%;
     font-size: 16px;
 }
-
 .register-form button {
     background-color: #2ecc71;
     color: #fff;
@@ -70,32 +63,26 @@ body {
     font-size: 16px;
     transition: background-color 0.3s ease;
 }
-
 .register-form button:hover {
     background-color: #27ae60;
 }
-
 .error-message {
     color: #e74c3c;
     font-weight: bold;
     margin-top: 8px;
     font-size: 14px;
 }
-
 .register-form input.error,
 .register-form textarea.error {
     border-color: #e74c3c;
 }
-
 .login-link {
     margin-top: 20px;
 }
-
 .login-link p {
     color: #555;
     font-size: 14px;
 }
-
 .login-link a {
     text-decoration: none;
     color: #3498db;
