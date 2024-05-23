@@ -7,9 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" th:href="@{/static/css/Authentication/login.css}">
 </head>
-
 <body>
-
 <div class="login-container">
     <h2>Login</h2>
     <form class="login-form" th:object="${LoginUser}" th:action="@{/login}" method="post">
@@ -23,28 +21,7 @@
         <a th:onclick="openForgotPasswordModal()" class="forgot-password">Forgot Password?</a>
         <span class="separator"> | </span>
         <a href="/register" class="sign-up">Sign Up</a>
-        <!--<table>
-            <tr>
-                <td>Admin</td>
-                <td>
-                    <button th:onclick="LoginFill('admin')">Copy</button>
-                </td>
-            </tr>
-            <tr>
-                <td>User</td>
-                <td>
-                    <button th:onclick="LoginFill('user')">Copy</button>
-                </td>
-            </tr>
-            <tr>
-                <td>Intakhab</td>
-                <td>
-                    <button th:onclick="LoginFill('intakhab')">Copy</button>
-                </td>
-            </tr>
-        </table>-->
     </div>
-
     <div id="forgotPasswordModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeForgotPasswordModal()" title="close">&times;</span>
@@ -60,7 +37,6 @@
             </div>
         </div>
     </div>
-
     <script th:src="@{/static/js/Authentication/login.js}"></script>
 </div>
 </body>
