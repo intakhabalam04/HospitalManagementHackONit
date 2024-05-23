@@ -30,13 +30,11 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class DoctorServiceImpl implements DoctorService {
-
     private final DoctorRepo doctorRepo;
-    private static final String FLASK_SERVER_URL = "http://localhost:5001";
     private final AppointmentRepo appointmentRepo;
     private final EmailService emailService;
     private final UserService userService;
-
+    private static final String FLASK_SERVER_URL = "http://localhost:5001";
 
     @Override
     public Doctor getDoctor(UUID id) {

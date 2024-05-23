@@ -12,16 +12,10 @@ import java.util.UUID;
 
 public interface AdminService {
     boolean addDoctor(Doctor doctor);
-
     List<DoctorDto> getDoctors();
-
     void deleteDoctor(UUID id);
-
     void updateDoctor(Doctor existingDoctor, Doctor doctor);
-
     List<AppointmentDto> getAppointments();
-
     List<BloodDonation> getBloodDonations();
-
     List<OrganDonation> getOrganDonations();
 }

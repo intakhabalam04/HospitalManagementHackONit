@@ -11,12 +11,8 @@ import java.util.UUID;
 public interface UserRepo extends JpaRepository<User, UUID> {
     User findByEmailOrMobileOrUsername(String email,String mobile,String username);
     User findByToken(String token);
-
     User findByUsername(String username);
-
     User findByEmail(String emailId);
-
     User findByMobile(String phoneNumber);
-
     List<User> findByRole(String admin);
 }

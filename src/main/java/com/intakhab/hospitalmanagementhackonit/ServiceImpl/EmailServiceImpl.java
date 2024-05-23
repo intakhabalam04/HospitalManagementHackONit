@@ -44,12 +44,10 @@ public class EmailServiceImpl implements EmailService {
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
-//        helper.setFrom(email.getSender());
         helper.setTo(email.getReceiver());
         helper.setSubject(email.getSubject());
-        helper.setText(email.getMessage());
+        helper.setText("Prescription uploaded by doctor. Please find the attachment.");
 
-        // Add the attachment
         FileSystemResource file = new FileSystemResource(new File(attachmentPath));
         helper.addAttachment("prescription.pdf", file);
 

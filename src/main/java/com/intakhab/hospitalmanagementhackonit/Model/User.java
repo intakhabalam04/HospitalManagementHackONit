@@ -1,18 +1,13 @@
 package com.intakhab.hospitalmanagementhackonit.Model;
-
 import com.intakhab.hospitalmanagementhackonit.Enum.UserAction;
 import com.intakhab.hospitalmanagementhackonit.Enum.UserRole;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
-
 @Entity
 @Data
 @NoArgsConstructor
@@ -38,5 +33,4 @@ public class User {
     private String gender;
     @OneToMany
     private List<Insurance> insuranceList;
-
 }

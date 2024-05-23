@@ -11,18 +11,11 @@ import java.util.UUID;
 
 public interface DoctorService {
     Doctor getDoctor(UUID id);
-
     List<DoctorDto> getAllDoctors();
-
     List<AppointmentDto> getDoctorsAppointments();
-
     DoctorDto getDoctorDto(UUID id);
-
     MedicineSuggestion recommend(String medicine);
-
     int getTodayAppointmentsNo();
-
     List<AppointmentDto> prescriptionNeeded();
-
     Object savePrescription(UUID prescription,String prescriptionDetails) throws MessagingException;
 }
