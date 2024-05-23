@@ -9,10 +9,8 @@
 </head>
 <body>
 <div th:replace="~{Doctor/fragments}"></div>
-
 <div class="container">
     <h2>Patient Data</h2>
-
     <table class="table table-bordered">
         <thead>
         <tr>
@@ -25,8 +23,6 @@
         </thead>
     </table>
 </div>
-
-<!-- Add this code inside the body tag -->
 <div id="prescriptionModal" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
@@ -35,7 +31,6 @@
     <button id="savePrescription">Save</button>
   </div>
 </div>
-
 <script th:src="@{/static/js/Doctor/prescription.js}"></script>
 </body>
 </html>

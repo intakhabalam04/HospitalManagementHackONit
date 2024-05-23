@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doctor Appointments</title>
     <link rel="stylesheet" th:href="@{/static/css/Doctor/appointments.css}">
 </head>
-
 <body>
 <div th:replace="~{Doctor/fragments}"></div>
 <div class="content">
@@ -21,11 +19,8 @@
             <th>Symptoms</th>
             <th>Appointment Time</th>
         </tr>
-        <!-- Appointment rows will be inserted here by JavaScript -->
     </table>
 </div>
-
 <script th:src="@{/static/js/Doctor/appointments.js}"></script>
 </body>
-
 </html>
