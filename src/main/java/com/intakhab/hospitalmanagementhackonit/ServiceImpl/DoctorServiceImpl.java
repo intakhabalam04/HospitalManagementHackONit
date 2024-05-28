@@ -33,7 +33,6 @@ public class DoctorServiceImpl implements DoctorService {
     private final DoctorRepo doctorRepo;
     private final AppointmentRepo appointmentRepo;
     private final EmailService emailService;
-    private final UserService userService;
     private static final String FLASK_SERVER_URL = "http://localhost:5001";
 
     @Override
@@ -111,9 +110,9 @@ public class DoctorServiceImpl implements DoctorService {
             document.open();
 
             // Add an image
-            Image image = Image.getInstance("C:\\Users\\Intakhab Alam\\Desktop\\HospitalManagementHackONit\\src\\main\\resources\\static\\images\\logo_main.png");
-            image.scaleAbsolute(100f, 100f);
-            document.add(image);
+//            Image image = Image.getInstance("C:\\Users\\Intakhab Alam\\Desktop\\HospitalManagementHackONit\\src\\main\\resources\\static\\images\\logo_main.png");
+//            image.scaleAbsolute(100f, 100f);
+//            document.add(image);
 
             // Add a heading
             Font font = FontFactory.getFont(FontFactory.HELVETICA, 20, Font.BOLD);
