@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     // Create a new link element
                     const link = document.createElement('a');
                     // Set the href attribute to the video call URL
-                    link.href = `http://localhost:8080/patient/videocall?roomID=${appointment.roomID}&appointmentid=${appointment.id}`;
+                    link.href = `/patient/videocall?roomID=${appointment.roomID}&appointmentid=${appointment.id}`;
                     // Set the text content to 'Video Call'
                     link.textContent = 'Meet Now';
                     link.title = 'Click here to start a video call'
