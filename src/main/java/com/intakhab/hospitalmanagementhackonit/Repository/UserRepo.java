@@ -1,5 +1,6 @@
 package com.intakhab.hospitalmanagementhackonit.Repository;
 
+import com.intakhab.hospitalmanagementhackonit.Enum.UserRole;
 import com.intakhab.hospitalmanagementhackonit.Model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -14,5 +15,5 @@ public interface UserRepo extends JpaRepository<User, UUID> {
     User findByUsername(String username);
     User findByEmail(String emailId);
     User findByMobile(String phoneNumber);
-    List<User> findByRole(String admin);
+    List<User> findByRole(UserRole role);
 }
