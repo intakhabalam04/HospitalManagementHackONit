@@ -1,5 +1,6 @@
 package com.intakhab.hospitalmanagementhackonit;
 
+import com.intakhab.hospitalmanagementhackonit.Enum.UserAction;
 import com.intakhab.hospitalmanagementhackonit.Enum.UserRole;
 import com.intakhab.hospitalmanagementhackonit.Model.User;
 import com.intakhab.hospitalmanagementhackonit.Repository.UserRepo;
@@ -38,7 +39,7 @@ public class HospitalManagementHackONitApplication {
                 newAdmin.setName("Admin");
                 newAdmin.setEmail("admin@gmail.com");
                 newAdmin.setMobile("1234567890");
-                newAdmin.setRole(UserRole.ADMIN);
+                newAdmin.setAction(UserAction.APPROVED);
 
                 userRepository.save(newAdmin);
             }
