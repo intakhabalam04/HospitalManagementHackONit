@@ -38,6 +38,7 @@ public class HospitalManagementHackONitApplication {
                 newAdmin.setName("Admin");
                 newAdmin.setEmail("admin@gmail.com");
                 newAdmin.setMobile("1234567890");
+                newAdmin.setRole(UserRole.ADMIN);
 
                 userRepository.save(newAdmin);
             }
