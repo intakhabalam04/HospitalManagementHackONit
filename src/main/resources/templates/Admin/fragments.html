@@ -7,7 +7,10 @@
     <link rel="stylesheet" th:href="@{/static/css/Admin/fragments.css}">
 </head>
 <body>
-<div class="sidebar">
+<div class="hamburger" id="hamburger">
+    <img th:src="@{/static/images/image.png}" alt="Menu">
+</div>
+<div class="sidebar" id="sidebar">
     <h2>Admin Panel</h2>
     <ul>
         <li><a href="/admin/home">Dashboard</a></li>
@@ -16,12 +19,15 @@
         <li><a href="/admin/add-doctor">Add Doctor</a></li>
         <li><a href="/admin/blood-donations">Blood Donation List</a></li>
         <li><a href="/admin/organ-donations">Organ Donation List</a></li>
-        <li>
-            <button onclick="logout()">Logout</button>
-        </li>
+        <li><button onclick="logout()">Logout</button></li>
     </ul>
 </div>
 <script th:src="@{/static/js/Admin/fragments.js}"></script>
-</body>
+<script>
+    document.getElementById('hamburger').addEventListener('click', function() {
+        document.getElementById('sidebar').classList.toggle('show');
+    });
+</script>
 
+</body>
 </html>
