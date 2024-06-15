@@ -9,22 +9,26 @@ body {
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #fff;
+    background-color: #49b54d;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
 }
-h1 {
+
+h1, h2 {
     text-align: center;
     margin-bottom: 20px;
 }
+
 .form-container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 label {
     margin-bottom: 5px;
 }
+
 input[type="text"] {
     width: 100%;
     padding: 8px;
@@ -32,6 +36,7 @@ input[type="text"] {
     border-radius: 3px;
     border: 1px solid #ccc;
 }
+
 button {
     padding: 10px 20px;
     background-color: #007bff;
@@ -41,15 +46,19 @@ button {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
+
 button:hover {
     background-color: #0056b3;
 }
+
 #result {
     margin-top: 20px;
 }
+
 .hidden {
     display: none;
 }
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -58,7 +67,53 @@ button:hover {
         opacity: 1;
     }
 }
+
 .fadeIn {
     animation: fadeIn 1s ease;
 }
-  
+
+@media (max-width: 800px) {
+    .container {
+        padding: 15px;
+        margin: 20px auto;
+        max-width: 90%;
+    }
+
+    .form-container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .table {
+        width: 100%;
+        overflow-x: auto;
+        display: block;
+    }
+
+    table.table-bordered th, table.table-bordered td {
+        padding: 8px;
+    }
+
+    h1, h2 {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+        width: 95%;
+    }
+
+    .form-container {
+        padding: 5px;
+    }
+
+    table.table-bordered th, table.table-bordered td {
+        padding: 6px;
+    }
+
+    h1, h2 {
+        font-size: 20px;
+    }
+}
