@@ -5,6 +5,7 @@ body {
     transition: background-color 0.3s;
     background-color: #ddddd6;
 }
+
 .content {
     padding: 20px;
     margin-top: 50px;
@@ -15,37 +16,90 @@ body {
     transition: transform 0.3s, box-shadow 0.3s;
     max-width: calc(80% - 200px);
     overflow-x: auto;
+    position: relative;
 }
+
 .content:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
+
 table.appointments-list {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
+
 table.appointments-list, th, td {
     border: 1px solid #ddd;
 }
+
 table.appointments-list th, table.appointments-list td {
     padding: 12px;
     text-align: left;
 }
+
 table.appointments-list th {
     background-color: #4CAF50;
     color: white;
 }
+
 table.appointments-list tr:hover {
     background-color: #f5f5f5;
 }
+
 .content h1 {
     text-align: center;
     font-size: 28px;
     margin-bottom: 20px;
     color: #333;
     transition: color 0.3s;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    padding: 10px 0;
+    z-index: 10;
 }
+
 .content h1:hover {
     color: #007bff;
+}
+
+@media (max-width: 768px) {
+    .content {
+        padding: 15px;
+        margin: 20px auto;
+        width: 90%;
+        max-width: 90%;
+    }
+
+    table.appointments-list th, table.appointments-list td {
+        padding: 8px;
+    }
+
+    .content h1 {
+        font-size: 24px;
+        text-align: center;
+    }
+    
+
+    .content {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .content {
+        padding: 10px;
+        width: 95%;
+    }
+
+    table.appointments-list th, table.appointments-list td {
+        padding: 6px;
+    }
+
+    .content h1 {
+        font-size: 20px;
+    }
 }
