@@ -18,12 +18,16 @@
 <div class="content">
   <h2>Save Others</h2>
   <p>Donate your Blood and Organs.</p>
-  <button class="btn2" onclick="location.href='/patient/donate-blood'">Donate Blood</button>
-  <button class="btn2" onclick="location.href='/patient/donate-organs'">Donate Organs</button>
+  <div class="btn-container">
+    <button class="btn2" onclick="location.href='/patient/donate-blood'">Donate Blood</button>
+    <button class="btn2" onclick="location.href='/patient/donate-organs'">Donate Organs</button>
+  </div>
 </div>
 <div class="content">
-  <h2> Know more about Diseases </h2>
-  <button class="btn2" onclick="location.href='/patient/diseases'">View Disease Descriptions</button>
+  <h2>Know more about Diseases</h2>
+  <div class="btn-container">
+    <button class="btn2" onclick="location.href='/patient/diseases'">View Disease Descriptions</button>
+  </div>
 </div>
 <script th:src="@{/static/js/Patient/home.js}"></script>
 </body>
