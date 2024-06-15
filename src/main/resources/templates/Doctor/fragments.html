@@ -7,7 +7,10 @@
     <link rel="stylesheet" th:href="@{/static/css/Doctor/fragments.css}">
 </head>
 <body>
-<div class="sidebar">
+<div class="hamburger" id="hamburger">
+    <img th:src="@{/static/images/image.png}" alt="Menu">
+</div>
+<div class="sidebar" id="sidebar">
     <h2>Doctor Panel</h2>
     <ul>
         <li><a href="/doctor/home">Dashboard</a></li>
@@ -17,5 +20,11 @@
     </ul>
 </div>
 <script th:src="@{/static/js/Doctor/fragments.js}"></script>
+<script>
+    document.getElementById('hamburger').addEventListener('click', function() {
+        document.getElementById('sidebar').classList.toggle('show');
+    });
+</script>
+
 </body>
 </html>

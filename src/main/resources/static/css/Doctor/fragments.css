@@ -4,6 +4,7 @@ body {
     padding: 0;
     background-color: #f4f4f4; 
 }
+
 .sidebar {
     height: 100vh;
     width: 220px;
@@ -16,13 +17,13 @@ body {
     z-index: 1000; 
     overflow-y: auto;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-    transform: translateX(-100%);
-    transition: transform 0.3s, width 0.3s;
-    margin-left: 200px;
+    transition: transform 0.3s ease;
 }
+
 .sidebar.show {
     transform: translateX(0);
 }
+
 .sidebar h2 {
     margin: 0;
     padding: 10px;
@@ -31,26 +32,30 @@ body {
     color: rgb(29, 28, 28);
     font-family: cursive;
 }
+
 .sidebar ul {
     list-style-type: none;
     padding: 0;
     margin-top: 20px;
 }
+
 .sidebar li {
     padding: 10px;
     transition: background-color 0.3s; 
 }
+
 .sidebar a {
     color: #fff;
     text-decoration: none;
     display: block;
     padding: 10px 20px;
 }
-.sidebar a:hover{
-    color:black;
-    background-color: aqua;
 
+.sidebar a:hover {
+    color: black;
+    background-color: aqua;
 }
+
 .sidebar li button {
     color: #fff;
     background-color: transparent;
@@ -63,23 +68,52 @@ body {
     transition: background-color 0.3s;
     font-size: 17px;
 }
+
 .sidebar li button:hover {
     background-color: aqua;
     color: black;
 }
-@keyframes slideIn {
-    from {
-        transform: translateX(-100%); 
-    }
-    to {
-        transform: translateX(0); 
-    }
+
+.hamburger {
+    display: none;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1001;
+    cursor: pointer;
 }
-@keyframes slideOut {
-    from {
-        transform: translateX(0); 
+
+.hamburger img {
+    width: 30px;
+    height: 30px;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-90%);
     }
-    to {
-        transform: translateX(-100%); 
+    .hamburger {
+        display: block;
+    }
+    .sidebar.show {
+        transform: translateX(0);
+    }
+    
+    .sidebar {
+        transform: translateX(-100%);
+        width: 220px;
+    }
+
+    .sidebar.show {
+        transform: translateX(0);
+    }
+
+    .sidebar ul {
+        max-height: 0;
+        overflow: hidden;
+    }
+
+    .sidebar.show ul {
+        max-height: 100vh;
     }
 }
