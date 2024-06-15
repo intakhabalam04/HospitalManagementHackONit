@@ -84,6 +84,20 @@ message-container {
     background-color: transparent;
     border: none;
 }
+.previous {
+    background-color: #f1f1f1;
+    color: black;
+}
+.next {
+    background-color: #04AA6D;
+    color: white;
+}
+.round {
+    border-radius: 50%;
+}
+#pr{
+    margin-right: 400px;
+}
 @media only screen and (max-width: 600px) {
     .chatbot-container {
         width: 90%;
