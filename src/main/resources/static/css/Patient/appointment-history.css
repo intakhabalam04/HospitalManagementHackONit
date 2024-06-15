@@ -5,45 +5,72 @@ body {
     background-color: #ddddd6;
     transition: background-color 0.3s;
 }
+
 .content {
-    max-width: 800px;
-    margin: 50px auto;
+    max-width: 100%;
+    margin: 0 auto;
     padding: 20px;
     background-color: #52e9ca;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
+    overflow-x: auto;
 }
+
 .content:hover {
     transform: translateY(-5px);
 }
+
 h1 {
-    font-size: 36px;
+    font-size: 28px;
     color: #333;
     margin-bottom: 20px;
+    text-align: center;
 }
+
+.table-container {
+    overflow-x: auto; 
+}
+
 #appointmentTable {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
 }
+
 #appointmentTable th,
 #appointmentTable td {
     padding: 10px;
     text-align: left;
     border-bottom: 1px solid #ccc;
+    flex-basis: 50%;
+    box-sizing: border-box;
 }
-#appointmentTable td a {
-    color: #ce3f3f;
-}
+
 #appointmentTable th {
     background-color: #007bff;
     color: #fff;
+    flex-basis: 100%;
 }
+
 #appointmentTable tbody tr:nth-child(even) {
     background-color: #f2f2f2;
 }
+
 #appointmentTable tbody tr:hover {
     background-color: #e0e0e0;
     cursor: pointer;
+}
+@media (max-width: 600px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    #appointmentTable th,
+    #appointmentTable td {
+        padding: 8px;
+        flex-basis: 100%;
+    }
 }
