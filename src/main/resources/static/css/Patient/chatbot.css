@@ -94,6 +94,7 @@ message-container {
 }
 .round {
     border-radius: 50%;
+    border: 1px solid white;
 }
 #pr{
     margin-right: 400px;
