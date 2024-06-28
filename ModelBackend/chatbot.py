@@ -1,5 +1,8 @@
 # IMPORT LIBRARIES
 import json
+import os
+import signal
+import sys
 
 import pandas as pd
 from flask import Flask, jsonify, request
@@ -8,12 +11,12 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import make_pipeline
 
 # LOAD DATASETS
-data = pd.read_csv("ModelBackend\Symptom2Disease.csv")
-disease_info = pd.read_csv("ModelBackend\disease_info.csv")
+data = pd.read_csv("Symptom2Disease.csv")
+disease_info = pd.read_csv("disease_info.csv")
 
-doctor_data = pd.read_csv("ModelBackend\Disease_Doctor_Data.csv")
+doctor_data = pd.read_csv("Disease_Doctor_Data.csv")
 
-recovery_steps = pd.read_csv("ModelBackend\health_conditions.csv")
+recovery_steps = pd.read_csv("health_conditions.csv")
 
 # TRAIN MODEL USING NAIVE BAYES ALGORITHM
 
@@ -131,7 +134,9 @@ symptom_map = {
 }
 
 user_symptoms = ""
-insurance=""
+insurance = ""
+
+
 @app.route('/chat', methods=['POST'])
 def chat():
     global current_question
@@ -272,6 +277,21 @@ def chat():
         "user_symptom": user_symptoms,
         "insurance": insurance
     })
+
+
+@app.route('/restart', methods=['POST'])
+def restart_server():
+
+    os.execv(sys.executable, ['python'] + sys.argv)
+
+    # Send response first before restarting
+    response = jsonify({"message": "Server is restarting..."})
+    response.status_code = 200
+
+    # Use signal to safely restart the server after the response is sent
+    os.kill(os.getpid(), signal.SIGINT)
+
+    return response
 
 
 if __name__ == '__main__':

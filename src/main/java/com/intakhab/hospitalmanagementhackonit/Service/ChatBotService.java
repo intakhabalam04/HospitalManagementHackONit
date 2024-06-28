@@ -4,4 +4,6 @@ import com.intakhab.hospitalmanagementhackonit.Model.ChatBot;
 
 public interface ChatBotService {
     ChatBot getResponse(String message);
+
+
 }
