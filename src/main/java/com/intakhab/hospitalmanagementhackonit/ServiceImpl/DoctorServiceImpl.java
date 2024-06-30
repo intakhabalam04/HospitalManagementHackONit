@@ -21,6 +21,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.FileOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
@@ -92,16 +94,16 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public Object savePrescription(UUID prescription, String prescriptionDetails) throws MessagingException {
+    public Object savePrescription(UUID prescription, String drugsName) throws MessagingException {
 
         Appointment appointment = appointmentRepo.findById(prescription).orElse(null);
         assert appointment != null;
-        appointment.setPrescription(prescriptionDetails);
+        appointment.setDrugsName(drugsName);
         appointment.setPrescriptionGiven(true);
         String pdfPath = "prescription.pdf";
         Email email = new Email();
         email.setSubject("Prescription for your appointment");
-        email.setMessage(prescriptionDetails);
+        email.setMessage(drugsName);
         email.setReceiver(appointment.getUser().getEmail());
         try {
 
@@ -128,22 +130,22 @@ public class DoctorServiceImpl implements DoctorService {
             Phrase heading2 = new Phrase("teaminnovate.api@gmail.com\n", font2);
             ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_LEFT, heading2, 240, 770, 0);
 
-            String patientName = "Patient Name : "+appointment.getPatientName();
+            String patientName = "Patient Name : " + appointment.getPatientName();
             Font patient = FontFactory.getFont(FontFactory.HELVETICA, 9);
             Phrase patient1 = new Phrase(patientName, patient);
             ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_LEFT, patient1, 150, 755, 0);
 
-            String appAge = "Age : "+appointment.getAge();
+            String appAge = "Age : " + appointment.getAge();
             Font age = FontFactory.getFont(FontFactory.HELVETICA, 9);
             Phrase age1 = new Phrase(appAge, age);
             ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_LEFT, age1, 150, 740, 0);
 
-            String appGender = "Gender : "+appointment.getGender();
+            String appGender = "Gender : " + appointment.getGender();
             Font gender = FontFactory.getFont(FontFactory.HELVETICA, 9);
             Phrase gender1 = new Phrase(appGender, gender);
             ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_LEFT, gender1, 150, 725, 0);
 
-            String doctorName = "Doctor Name : "+appointment.getDoctor().getName();
+            String doctorName = "Doctor Name : " + appointment.getDoctor().getName();
             Font d = FontFactory.getFont(FontFactory.HELVETICA, 9);
             Phrase d1 = new Phrase(doctorName, d);
             ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_LEFT, d1, 350, 755, 0);
@@ -163,9 +165,9 @@ public class DoctorServiceImpl implements DoctorService {
             Phrase p1 = new Phrase("PRESCRIPTION \n", p);
             ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_LEFT, p1, 130, 680, 0);
 
-
-            // Split prescriptionDetails by commas
-            String[] details = prescriptionDetails.split(",");
+            System.out.println(drugsName);
+            // Split drugsName by commas
+            String[] details = drugsName.split(",");
 
             // Create a new Phrase
             Phrase prescriptionPhrase = new Phrase();
@@ -182,7 +184,7 @@ public class DoctorServiceImpl implements DoctorService {
             column.addElement(prescriptionPhrase);
             column.go();
 
-            // Split prescriptionDetails by commas
+            // Split drugsName by commas
             String[] details1 = appointment.getSymptoms().split(",");
 
             // Create a new Phrase
@@ -206,13 +208,16 @@ public class DoctorServiceImpl implements DoctorService {
 
 
             document.close();
+            byte[] pdfBytes = Files.readAllBytes(Paths.get(pdfPath));
+            appointment.setPrescriptionPdf(pdfBytes);
+
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         email.setAttachmentPath(pdfPath);
-        emailService.sendEmailWithAttachment(email,pdfPath);
+        emailService.sendEmailWithAttachment(email, pdfPath);
 
 
         return appointmentRepo.save(appointment);

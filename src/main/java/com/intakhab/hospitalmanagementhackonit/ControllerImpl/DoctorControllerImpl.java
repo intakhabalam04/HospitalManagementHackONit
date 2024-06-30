@@ -62,7 +62,7 @@ public class DoctorControllerImpl implements DoctorController {
     @PostMapping("/save-prescription")
     public ResponseEntity<?> savePrescription(@RequestBody Appointment appointment) throws MessagingException {
 
-        return ResponseEntity.ok(doctorService.savePrescription(appointment.getId(),appointment.getPrescription()));
+        return ResponseEntity.ok(doctorService.savePrescription(appointment.getId(),appointment.getDrugsName()));
     }
 
 }

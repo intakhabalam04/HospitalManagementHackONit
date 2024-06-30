@@ -64,7 +64,7 @@ function openPrescriptionModal(appointmentId) {
 
 // Function to save the prescription
 document.getElementById("savePrescription").onclick = function () {
-    var prescriptionText = document.getElementById("prescriptionText").value;
+    var drugsNameText = document.getElementById("prescriptionText").value;
 
 
     fetch('/doctor/save-prescription', {
@@ -74,7 +74,7 @@ document.getElementById("savePrescription").onclick = function () {
       },
       body: JSON.stringify({
         id: currentAppointmentId,
-          prescription: prescriptionText,
+          drugsName: drugsNameText,
       }),
     })
     .then(response => response.json())

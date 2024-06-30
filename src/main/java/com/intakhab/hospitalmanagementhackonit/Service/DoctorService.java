@@ -17,5 +17,5 @@ public interface DoctorService {
     MedicineSuggestion recommend(String medicine);
     int getTodayAppointmentsNo();
     List<AppointmentDto> prescriptionNeeded();
-    Object savePrescription(UUID prescription,String prescriptionDetails) throws MessagingException;
+    Object savePrescription(UUID prescription,String drugsName) throws MessagingException;
 }

@@ -15,6 +15,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Appointment {
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -36,5 +37,8 @@ public class Appointment {
     private AppointmentStatus appointmentStatus;
     private String roomID;
     private boolean isPrescriptionGiven;
-    private String prescription;
+    private String drugsName;
+    @Lob
+    @Column(columnDefinition = "LONGBLOB")
+    private byte[] prescriptionPdf;
 }

@@ -43,7 +43,7 @@ public class AuthServiceImpl implements AuthService {
     public boolean registerNewUser(User newRegisterdUser) {
         try {
             User user = new User();
-            user.setName(newRegisterdUser.getName() );
+            user.setName(newRegisterdUser.getName());
             user.setUsername(newRegisterdUser.getUsername());
             user.setPassword(passwordEncoder.encode(newRegisterdUser.getPassword()));
             user.setRole(UserRole.PATIENT);
@@ -55,7 +55,7 @@ public class AuthServiceImpl implements AuthService {
 
             userRepo.save(user);
             return true;
-        }catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
     }
@@ -93,10 +93,15 @@ public class AuthServiceImpl implements AuthService {
         }
 
         assert localHost != null;
-        String link = "https://hospitalmanagementhackonit-production.up.railway.app/reset_password?token=" + token;
+        String prodLink = "https://hospitalmanagementhackonit-production.up.railway.app/reset_password?token=" + token;
+        String devLink = "http://localhost:8080/reset_password?token=" + token;
 
-        String msg = "<html>" + "<body>" + "<p>Hello,</p>" + "<p>You have requested to reset your password.</p>" + "<p>Click the link below to change your password:</p>" + "<p><a href=" + link + ">Change my password</a></p>" + "<br>" + "<p>Ignore this email if you do remember your password, " + "or you have not made the request.</p>" + "</body>" + "</html>";
-        System.out.println(link);
+        String msg = "<html>" + "<body>" + "<p>Hello,</p>" + "<p>You have requested to reset your password.</p>" +
+                "<p>Click the link below to change your password:</p>" +
+                "<p><a href=" + prodLink + ">Change my password (Production)</a></p>" +
+                "<p><a href=" + devLink + ">Change my password (Development)</a></p>" + "<br>" +
+                "<p>Ignore this email if you do remember your password, " + "or you have not made the request.</p>" + "</body>" + "</html>";
+
         return msg;
     }
 

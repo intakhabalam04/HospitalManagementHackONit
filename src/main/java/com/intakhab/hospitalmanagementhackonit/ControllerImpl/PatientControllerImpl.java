@@ -2,15 +2,19 @@ package com.intakhab.hospitalmanagementhackonit.ControllerImpl;
 
 import com.intakhab.hospitalmanagementhackonit.Controller.PatientController;
 import com.intakhab.hospitalmanagementhackonit.Model.*;
+import com.intakhab.hospitalmanagementhackonit.Repository.AppointmentRepo;
 import com.intakhab.hospitalmanagementhackonit.Service.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/patient")
@@ -22,6 +26,7 @@ public class PatientControllerImpl implements PatientController{
     private final ChatBotService chatBotService;
     private final SecurityService securityService;
     private final InsuranceService insuranceService;
+    private final AppointmentRepo appointmentRepo;
     @GetMapping("/home")
     public ModelAndView home() {
         String viewName = "Patient/home";
@@ -210,5 +215,19 @@ public class PatientControllerImpl implements PatientController{
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Insurance plan not found");
         }
+    }
+
+    @GetMapping("/{id}/prescription")
+    public ResponseEntity<byte[]> getPrescriptionPdf(@PathVariable UUID id) {
+        Appointment appointment = appointmentRepo.findById(id).orElse(null);
+        if (appointment == null || appointment.getPrescriptionPdf() == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        byte[] pdfBytes = appointment.getPrescriptionPdf();
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=prescription.pdf")
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(pdfBytes);
     }
 }

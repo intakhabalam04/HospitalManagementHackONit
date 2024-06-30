@@ -16,8 +16,6 @@ function failedLocation() {
 }
 
 const getUserCurrentAddress = async (latitude, longitude) => {
-    console.log(latitude)
-    console.log(longitude)
 
     let query = `${latitude},${longitude}`
     let apiUrl = `${apiEndpoint}?key=${apiKey}&q=${query}`
@@ -44,6 +42,7 @@ window.onload = function() {
 }
 
 function showHospital(pincode){
+
     const hospital = hospitalsData.find(hospital => hospital.Pincode == pincode);
     const hospitalNameDiv = document.getElementById('hospitals-list');
     if (hospital) {
