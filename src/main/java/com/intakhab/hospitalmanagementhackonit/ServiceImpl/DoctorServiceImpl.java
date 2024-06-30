@@ -9,6 +9,7 @@ import com.intakhab.hospitalmanagementhackonit.Repository.AppointmentRepo;
 import com.intakhab.hospitalmanagementhackonit.Repository.DoctorRepo;
 import com.intakhab.hospitalmanagementhackonit.Service.DoctorService;
 import com.intakhab.hospitalmanagementhackonit.Service.EmailService;
+import com.intakhab.hospitalmanagementhackonit.Service.SecurityService;
 import com.intakhab.hospitalmanagementhackonit.Service.UserService;
 import com.lowagie.text.*;
 import com.lowagie.text.pdf.ColumnText;
@@ -35,6 +36,7 @@ public class DoctorServiceImpl implements DoctorService {
     private final DoctorRepo doctorRepo;
     private final AppointmentRepo appointmentRepo;
     private final EmailService emailService;
+    private final SecurityService securityService;
     private static final String FLASK_SERVER_URL = "http://localhost:5001";
 
     @Override
@@ -51,8 +53,14 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public List<AppointmentDto> getDoctorsAppointments() {
         List<Doctor> doctors = doctorRepo.findAll();
+        User doctorUser = securityService.currentUser();
+        for(Doctor doctor : doctors){
+            if(doctor.getUser().getId().equals(doctorUser.getId())){
+                return doctor.getAppointment().stream().filter(appointment -> appointment.getPaymentStatus().toString().equals(PaymentStatus.COMPLETED.toString())).map(appointment -> convertToDto(appointment, doctor)).collect(Collectors.toList());
+            }
 
-        return doctors.stream().flatMap(doctor -> doctor.getAppointment().stream().filter(appointment -> appointment.getPaymentStatus().toString().equals(PaymentStatus.COMPLETED.toString())).map(appointment -> convertToDto(appointment, doctor))).collect(Collectors.toList());
+        }
+        return null;
     }
 
     @Override
@@ -90,7 +98,15 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public List<AppointmentDto> prescriptionNeeded() {
-        return appointmentRepo.findAll().stream().filter(appointment -> appointment.getPaymentStatus().toString().equals(PaymentStatus.COMPLETED.toString())).filter(appointment -> appointment.getAppointmentStatus().toString().equals(AppointmentStatus.COMPLETED.toString())).filter(appointment -> !appointment.isPrescriptionGiven()).map(appointment -> convertToDto(appointment, appointment.getDoctor())).collect(Collectors.toList());
+        List<Doctor> doctors = doctorRepo.findAll();
+        User doctorUser = securityService.currentUser();
+        for(Doctor doctor : doctors){
+            if(doctor.getUser().getId().equals(doctorUser.getId())){
+                return doctor.getAppointment().stream().filter(appointment -> appointment.getPaymentStatus().toString().equals(PaymentStatus.COMPLETED.toString())).filter(appointment -> appointment.getAppointmentStatus().toString().equals(AppointmentStatus.COMPLETED.toString())).filter(appointment -> !appointment.isPrescriptionGiven()).map(appointment -> convertToDto(appointment, doctor)).collect(Collectors.toList());
+            }
+
+        }
+        return null;
     }
 
     @Override
@@ -237,8 +253,8 @@ public class DoctorServiceImpl implements DoctorService {
         appointmentDto.setDoctorId(doctor.getId());
         appointmentDto.setUserId(appointment.getUser().getId());
         appointmentDto.setDoctorName(doctor.getName());
-        appointmentDto.setEmail(doctor.getEmail());
-        appointmentDto.setMobile(doctor.getMobile());
+        appointmentDto.setEmail(appointment.getUser().getEmail());
+        appointmentDto.setMobile(appointment.getUser().getMobile());
         return appointmentDto;
     }
 

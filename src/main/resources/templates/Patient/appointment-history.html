@@ -5,30 +5,99 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Appointment History</title>
   <link rel="stylesheet" th:href="@{/static/css/Patient/appointment-history.css}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div th:replace="~{Patient/fragments}"></div>
 <div class="content">
-  <h1>Appointment History</h1>
-  <div class="table-container">
-    <table id="appointmentTable">
-      <thead>
-      <tr>
-        <th>Patient Name</th>
-        <th>Doctor Name</th>
-        <th>Fee</th>
-        <th>Appointment Date</th>
-        <th>Appointment Time</th>
-        <th>Payment Status</th>
-        <th>Appointment Status</th>
-        <th>Prescription</th>
-      </tr>
-      </thead>
-      <tbody id="appointmentList">
-      </tbody>
-    </table>
+  <h1>Your Appointments</h1>
+  <div class="accordion" id="appointmentAccordion">
+    <div class="card">
+      <div class="card-header" id="todayAppointments">
+        <h2 class="mb-0">
+          <button class="btn btn-link" type="button" data-toggle="collapse"
+                  data-target="#collapseToday" aria-expanded="true" aria-controls="collapseToday">
+            Today's Appointments
+          </button>
+        </h2>
+      </div>
+      <div id="collapseToday" class="collapse show" aria-labelledby="todayAppointments"
+           data-parent="#appointmentAccordion">
+        <div class="card-body">
+          <table id="today-appointments-table" class="appointments-list">
+            <tr>
+              <th>DoctorName</th>
+              <th>Fee</th>
+              <th>AppointmentDate</th>
+              <th>AppointmentTime</th>
+              <th>PaymentStatus</th>
+              <th>AppointmentStatus</th>
+              <th>Prescription</th>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" id="pastAppointments">
+        <h2 class="mb-0">
+          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapsePast"
+                  aria-expanded="false" aria-controls="collapsePast">
+            Past Appointments
+          </button>
+        </h2>
+      </div>
+      <div id="collapsePast" class="collapse" aria-labelledby="pastAppointments"
+           data-parent="#appointmentAccordion">
+        <div class="card-body">
+          <table id="past-appointments-table" class="appointments-list">
+            <tr>
+              <th>DoctorName</th>
+              <th>Fee</th>
+              <th>AppointmentDate</th>
+              <th>AppointmentTime</th>
+              <th>PaymentStatus</th>
+              <th>AppointmentStatus</th>
+              <th>Prescription</th>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" id="futureAppointments">
+        <h2 class="mb-0">
+          <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                  data-target="#collapseFuture" aria-expanded="false" aria-controls="collapseFuture">
+            Future Appointments
+          </button>
+        </h2>
+      </div>
+      <div id="collapseFuture" class="collapse" aria-labelledby="futureAppointments"
+           data-parent="#appointmentAccordion">
+        <div class="card-body">
+          <table id="future-appointments-table" class="appointments-list">
+            <tr>
+              <th>DoctorName</th>
+              <th>Fee</th>
+              <th>AppointmentDate</th>
+              <th>AppointmentTime</th>
+              <th>PaymentStatus</th>
+              <th>AppointmentStatus</th>
+              <th>Prescription</th>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
 <script th:src="@{/static/js/payment.js}"></script>
 <script th:src="@{/static/js/Patient/appointment-history.js}"></script>
 </body>

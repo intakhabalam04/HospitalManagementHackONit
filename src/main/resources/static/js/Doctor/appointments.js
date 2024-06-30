@@ -3,20 +3,51 @@ document.addEventListener("DOMContentLoaded", function() {
     fetch('/doctor/doctors-appointments')
         .then(response => response.json())
         .then(appointments => {
-            const table = document.querySelector('.appointments-list');
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
 
-            appointments.forEach(appointment => {
-                const tr = document.createElement('tr');
+            const pastAppointments = appointments.filter(appointment => {
+                const appointmentDate = new Date(appointment.appointmentDate);
+                appointmentDate.setHours(0, 0, 0, 0);
+                return appointmentDate < today;
+            });
 
-                // Create a table data cell for each required property
-                const properties = ['patientName', 'email', 'mobile', 'appointmentDate', 'symptoms', 'appointmentTime'];
-                properties.forEach(property => {
-                    const td = document.createElement('td');
-                    td.textContent = appointment[property];
-                    tr.appendChild(td);
+            const todayAppointments = appointments.filter(appointment => {
+                const appointmentDate = new Date(appointment.appointmentDate);
+                appointmentDate.setHours(0, 0, 0, 0);
+                return appointmentDate.getTime() === today.getTime();
+            });
+
+            const futureAppointments = appointments.filter(appointment => {
+                const appointmentDate = new Date(appointment.appointmentDate);
+                appointmentDate.setHours(0, 0, 0, 0);
+                return appointmentDate > today;
+            });
+
+
+            const tables = {
+                'past-appointments-table': pastAppointments,
+                'today-appointments-table': todayAppointments,
+                'future-appointments-table': futureAppointments
+            };
+
+            Object.keys(tables).forEach(tableId => {
+                const table = document.querySelector(`#${tableId}`);
+                const appointments = tables[tableId];
+
+                appointments.forEach(appointment => {
+                    const tr = document.createElement('tr');
+
+                    // Create a table data cell for each required property
+                    const properties = ['patientName', 'appointmentDate', 'symptoms', 'appointmentTime'];
+                    properties.forEach(property => {
+                        const td = document.createElement('td');
+                        td.textContent = appointment[property];
+                        tr.appendChild(td);
+                    });
+
+                    table.appendChild(tr);
                 });
-
-                table.appendChild(tr);
             });
         })
 });
