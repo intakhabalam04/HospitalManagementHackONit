@@ -12,12 +12,18 @@ import com.intakhab.hospitalmanagementhackonit.Repository.DoctorRepo;
 import com.intakhab.hospitalmanagementhackonit.Repository.UserRepo;
 import com.intakhab.hospitalmanagementhackonit.Service.AppointmentService;
 import com.intakhab.hospitalmanagementhackonit.Service.DoctorService;
-import com.intakhab.hospitalmanagementhackonit.Service.EmailService;
 import com.intakhab.hospitalmanagementhackonit.Service.SecurityService;
 import lombok.RequiredArgsConstructor;
+import org.apache.pdfbox.io.MemoryUsageSetting;
+import org.apache.pdfbox.multipdf.PDFMergerUtility;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -111,6 +117,45 @@ public class AppointmentServiceImpl implements AppointmentService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public void uploadPatientReport(MultipartFile file, UUID appointmentId) {
+        try {
+            Appointment appointment = appointmentRepo.findById(appointmentId).orElseThrow(() -> new RuntimeException("Appointment not found"));
+
+            byte[] prescriptionPdf = appointment.getPrescriptionPdf();
+            byte[] reportPdf = file.getBytes();
+
+            if (prescriptionPdf != null) {
+                byte[] mergedPdf = mergeReport(prescriptionPdf, reportPdf);
+                appointment.setPrescriptionPdf(mergedPdf);
+            } else {
+                appointment.setPrescriptionPdf(reportPdf);
+            }
+
+            appointmentRepo.save(appointment);
+        } catch (Exception e) {
+            throw new RuntimeException("Error uploading report");
+        }
+    }
+
+    private byte[] mergeReport(byte[] existingPdf, byte[] newPdf) {
+        PDFMergerUtility pdfMerger = new PDFMergerUtility();
+        pdfMerger.setDestinationStream(new ByteArrayOutputStream());
+
+        pdfMerger.addSource(new ByteArrayInputStream(existingPdf));
+        pdfMerger.addSource(new ByteArrayInputStream(newPdf));
+
+        ByteArrayOutputStream mergedPdfStream = new ByteArrayOutputStream();
+        pdfMerger.setDestinationStream(mergedPdfStream);
+        try {
+            pdfMerger.mergeDocuments(MemoryUsageSetting.setupMainMemoryOnly());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return mergedPdfStream.toByteArray();
+    }
+
     private AppointmentDto convertToDto(Appointment appointment) {
         AppointmentDto appointmentDto = new AppointmentDto();
         appointmentDto.setId(appointment.getId());
@@ -131,3 +176,6 @@ public class AppointmentServiceImpl implements AppointmentService {
         return appointmentDto;
     }
 }
+
+
+

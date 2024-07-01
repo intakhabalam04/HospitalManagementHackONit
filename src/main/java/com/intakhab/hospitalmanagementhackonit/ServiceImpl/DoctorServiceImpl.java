@@ -7,26 +7,30 @@ import com.intakhab.hospitalmanagementhackonit.Enum.PaymentStatus;
 import com.intakhab.hospitalmanagementhackonit.Model.*;
 import com.intakhab.hospitalmanagementhackonit.Repository.AppointmentRepo;
 import com.intakhab.hospitalmanagementhackonit.Repository.DoctorRepo;
+import com.intakhab.hospitalmanagementhackonit.Service.AppointmentService;
 import com.intakhab.hospitalmanagementhackonit.Service.DoctorService;
 import com.intakhab.hospitalmanagementhackonit.Service.EmailService;
 import com.intakhab.hospitalmanagementhackonit.Service.SecurityService;
-import com.intakhab.hospitalmanagementhackonit.Service.UserService;
 import com.lowagie.text.*;
 import com.lowagie.text.pdf.ColumnText;
 import com.lowagie.text.pdf.PdfContentByte;
 import com.lowagie.text.pdf.PdfWriter;
 import jakarta.mail.MessagingException;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.apache.pdfbox.io.MemoryUsageSetting;
+import org.apache.pdfbox.multipdf.PDFMergerUtility;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -54,8 +58,8 @@ public class DoctorServiceImpl implements DoctorService {
     public List<AppointmentDto> getDoctorsAppointments() {
         List<Doctor> doctors = doctorRepo.findAll();
         User doctorUser = securityService.currentUser();
-        for(Doctor doctor : doctors){
-            if(doctor.getUser().getId().equals(doctorUser.getId())){
+        for (Doctor doctor : doctors) {
+            if (doctor.getUser().getId().equals(doctorUser.getId())) {
                 return doctor.getAppointment().stream().filter(appointment -> appointment.getPaymentStatus().toString().equals(PaymentStatus.COMPLETED.toString())).map(appointment -> convertToDto(appointment, doctor)).collect(Collectors.toList());
             }
 
@@ -91,17 +95,15 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public int getTodayAppointmentsNo() {
-        return (int) appointmentRepo.findAll().stream()
-                .filter(appointment -> appointment.getAppointmentDate().equals(LocalDate.now()))
-                .filter(appointment -> appointment.getPaymentStatus().toString().equals(PaymentStatus.COMPLETED.toString())).count();
+        return (int) appointmentRepo.findAll().stream().filter(appointment -> appointment.getAppointmentDate().equals(LocalDate.now())).filter(appointment -> appointment.getPaymentStatus().toString().equals(PaymentStatus.COMPLETED.toString())).count();
     }
 
     @Override
     public List<AppointmentDto> prescriptionNeeded() {
         List<Doctor> doctors = doctorRepo.findAll();
         User doctorUser = securityService.currentUser();
-        for(Doctor doctor : doctors){
-            if(doctor.getUser().getId().equals(doctorUser.getId())){
+        for (Doctor doctor : doctors) {
+            if (doctor.getUser().getId().equals(doctorUser.getId())) {
                 return doctor.getAppointment().stream().filter(appointment -> appointment.getPaymentStatus().toString().equals(PaymentStatus.COMPLETED.toString())).filter(appointment -> appointment.getAppointmentStatus().toString().equals(AppointmentStatus.COMPLETED.toString())).filter(appointment -> !appointment.isPrescriptionGiven()).map(appointment -> convertToDto(appointment, doctor)).collect(Collectors.toList());
             }
 
@@ -224,8 +226,15 @@ public class DoctorServiceImpl implements DoctorService {
 
 
             document.close();
-            byte[] pdfBytes = Files.readAllBytes(Paths.get(pdfPath));
-            appointment.setPrescriptionPdf(pdfBytes);
+            byte[] newReport = Files.readAllBytes(Paths.get(pdfPath));
+            byte[] oldReport = appointment.getPrescriptionPdf();
+            System.out.println(Arrays.toString(oldReport));
+            if (oldReport == null) {
+                appointment.setPrescriptionPdf(newReport);
+            } else {
+                byte[] finalReport = mergeReport(oldReport, newReport);
+                appointment.setPrescriptionPdf(finalReport);
+            }
 
 
         } catch (Exception e) {
@@ -236,8 +245,27 @@ public class DoctorServiceImpl implements DoctorService {
         emailService.sendEmailWithAttachment(email, pdfPath);
 
 
-        return appointmentRepo.save(appointment);
+        appointmentRepo.save(appointment);
 
+        return new AppointmentDto();
+
+    }
+
+    @Override
+    public Object updateAppointment(UUID id, int days) {
+        // Fetch the appointment from the database using the id
+        Appointment appointment = appointmentRepo.findById(id).orElseThrow(() -> new RuntimeException("Appointment not found"));
+
+        // Update the appointment date
+        LocalDate newDate = appointment.getAppointmentDate().plusDays(days);
+        appointment.setAppointmentDate(newDate);
+        if (days != 0) {
+            appointment.setAppointmentStatus(AppointmentStatus.PENDING);
+        }
+        // Save the updated appointment back to the database
+        appointmentRepo.save(appointment);
+
+        return appointment;
     }
 
     private AppointmentDto convertToDto(Appointment appointment, Doctor doctor) {
@@ -255,6 +283,7 @@ public class DoctorServiceImpl implements DoctorService {
         appointmentDto.setDoctorName(doctor.getName());
         appointmentDto.setEmail(appointment.getUser().getEmail());
         appointmentDto.setMobile(appointment.getUser().getMobile());
+        appointmentDto.setPrescriptionGiven(appointment.isPrescriptionGiven());
         return appointmentDto;
     }
 
@@ -269,6 +298,24 @@ public class DoctorServiceImpl implements DoctorService {
         doctorDto.setUserId(doctor.getUser().getId());
         doctorDto.setAppointmentIds(doctor.getAppointment().stream().map(Appointment::getId).collect(Collectors.toList()));
         return doctorDto;
+    }
+
+    private byte[] mergeReport(byte[] existingPdf, byte[] newPdf) {
+        PDFMergerUtility pdfMerger = new PDFMergerUtility();
+        pdfMerger.setDestinationStream(new ByteArrayOutputStream());
+
+        pdfMerger.addSource(new ByteArrayInputStream(existingPdf));
+        pdfMerger.addSource(new ByteArrayInputStream(newPdf));
+
+        ByteArrayOutputStream mergedPdfStream = new ByteArrayOutputStream();
+        pdfMerger.setDestinationStream(mergedPdfStream);
+        try {
+            pdfMerger.mergeDocuments(MemoryUsageSetting.setupMainMemoryOnly());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return mergedPdfStream.toByteArray();
     }
 }
 

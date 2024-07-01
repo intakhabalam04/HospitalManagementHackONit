@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     // Fetch the data (replace with your actual data fetching code)
     fetch('/doctor/doctors-appointments')
         .then(response => response.json())
@@ -45,6 +45,41 @@ document.addEventListener("DOMContentLoaded", function() {
                         td.textContent = appointment[property];
                         tr.appendChild(td);
                     });
+
+                    const reportCell = document.createElement('td');
+                    console.log(appointment.prescriptionGiven)
+                    try {
+                        console.log("2")
+                        const link = document.createElement('a');
+                        link.href = '#'
+                        link.textContent = 'View Reports';
+                        link.addEventListener('click', function (event) {
+                            event.preventDefault();
+                            fetch(`/doctor/${appointment.id}/prescription`)
+                                .then(response => response.blob())
+                                .then(blob => {
+                                    const url = URL.createObjectURL(blob);
+                                    const a = document.createElement('a');
+                                    a.href = url;
+                                    a.download = `prescription-${appointment.id}.pdf`;
+                                    document.body.appendChild(a);
+                                    a.click();
+                                    document.body.removeChild(a);
+                                    URL.revokeObjectURL(url);
+                                })
+                                .catch(error => {
+                                    console.error('Error fetching prescription:', error);
+                                });
+                        });
+                        reportCell.appendChild(link);
+
+                    } catch (e) {
+
+                        reportCell.textContent = 'Not Available';
+                    }
+
+                    tr.appendChild(reportCell);
+
 
                     table.appendChild(tr);
                 });

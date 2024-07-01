@@ -62,29 +62,58 @@ function openPrescriptionModal(appointmentId) {
     modal.style.display = "block";
 }
 
-// Function to save the prescription
 document.getElementById("savePrescription").onclick = function () {
     var drugsNameText = document.getElementById("prescriptionText").value;
 
-
     fetch('/doctor/save-prescription', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        id: currentAppointmentId,
-          drugsName: drugsNameText,
-      }),
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            id: currentAppointmentId,
+            drugsName: drugsNameText,
+        }),
     })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Success:', data);
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
 
+            // Prompt the user for the number of days
+            let daysInput = prompt("Enter the number of days for the prescription");
+
+            // Validate the input to ensure it's a number
+            let days = parseInt(daysInput);
+
+            if (isNaN(days)) {
+                alert("Invalid input. Please enter a valid number.");
+                return;
+            }
+
+            // Update the appointment after the input days
+            fetch('/doctor/update-appointment', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    id: currentAppointmentId,
+                    days: days,
+                }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Appointment updated:', data);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+
+            console.log(days);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
 
     // Close the modal
     modal.style.display = "none";

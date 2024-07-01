@@ -26,6 +26,7 @@ public class Appointment {
     private int consultationFee;
     private LocalDate appointmentDate;
     private String appointmentTime;
+    private int days;
     private UUID doctorid;
     @ManyToOne(cascade = CascadeType.REMOVE)
     private Doctor doctor;

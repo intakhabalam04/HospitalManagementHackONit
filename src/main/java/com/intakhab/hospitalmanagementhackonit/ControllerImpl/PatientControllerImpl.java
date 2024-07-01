@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
@@ -230,4 +231,15 @@ public class PatientControllerImpl implements PatientController{
                 .contentType(MediaType.APPLICATION_PDF)
                 .body(pdfBytes);
     }
+
+    @PostMapping("/upload-pdf")
+    public ResponseEntity<?> uploadPatientReport(@RequestParam("pdfFile") MultipartFile file, @RequestParam("appointmentId") UUID appointmentId){
+        try {
+            appointmentService.uploadPatientReport(file, appointmentId);
+            return ResponseEntity.ok().body("Prescription uploaded successfully");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error: " + e.getMessage());
+        }
+    }
 }
+
