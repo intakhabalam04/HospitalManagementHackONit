@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 import java.net.InetAddress;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -66,14 +68,19 @@ public class AuthServiceImpl implements AuthService {
         if (user != null) {
             UUID uuid = UUID.randomUUID();
             String token = uuid.toString().replace("-", "");
-            String mailMsg = generateResetLink(token);
             String subject = "Here's the link to reset your password";
+
+            Map<String, Object> model = new HashMap<>();
+            model.put("userName", user.getName());  // Replace with actual user name
+            model.put("resetLink", "http://localhost:8080/reset_password?token=" + token);
+            model.put("currentYear", LocalDateTime.now().getYear());
 
             Email email = new Email();
             email.setSender(sender);
             email.setReceiver(user.getEmail());
             email.setSubject(subject);
-            email.setMessage(mailMsg);
+            email.setModel(model);
+            email.setTemplateName("reset_password.ftl");
 
             user.setToken(token);
             user.setTokenExpiryTime((System.currentTimeMillis() + tokenExpiryTime));
@@ -82,6 +89,8 @@ public class AuthServiceImpl implements AuthService {
         }
         return false;
     }
+
+
 
     @Override
     public String generateResetLink(String token) {

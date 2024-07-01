@@ -173,6 +173,7 @@ public class AppointmentServiceImpl implements AppointmentService {
         appointmentDto.setAppointmentStatus(appointment.getAppointmentStatus().toString());
         appointmentDto.setRoomID(appointment.getRoomID());
         appointmentDto.setPrescriptionGiven(appointment.isPrescriptionGiven());
+        appointmentDto.setPrescriptionPdf(appointment.getPrescriptionPdf());
         return appointmentDto;
     }
 }

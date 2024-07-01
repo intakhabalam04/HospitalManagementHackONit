@@ -20,7 +20,6 @@ import java.util.UUID;
 @RestController
 @RequiredArgsConstructor
 public class PaymentControllerImpl implements PaymentController {
-
     private final PaymentService paymentService;
 
     @PostMapping("/patient/create_order")

@@ -94,23 +94,3 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     });
 });
-
-/*
-
-const button1 = document.getElementById('btn1')
-
-button1.addEventListener('click', ()=> {
-    navigator.geolocation.getCurrentPosition(getLocation, failedLocation)
-})
-
-function getLocation(position){
-    console.log(position)
-
-}
-
-function failedLocation(){
-    console.log('failed')
-}
-
-*/
-

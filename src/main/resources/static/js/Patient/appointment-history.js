@@ -84,7 +84,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     // Appointment status handling
                     const statusCell = document.createElement('td');
-                    if (appointment.appointmentStatus.toString() === 'PENDING') {
+
+                    // Convert appointment date string to Date object
+                    const appointmentDate = new Date(appointment.appointmentDate);
+
+                    // Get current date
+                    const currentDate = new Date();
+
+                    if (appointment.appointmentStatus.toString() === 'PENDING' && currentDate >= appointmentDate) {
                         const link = document.createElement('a');
                         link.href = `/patient/videocall?roomID=${appointment.roomID}&appointmentid=${appointment.id}`;
                         link.textContent = 'Meet Now';
@@ -94,13 +101,15 @@ document.addEventListener("DOMContentLoaded", function () {
                     } else {
                         statusCell.textContent = appointment.appointmentStatus;
                     }
+
                     tr.appendChild(statusCell);
+
 
                     // Prescription handling
                     const prescriptionCell = document.createElement('td');
 
-                    try {
-                        // if (appointment.prescriptionGiven) {
+
+                    if (appointment.prescriptionPdf!==null) {
                         const link = document.createElement('a');
                         link.href = '#';
                         link.textContent = 'Download Prescription';
@@ -123,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 });
                         });
                         prescriptionCell.appendChild(link);
-                    } catch (error) {
+                    } else {
                         // else {
                         prescriptionCell.textContent = 'Not Available';
                     }

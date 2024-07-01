@@ -29,4 +29,5 @@ public class AppointmentDto {
     private String appointmentStatus;
     private String roomID;
     private boolean isPrescriptionGiven;
+    private byte[] prescriptionPdf;
 }
