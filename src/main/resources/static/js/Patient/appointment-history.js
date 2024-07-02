@@ -91,16 +91,16 @@ document.addEventListener("DOMContentLoaded", function () {
                     // Get current date
                     const currentDate = new Date();
 
-                    if (appointment.appointmentStatus.toString() === 'PENDING' && currentDate >= appointmentDate) {
+                    // if (appointment.appointmentStatus.toString() === 'PENDING' && currentDate >= appointmentDate) {
                         const link = document.createElement('a');
                         link.href = `/patient/videocall?roomID=${appointment.roomID}&appointmentid=${appointment.id}`;
                         link.textContent = 'Meet Now';
                         link.title = 'Click here to start a video call';
                         link.target = '_blank';
                         statusCell.appendChild(link);
-                    } else {
-                        statusCell.textContent = appointment.appointmentStatus;
-                    }
+                    // } else {
+                    //     statusCell.textContent = appointment.appointmentStatus;
+                    // }
 
                     tr.appendChild(statusCell);
 

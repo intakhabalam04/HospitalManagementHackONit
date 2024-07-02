@@ -7,16 +7,11 @@ import freemarker.template.Template;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
-
-import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -39,6 +34,10 @@ public class EmailServiceImpl implements EmailService {
             mimeMessageHelper.setSubject(email.getSubject());
             mimeMessageHelper.setText(html, true);
 
+            String fromEmail = "teaminnovate.api@gmail.com";
+            String fromName = "Jansevak";
+            mimeMessageHelper.setFrom(fromEmail, fromName);
+
             javaMailSender.send(mimeMessage);
 
             return true;
@@ -50,18 +49,29 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public void sendEmailWithAttachment(Email email, String attachmentPath) throws MessagingException {
-        MimeMessage message = javaMailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(message, true);
+    public void sendEmailWithAttachment(Email email, byte[] attachmentPath) {
+        try {
+            MimeMessage message = javaMailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
-        helper.setTo(email.getReceiver());
-        helper.setSubject(email.getSubject());
-        helper.setText("Prescription uploaded by doctor. Please find the attachment.");
+            helper.setTo(email.getReceiver());
+            helper.setSubject(email.getSubject());
 
-        FileSystemResource file = new FileSystemResource(new File(attachmentPath));
-        helper.addAttachment("prescription.pdf", file);
+            String fromEmail = "teaminnovate.api@gmail.com";
+            String fromName = "Jansevak";
+            helper.setFrom(fromEmail, fromName);
 
-        javaMailSender.send(message);
+
+            Template template = configuration.getTemplate(email.getTemplateName());
+            String html = FreeMarkerTemplateUtils.processTemplateIntoString(template, email.getModel());
+            helper.setText(html, true);
+
+            helper.addAttachment("prescription.pdf", new ByteArrayResource(attachmentPath));
+
+            javaMailSender.send(message);
+        }catch (Exception e){
+            System.out.println("Error in sending email with attachment: " + e.getMessage());
+        }
 
     }
 }

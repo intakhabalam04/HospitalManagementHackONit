@@ -19,4 +19,6 @@ public interface DoctorService {
     List<AppointmentDto> prescriptionNeeded();
     Object savePrescription(UUID prescription,String drugsName) throws MessagingException;
     Object updateAppointment(UUID id, int days);
+
+    Object sendEmail(UUID appointmentId);
 }

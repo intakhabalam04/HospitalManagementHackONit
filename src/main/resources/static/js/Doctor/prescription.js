@@ -90,8 +90,18 @@ document.getElementById("savePrescription").onclick = function () {
                 return;
             }
 
-            // Update the appointment after the input days
-            fetch('/doctor/update-appointment', {
+            // Create promises for both sending email and updating appointment
+            let sendEmailPromise = fetch('/doctor/send-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    id: currentAppointmentId
+                }),
+            });
+
+            let updateAppointmentPromise = fetch('/doctor/update-appointment', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -100,13 +110,18 @@ document.getElementById("savePrescription").onclick = function () {
                     id: currentAppointmentId,
                     days: days,
                 }),
-            })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Appointment updated:', data);
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
+            });
+
+            // Use Promise.allSettled to handle both promises
+            Promise.allSettled([sendEmailPromise, updateAppointmentPromise])
+                .then(results => {
+                    results.forEach(result => {
+                        if (result.status === 'fulfilled') {
+                            console.log('Success:', result.value);
+                        } else {
+                            console.error('Error:', result.reason);
+                        }
+                    });
                 });
 
             console.log(days);
@@ -118,3 +133,4 @@ document.getElementById("savePrescription").onclick = function () {
     // Close the modal
     modal.style.display = "none";
 }
+

@@ -7,25 +7,48 @@
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             color: #333;
+            margin: 0;
+            padding: 0;
         }
+
         .container {
-            width: 100%;
+            width: 90%;
             max-width: 600px;
-            margin: 0 auto;
+            margin: 20px auto;
             background-color: #fff;
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ddd; /* Added border */
+            border-radius: 5px; /* Rounded corners */
         }
+
         h2 {
             color: #007bff;
+            border-bottom: 2px solid #007bff; /* Add bottom border */
+            padding-bottom: 10px; /* Add padding */
         }
+
         p {
             line-height: 1.6;
+            margin: 10px 0; /* Add margin */
         }
+
         .footer {
             margin-top: 20px;
             font-size: 12px;
             color: #888;
+            border-top: 1px solid #ddd; /* Add top border */
+            padding-top: 10px; /* Add padding */
+            text-align: center; /* Center align text */
+        }
+
+        a {
+            color: #007bff; /* Link color */
+            text-decoration: none; /* Remove underline */
+        }
+
+        a:hover {
+            text-decoration: underline; /* Underline on hover */
         }
     </style>
 </head>
@@ -43,8 +66,8 @@
     <p>Best Regards,</p>
     <p>Team Jansevak</p>
     <div class="footer">
-        <p>If you have any questions, feel free to <a href="mailto:support@hospital.com">contact us</a>.</p>
-        <p>&copy; ${currentYear} Team Jansevak. All rights reserved.</p>
+        <p>If you have any questions, feel free to <a href="mailto:teaminnovate.api@gmail.com">contact us</a>.</p>
+        <p>&copy; ${.now?string("yyyy")} Jansevak. All rights reserved.</p>
     </div>
 </div>
 </body>
