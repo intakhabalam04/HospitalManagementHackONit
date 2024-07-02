@@ -64,10 +64,10 @@
     <p>Please arrive 10 minutes before your scheduled time. If you need to cancel or reschedule, please contact our office as soon as possible.</p>
     <p>Thank you for choosing our services.</p>
     <p>Best Regards,</p>
-    <p>Team Jansevak</p>
+    <p>Team ${websiteName}</p>
     <div class="footer">
-        <p>If you have any questions, feel free to <a href="mailto:teaminnovate.api@gmail.com">contact us</a>.</p>
-        <p>&copy; ${.now?string("yyyy")} Jansevak. All rights reserved.</p>
+        <p>If you have any questions, feel free to <a href=${email}>contact us</a>.</p>
+        <p>&copy; ${.now?string("yyyy")} ${websiteName}. All rights reserved.</p>
     </div>
 </div>
 </body>

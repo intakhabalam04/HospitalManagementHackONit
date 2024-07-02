@@ -19,6 +19,7 @@ import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import org.apache.pdfbox.io.MemoryUsageSetting;
 import org.apache.pdfbox.multipdf.PDFMergerUtility;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -40,7 +41,13 @@ public class DoctorServiceImpl implements DoctorService {
     private final AppointmentRepo appointmentRepo;
     private final EmailService emailService;
     private final SecurityService securityService;
-    private static final String FLASK_SERVER_URL = "http://localhost:5001";
+
+    @Value("${flask.server.url}")
+    private String FLASK_SERVER_URL;
+    @Value("${spring.mail.username}")
+    private String sender;
+    @Value("${website.domain.name}")
+    private String websiteName;
 
     @Override
     public Doctor getDoctor(UUID id) {
@@ -111,7 +118,7 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public Object savePrescription(UUID prescription, String drugsName) throws MessagingException {
+    public Object savePrescription(UUID prescription, String drugsName)  {
 
         Appointment appointment = appointmentRepo.findById(prescription).orElse(null);
         assert appointment != null;
@@ -132,7 +139,7 @@ public class DoctorServiceImpl implements DoctorService {
 
             // Add a heading
             Font font = FontFactory.getFont(FontFactory.HELVETICA, 20, Font.BOLD);
-            Phrase heading = new Phrase("JANSEVAK", font);
+            Phrase heading = new Phrase(websiteName.toUpperCase(), font);
             ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_LEFT, heading, 300, 800, 0);
 
             Font font1 = FontFactory.getFont(FontFactory.HELVETICA, 10, Font.BOLD);
@@ -141,7 +148,7 @@ public class DoctorServiceImpl implements DoctorService {
 
 
             Font font2 = FontFactory.getFont(FontFactory.HELVETICA, 9);
-            Phrase heading2 = new Phrase("teaminnovate.api@gmail.com\n", font2);
+            Phrase heading2 = new Phrase(websiteName+"\n", font2);
             ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_LEFT, heading2, 240, 770, 0);
 
             String patientName = "Patient Name : " + appointment.getPatientName();
@@ -268,13 +275,15 @@ public class DoctorServiceImpl implements DoctorService {
         email.setTemplateName("prescription-email.ftl");
         Map<String ,Object> model = new HashMap<>();
         assert appointment != null;
+        String contactUs = "mailto:"+sender;
         model.put("patientName", appointment.getPatientName());
         model.put("doctorName", appointment.getDoctor().getName());
         model.put("appointmentDate", appointment.getAppointmentDate());
+        model.put("email",contactUs);
+        model.put("websiteName",websiteName);
         email.setModel(model);
 
         email.setSubject("Prescription for your appointment");
-        assert appointment != null;
         email.setReceiver(appointment.getUser().getEmail());
         byte[] prescriptionPdf = appointment.getPrescriptionPdf();
         try {
@@ -283,6 +292,17 @@ public class DoctorServiceImpl implements DoctorService {
             throw new RuntimeException(e);
         }
         return new AppointmentDto();
+    }
+
+    @Override
+    public Doctor getCurrentDoctor() {
+        User user = securityService.currentUser();
+        for(Doctor doctor:doctorRepo.findAll()){
+            if(doctor.getUser().getId().equals(user.getId())){
+                return doctor;
+            }
+        }
+        return null;
     }
 
     private AppointmentDto convertToDto(Appointment appointment, Doctor doctor) {

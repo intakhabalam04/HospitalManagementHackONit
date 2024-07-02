@@ -79,12 +79,12 @@
     <p><strong>Consultation Fee:</strong> ${consultationFee}</p>
     <p>Please be prepared for the appointment.</p>
     <p>You can join the video call using the following link:</p>
-    <p><a href="http://localhost:8080/doctor/videocall?roomID=4569" class="button">Join Video Call</a></p>
+    <p><a href=${joinButton} class="button">Join Video Call</a></p>
     <p>Best Regards,</p>
-    <p>Team Jansevak</p>
+    <p>Team ${websiteName}</p>
     <div class="footer">
-        <p>If you have any questions, feel free to <a href="mailto:teaminnovate.api@gmail.com">contact us</a>.</p>
-        <p>&copy; ${.now?string("yyyy")} Jansevak. All rights reserved.</p>
+        <p>If you have any questions, feel free to <a href=${email}>contact us</a>.</p>
+        <p>&copy; ${.now?string("yyyy")} ${websiteName}. All rights reserved.</p>
     </div>
 </div>
 </body>

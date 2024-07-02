@@ -70,10 +70,10 @@
     <p><strong>Prescription:</strong> See the attached PDF for your prescription details.</p>
     <p>Thank you for choosing our services. Please contact us if you have any questions or concerns regarding your prescription.</p>
     <p>Best Regards,</p>
-    <p>Team Jansevak</p>
+    <p>Team ${websiteName}</p>
     <div class="footer">
-        <p>If you have any questions, feel free to <a href="mailto:teaminnovate.api@gmail.com">contact us</a>.</p>
-        <p>&copy; ${.now?string("yyyy")} Jansevak. All rights reserved.</p>
+        <p>If you have any questions, feel free to <a href=${email}>contact us</a>.</p>
+        <p>&copy; ${.now?string("yyyy")} ${websiteName}. All rights reserved.</p>
     </div>
 </div>
 </body>

@@ -29,7 +29,7 @@ public class DoctorControllerImpl implements DoctorController {
     public ModelAndView home() {
         String viewName = "Doctor/home";
         Map<String, Object> model = new HashMap<>();
-        model.put("currentuser", securityService.currentUser());
+        model.put("currentuser", doctorService.getCurrentDoctor());
         return new ModelAndView(viewName, model);
     }
 

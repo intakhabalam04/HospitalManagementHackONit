@@ -13,7 +13,6 @@ import com.intakhab.hospitalmanagementhackonit.Repository.*;
 import com.intakhab.hospitalmanagementhackonit.Service.AdminService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,7 +32,7 @@ public class AdminServiceImpl implements AdminService {
 
 
     @Override
-    public boolean addDoctor(Doctor doctor) {
+    public void addDoctor(Doctor doctor) {
         System.out.println("Doctor: " + doctor.toString());
         try {
             Doctor newDoctor = new Doctor();
@@ -42,7 +41,7 @@ public class AdminServiceImpl implements AdminService {
             newDoctor.setSpecialization(doctor.getSpecialization());
             newDoctor.setConsultancyFee(doctor.getConsultancyFee());
             newDoctor.setMobile(doctor.getMobile());
-            newDoctor.setRoomID("4569");
+            newDoctor.setRoomID(String.valueOf(1000 + (int)(Math.random() * 9000)));
 
             User user = new User();
             user.setName(doctor.getName());
@@ -57,10 +56,8 @@ public class AdminServiceImpl implements AdminService {
 
             userRepo.save(user);
             doctorRepo.save(newDoctor);
-            return true;
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
         }
     }
 

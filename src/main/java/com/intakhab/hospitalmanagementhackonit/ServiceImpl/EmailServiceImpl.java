@@ -7,6 +7,7 @@ import freemarker.template.Template;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -19,6 +20,10 @@ public class EmailServiceImpl implements EmailService {
     private final JavaMailSender javaMailSender;
     private final Configuration configuration;
 
+    @Value("${website.domain.name}")
+    private String websiteName;
+    @Value("${spring.mail.username}")
+    private String sender;
 
     @Override
     public boolean sendEmail(Email email) {
@@ -34,8 +39,8 @@ public class EmailServiceImpl implements EmailService {
             mimeMessageHelper.setSubject(email.getSubject());
             mimeMessageHelper.setText(html, true);
 
-            String fromEmail = "teaminnovate.api@gmail.com";
-            String fromName = "Jansevak";
+            String fromEmail = sender;
+            String fromName = websiteName;
             mimeMessageHelper.setFrom(fromEmail, fromName);
 
             javaMailSender.send(mimeMessage);
@@ -57,8 +62,8 @@ public class EmailServiceImpl implements EmailService {
             helper.setTo(email.getReceiver());
             helper.setSubject(email.getSubject());
 
-            String fromEmail = "teaminnovate.api@gmail.com";
-            String fromName = "Jansevak";
+            String fromEmail = sender;
+            String fromName = websiteName;
             helper.setFrom(fromEmail, fromName);
 
 

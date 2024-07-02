@@ -45,19 +45,25 @@
             font-size: 12px;
             color: #888;
         }
+
+        .timer {
+            font-weight: bold;
+            color: #ff5a5f;
+        }
     </style>
 </head>
 <body>
 <div class="container">
     <h2>Hi ${userName},</h2>
     <p>We’ve received a request to reset your password.</p>
-    <p>If you didn’t make the request, just ignore this message. Otherwise, you can reset your password.</p>
+    <p>If you didn’t make the request, just ignore this message. Otherwise, you can reset your password by clicking the button below.</p>
     <a href="${resetLink}" class="button">Reset your password</a>
+    <p class="timer">Please note: This link will expire in 5 minutes.</p>
     <p>Thanks,</p>
-    <p>Team Jansevak</p>
+    <p>Team ${websiteName}</p>
     <div class="footer">
-        <p>If you have any questions, feel free to <a href="mailto:teaminnovate.api@gmail.com">contact us</a>.</p>
-        <p>&copy; ${.now?string("yyyy")} Jansevak. All rights reserved.</p>
+        <p>If you have any questions, feel free to <a href="mailto:${email}">contact us</a>.</p>
+        <p>&copy; ${.now?string("yyyy")} ${websiteName}. All rights reserved.</p>
     </div>
 </div>
 </body>

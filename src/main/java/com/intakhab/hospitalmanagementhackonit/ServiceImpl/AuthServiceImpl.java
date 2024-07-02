@@ -24,10 +24,14 @@ public class AuthServiceImpl implements AuthService {
 
     @Value("${spring.mail.username}")
     private String sender;
+    @Value("${website.domain.name}")
+    private String websiteName;
     @Value("${token.expiry.time}")
     private long tokenExpiryTime;
     @Value("${server.port}")
     private int serverPort;
+    @Value("${url}")
+    private String url;
     private final PasswordEncoder passwordEncoder;
     private final UserRepo userRepo;
 
@@ -70,10 +74,13 @@ public class AuthServiceImpl implements AuthService {
             String token = uuid.toString().replace("-", "");
             String subject = "Here's the link to reset your password";
 
+            String contactUs = "mailto:"+sender;
             Map<String, Object> model = new HashMap<>();
             model.put("userName", user.getName());  // Replace with actual user name
-            model.put("resetLink", "http://localhost:8080/reset_password?token=" + token);
+            model.put("resetLink", url+"/reset_password?token=" + token);
             model.put("currentYear", LocalDateTime.now().getYear());
+            model.put("email",contactUs);
+            model.put("websiteName",websiteName);
 
             Email email = new Email();
             email.setSender(sender);
