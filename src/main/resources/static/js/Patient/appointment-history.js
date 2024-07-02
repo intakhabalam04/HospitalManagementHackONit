@@ -92,6 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     const currentDate = new Date();
 
                     // if (appointment.appointmentStatus.toString() === 'PENDING' && currentDate >= appointmentDate) {
+<<<<<<< Updated upstream
                         const link = document.createElement('a');
                         link.href = `/patient/videocall?roomID=${appointment.roomID}&appointmentid=${appointment.id}`;
                         link.textContent = 'Meet Now';
@@ -100,6 +101,16 @@ document.addEventListener("DOMContentLoaded", function () {
                         statusCell.appendChild(link);
                     // } else {
                     //     statusCell.textContent = appointment.appointmentStatus;
+=======
+                    const link = document.createElement('a');
+                    link.href = `/patient/videocall?roomID=${appointment.roomID}&appointmentid=${appointment.id}`;
+                    link.textContent = 'Meet Now';
+                    link.title = 'Click here to start a video call';
+                    link.target = '_blank';
+                    statusCell.appendChild(link);
+                    // } else {
+                    // statusCell.textContent = appointment.appointmentStatus;
+>>>>>>> Stashed changes
                     // }
 
                     tr.appendChild(statusCell);
@@ -109,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     const prescriptionCell = document.createElement('td');
 
 
-                    if (appointment.prescriptionPdf!==null) {
+                    if (appointment.prescriptionPdf !== null) {
                         const link = document.createElement('a');
                         link.href = '#';
                         link.textContent = 'Download Prescription';

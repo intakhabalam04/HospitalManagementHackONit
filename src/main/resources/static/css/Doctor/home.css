@@ -16,10 +16,15 @@ h1 {
     font-size: 32px;
 }
 
+<<<<<<< Updated upstream
 #sv{
     display: inline-block; 
+=======
+a {
+    display: inline-block;
+>>>>>>> Stashed changes
     width: 40%;
-    margin: 20px auto; 
+    margin: 20px auto;
     padding: 10px 20px;
     background-color: #007bff;
     color: #fff;
@@ -56,6 +61,6 @@ a:hover {
     a {
         padding: 8px 16px;
         font-size: 16px;
-        width: 80%; 
+        width: 80%;
     }
 }
