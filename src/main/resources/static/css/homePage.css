@@ -22,7 +22,7 @@ html {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 0 25px;
+    /* padding: 0 25px; */
     background-color: rgb(139, 209, 247);
     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.10);
     border-bottom-left-radius: 10px;
@@ -64,7 +64,7 @@ html {
 
 .nav .button {
     margin-left: auto;
-    margin-right: 15px;
+    /* margin-right: 15px; */
 }
 
 .nav .buttn:hover,
