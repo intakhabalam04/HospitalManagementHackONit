@@ -46,7 +46,7 @@ input[type="text"], input[type="email"], input[type="tel"] {
 button {
     padding: 10px 20px;
     background-color: #007bff;
-    color: #39a4da;
+    color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -104,5 +104,39 @@ button:hover {
     }
     to {
         transform: scale(1);
+    }
+}
+
+@media (max-width: 1200px) {
+    .content {
+        margin: 20px auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .content {
+        padding: 15px;
+    }
+
+    table, th, td {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .content {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    table, th, td {
+        font-size: 12px;
+    }
+
+    .modal-content {
+        width: 90%;
     }
 }
