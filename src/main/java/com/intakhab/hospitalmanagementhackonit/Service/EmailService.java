@@ -5,5 +5,5 @@ import jakarta.mail.MessagingException;
 
 public interface EmailService {
     boolean sendEmail(Email email);
-    void sendEmailWithAttachment(Email email, String attachmentPath) throws MessagingException;
+    void sendEmailWithAttachment(Email email, byte[] attachmentPath) throws MessagingException;
 }

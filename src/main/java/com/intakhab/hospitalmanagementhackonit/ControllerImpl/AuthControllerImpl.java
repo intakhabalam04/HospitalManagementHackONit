@@ -71,6 +71,7 @@ public class AuthControllerImpl implements AuthController {
     public boolean submitForgotPage(@RequestParam("userId") String emailUserPhone) {
         return authService.sendResetPasswordMail(emailUserPhone);
     }
+
     @GetMapping("/reset_password")
     public ModelAndView getResetPage(@RequestParam String token) {
         User user = authService.findByToken(token);

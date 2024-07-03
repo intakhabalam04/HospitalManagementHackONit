@@ -91,13 +91,19 @@ document.addEventListener("DOMContentLoaded", function () {
                     // Get current date
                     const currentDate = new Date();
 
+                    appointmentDate.setHours(0, 0, 0, 0);
+                    currentDate.setHours(0, 0, 0, 0);
+
+                    console.log(appointmentDate.getTime())
+                    console.log(currentDate.getTime())
+
                     if (appointment.appointmentStatus.toString() === 'PENDING' && currentDate >= appointmentDate) {
-                        const link = document.createElement('a');
-                        link.href = `/patient/videocall?roomID=${appointment.roomID}&appointmentid=${appointment.id}`;
-                        link.textContent = 'Meet Now';
-                        link.title = 'Click here to start a video call';
-                        link.target = '_blank';
-                        statusCell.appendChild(link);
+                    const link = document.createElement('a');
+                    link.href = `/patient/videocall?roomID=${appointment.roomID}&appointmentid=${appointment.id}`;
+                    link.textContent = 'Meet Now';
+                    link.title = 'Click here to start a video call';
+                    link.target = '_blank';
+                    statusCell.appendChild(link);
                     } else {
                         statusCell.textContent = appointment.appointmentStatus;
                     }

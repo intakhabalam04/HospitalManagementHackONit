@@ -19,6 +19,7 @@ import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import org.apache.pdfbox.io.MemoryUsageSetting;
 import org.apache.pdfbox.multipdf.PDFMergerUtility;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -29,9 +30,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.util.Arrays;
+import java.util.*;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,7 +41,13 @@ public class DoctorServiceImpl implements DoctorService {
     private final AppointmentRepo appointmentRepo;
     private final EmailService emailService;
     private final SecurityService securityService;
-    private static final String FLASK_SERVER_URL = "http://localhost:5001";
+
+    @Value("${flask.server.url}")
+    private String FLASK_SERVER_URL;
+    @Value("${spring.mail.username}")
+    private String sender;
+    @Value("${website.domain.name}")
+    private String websiteName;
 
     @Override
     public Doctor getDoctor(UUID id) {
@@ -112,17 +118,14 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public Object savePrescription(UUID prescription, String drugsName) throws MessagingException {
+    public Object savePrescription(UUID prescription, String drugsName)  {
 
         Appointment appointment = appointmentRepo.findById(prescription).orElse(null);
         assert appointment != null;
         appointment.setDrugsName(drugsName);
         appointment.setPrescriptionGiven(true);
         String pdfPath = "prescription.pdf";
-        Email email = new Email();
-        email.setSubject("Prescription for your appointment");
-        email.setMessage(drugsName);
-        email.setReceiver(appointment.getUser().getEmail());
+
         try {
 
             Document document = new Document();
@@ -136,7 +139,7 @@ public class DoctorServiceImpl implements DoctorService {
 
             // Add a heading
             Font font = FontFactory.getFont(FontFactory.HELVETICA, 20, Font.BOLD);
-            Phrase heading = new Phrase("JANSEVAK", font);
+            Phrase heading = new Phrase(websiteName.toUpperCase(), font);
             ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_LEFT, heading, 300, 800, 0);
 
             Font font1 = FontFactory.getFont(FontFactory.HELVETICA, 10, Font.BOLD);
@@ -145,7 +148,7 @@ public class DoctorServiceImpl implements DoctorService {
 
 
             Font font2 = FontFactory.getFont(FontFactory.HELVETICA, 9);
-            Phrase heading2 = new Phrase("teaminnovate.api@gmail.com\n", font2);
+            Phrase heading2 = new Phrase(websiteName+"\n", font2);
             ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_LEFT, heading2, 240, 770, 0);
 
             String patientName = "Patient Name : " + appointment.getPatientName();
@@ -228,7 +231,6 @@ public class DoctorServiceImpl implements DoctorService {
             document.close();
             byte[] newReport = Files.readAllBytes(Paths.get(pdfPath));
             byte[] oldReport = appointment.getPrescriptionPdf();
-            System.out.println(Arrays.toString(oldReport));
             if (oldReport == null) {
                 appointment.setPrescriptionPdf(newReport);
             } else {
@@ -241,9 +243,6 @@ public class DoctorServiceImpl implements DoctorService {
             e.printStackTrace();
         }
 
-        email.setAttachmentPath(pdfPath);
-        emailService.sendEmailWithAttachment(email, pdfPath);
-
 
         appointmentRepo.save(appointment);
 
@@ -253,6 +252,7 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public Object updateAppointment(UUID id, int days) {
+        System.out.println("5");
         // Fetch the appointment from the database using the id
         Appointment appointment = appointmentRepo.findById(id).orElseThrow(() -> new RuntimeException("Appointment not found"));
 
@@ -264,8 +264,45 @@ public class DoctorServiceImpl implements DoctorService {
         }
         // Save the updated appointment back to the database
         appointmentRepo.save(appointment);
+        System.out.println("6");
+        return new AppointmentDto();
+    }
 
-        return appointment;
+    @Override
+    public Object sendEmail(UUID appointmentId) {
+        Appointment appointment = appointmentRepo.findById(appointmentId).orElse(null);
+        Email email = new Email();
+        email.setTemplateName("prescription-email.ftl");
+        Map<String ,Object> model = new HashMap<>();
+        assert appointment != null;
+        String contactUs = "mailto:"+sender;
+        model.put("patientName", appointment.getPatientName());
+        model.put("doctorName", appointment.getDoctor().getName());
+        model.put("appointmentDate", appointment.getAppointmentDate());
+        model.put("email",contactUs);
+        model.put("websiteName",websiteName);
+        email.setModel(model);
+
+        email.setSubject("Prescription for your appointment");
+        email.setReceiver(appointment.getUser().getEmail());
+        byte[] prescriptionPdf = appointment.getPrescriptionPdf();
+        try {
+            emailService.sendEmailWithAttachment(email, prescriptionPdf);
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+        return new AppointmentDto();
+    }
+
+    @Override
+    public Doctor getCurrentDoctor() {
+        User user = securityService.currentUser();
+        for(Doctor doctor:doctorRepo.findAll()){
+            if(doctor.getUser().getId().equals(user.getId())){
+                return doctor;
+            }
+        }
+        return null;
     }
 
     private AppointmentDto convertToDto(Appointment appointment, Doctor doctor) {

@@ -29,7 +29,7 @@ public class DoctorControllerImpl implements DoctorController {
     public ModelAndView home() {
         String viewName = "Doctor/home";
         Map<String, Object> model = new HashMap<>();
-        model.put("currentuser", securityService.currentUser());
+        model.put("currentuser", doctorService.getCurrentDoctor());
         return new ModelAndView(viewName, model);
     }
 
@@ -75,6 +75,7 @@ public class DoctorControllerImpl implements DoctorController {
 
     @PostMapping("/update-appointment")
     public ResponseEntity<?> updateAppointment(@RequestBody Appointment appointment) {
+        System.out.println("4");
         return ResponseEntity.ok(doctorService.updateAppointment(appointment.getId(), appointment.getDays()));
     }
 
@@ -90,6 +91,11 @@ public class DoctorControllerImpl implements DoctorController {
                 .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=prescription.pdf")
                 .contentType(MediaType.APPLICATION_PDF)
                 .body(pdfBytes);
+    }
+
+    @PostMapping("/send-email")
+    public ResponseEntity<?> sendEmail(@RequestBody Appointment appointment) {
+        return ResponseEntity.ok(doctorService.sendEmail(appointment.getId()));
     }
 
 

@@ -10,6 +10,7 @@
             background-color: #f4f4f4;
             color: #333;
         }
+
         .container {
             width: 90%;
             max-width: 600px;
@@ -17,13 +18,18 @@
             background-color: #fff;
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ddd; /* Added border */
+            border-radius: 5px; /* Optional: Add border-radius for rounded corners */
         }
+
         h2 {
             color: #ff5a5f;
         }
+
         p {
             line-height: 1.6;
         }
+
         .button {
             display: inline-block;
             padding: 10px 20px;
@@ -33,10 +39,16 @@
             border-radius: 5px;
             font-weight: bold;
         }
+
         .footer {
             margin-top: 20px;
             font-size: 12px;
             color: #888;
+        }
+
+        .timer {
+            font-weight: bold;
+            color: #ff5a5f;
         }
     </style>
 </head>
@@ -44,13 +56,14 @@
 <div class="container">
     <h2>Hi ${userName},</h2>
     <p>We’ve received a request to reset your password.</p>
-    <p>If you didn’t make the request, just ignore this message. Otherwise, you can reset your password.</p>
+    <p>If you didn’t make the request, just ignore this message. Otherwise, you can reset your password by clicking the button below.</p>
     <a href="${resetLink}" class="button">Reset your password</a>
+    <p class="timer">Please note: This link will expire in 5 minutes.</p>
     <p>Thanks,</p>
-    <p>Team Jansevak</p>
+    <p>Team ${websiteName}</p>
     <div class="footer">
-        <p>If you have any questions, feel free to <a href="mailto:support@jansevak.com">contact us</a>.</p>
-        <p>&copy; ${currentYear} Jansevak. All rights reserved.</p>
+        <p>If you have any questions, feel free to <a href="mailto:${email}">contact us</a>.</p>
+        <p>&copy; ${.now?string("yyyy")} ${websiteName}. All rights reserved.</p>
     </div>
 </div>
 </body>

@@ -12,6 +12,7 @@ import com.intakhab.hospitalmanagementhackonit.Service.EmailService;
 import com.intakhab.hospitalmanagementhackonit.Service.PaymentService;
 import com.intakhab.hospitalmanagementhackonit.Service.SecurityService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +29,13 @@ public class PaymentServiceImpl implements PaymentService {
     private final SecurityService securityService;
     private final EmailService emailService;
 
+    @Value("${spring.mail.username}")
+    private String sender;
+    @Value("${website.domain.name}")
+    private String websiteName;
+    @Value("${url}")
+    private String url;
+
     @Override
     public void updatePaymentStatus(UUID patientId) {
         Appointment appointment = appointmentRepo.findById(patientId).orElseThrow();
@@ -39,6 +47,8 @@ public class PaymentServiceImpl implements PaymentService {
         Doctor doctor = doctorService.getDoctor(appointment.getDoctor().getId());
         User currentUser = securityService.currentUser();
 
+        String contactUs = "mailto:"+sender;
+        String joinButton =url+"/doctor/videocall?roomID=4569";
 
         Email email = new Email();
         email.setReceiver(currentUser.getEmail());
@@ -50,6 +60,10 @@ public class PaymentServiceImpl implements PaymentService {
         model.put("appointmentTime", appointment.getAppointmentTime());
         model.put("consultationFee", doctor.getConsultancyFee());
         model.put("currentYear", LocalDate.now().getYear());
+        model.put("email",contactUs);
+        model.put("websiteName",websiteName);
+        model.put("joinButton",joinButton);
+
         email.setModel(model);
         email.setTemplateName("appointment-confirmation-patient.ftl");
 
