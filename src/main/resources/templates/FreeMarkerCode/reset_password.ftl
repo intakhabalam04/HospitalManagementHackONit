@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Reset Password</title>
     <style>
         body {
@@ -18,8 +19,8 @@
             background-color: #fff;
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border: 1px solid #ddd; /* Added border */
-            border-radius: 5px; /* Optional: Add border-radius for rounded corners */
+            border: 1px solid #ddd;
+            border-radius: 5px;
         }
 
         h2 {
