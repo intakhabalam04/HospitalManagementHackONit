@@ -174,3 +174,8 @@ footer {
   color: #1d05f2;
   font-family: cursive;
 }
+.logo_img{
+border: 2px solid black;
+border-radius: 50px;
+
+}
