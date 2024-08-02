@@ -84,7 +84,6 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public MedicineSuggestion recommend(String medicine) {
-        System.out.println(medicine);
         try {
             RestTemplate restTemplate = new RestTemplate();
             String url = FLASK_SERVER_URL + "/recommend";
