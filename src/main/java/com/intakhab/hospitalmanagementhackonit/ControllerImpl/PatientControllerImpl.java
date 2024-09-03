@@ -5,6 +5,7 @@ import com.intakhab.hospitalmanagementhackonit.Model.*;
 import com.intakhab.hospitalmanagementhackonit.Repository.AppointmentRepo;
 import com.intakhab.hospitalmanagementhackonit.Service.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -28,6 +29,7 @@ public class PatientControllerImpl implements PatientController{
     private final SecurityService securityService;
     private final InsuranceService insuranceService;
     private final AppointmentRepo appointmentRepo;
+
     @GetMapping("/home")
     public ModelAndView home() {
         String viewName = "Patient/home";
@@ -35,14 +37,17 @@ public class PatientControllerImpl implements PatientController{
         model.put("currentuser", securityService.currentUser());
         return new ModelAndView(viewName, model);
     }
+
     @GetMapping("/book-appointment")
     public ModelAndView bookAppointment() {
         return new ModelAndView("Patient/book-appointment");
     }
+
     @GetMapping("/book_appointment")
     public ModelAndView bookAppointmentByChatbot() {
         return new ModelAndView("Patient/book-appointment1");
     }
+
     @PostMapping("/book-appointment")
     public ResponseEntity<?> bookAppointment1(@RequestBody Appointment appointment) {
         try {
@@ -58,10 +63,12 @@ public class PatientControllerImpl implements PatientController{
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
         }
     }
+
     @GetMapping("/appointment-history")
     public ModelAndView appointmentHistory() {
         return new ModelAndView("Patient/appointment-history");
     }
+
     @GetMapping("/all-appointments")
     public ResponseEntity<?> allAppointments() {
         try {
@@ -80,6 +87,7 @@ public class PatientControllerImpl implements PatientController{
             return ResponseEntity.badRequest().body("Error: " + e.getMessage());
         }
     }
+
     @GetMapping("/chatbot")
     public ModelAndView chatbot() {
         String viewName = "Patient/chatbot";
@@ -87,6 +95,7 @@ public class PatientControllerImpl implements PatientController{
         model.put("currentuser", securityService.currentUser());
         return new ModelAndView(viewName, model);
     }
+
     @PostMapping("/chatbot")
     public ResponseEntity<?> chatbot1(@RequestBody ChatBot chatBot) {
         try {
@@ -95,6 +104,7 @@ public class PatientControllerImpl implements PatientController{
             return ResponseEntity.badRequest().body("Error: " + e.getMessage());
         }
     }
+
     @GetMapping("/videocall")
     public ModelAndView videoCall(@RequestParam String roomID, @RequestParam String appointmentid) {
         boolean appointmentStatus = userService.updateAppointmentStatus(appointmentid, roomID);
