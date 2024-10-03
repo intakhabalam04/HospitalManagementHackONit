@@ -117,34 +117,28 @@ button:hover {
         padding: 15px;
         max-width: 100%;
         padding: 20px;
-        /* background-color: #52e9ca; */
         border-radius: 10px;
         margin: 20px auto 20px 225px;
     }
-
     table, th, td {
         font-size: 14px;
     }
 }
-
 @media (max-width: 480px) {
     .content {
         padding: 10px;
         max-width: 100%;
         padding: 20px;
-        /* background-color: #52e9ca; */
+
         border-radius: 10px;
         margin: 20px auto 20px 225px;
     }
-
     h1 {
         font-size: 24px;
     }
-
     table, th, td {
         font-size: 12px;
     }
-
     .modal-content {
         width: 90%;
     }

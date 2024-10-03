@@ -5,7 +5,6 @@ body {
     background-color: #ddddd6;
     transition: background-color 0.3s;
 }
-
 .content {
     max-width: 40%;
     margin: 20px auto;
@@ -16,26 +15,22 @@ body {
     transition: box-shadow 0.3s;
     text-align: center; 
 }
-
 h1, h2 {
     font-size: 1.5rem;
     color: #333;
     margin-bottom: 10px;
     transition: color 0.3s;
 }
-
 p {
     font-size: 1rem;
     color: #666;
     margin-bottom: 10px;
     transition: color 0.3s;
 }
-
 .btn-container {
     display: flex;
     justify-content: center;
 }
-
 .btn2 {
     display: inline-block;
     padding: 10px 20px;
@@ -47,27 +42,21 @@ p {
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s ease;
 }
-
 .btn2:hover {
     background-color: #0056b3;
     transform: scale(1.05);
 }
-
-/* Responsive Styles */
 @media (max-width: 600px) {
     h1, h2 {
         font-size: 1.25rem;
     }
-
     p {
         font-size: 0.875rem;
     }
-
     .btn2 {
         padding: 8px 16px;
         margin: 8px;
     }
-
     .content {
         max-width: 70%;
     }

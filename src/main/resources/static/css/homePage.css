@@ -6,11 +6,9 @@ html {
     margin: 0px !important;
     padding: 0px !important;
 }
-
 * {
     text-decoration: none !important;
 }
-
 .nav {
     position: fixed;
     z-index: 1000;
@@ -22,34 +20,27 @@ html {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    /* padding: 0 25px; */
     background-color: rgb(139, 209, 247);
     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.10);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
-
 .nav .links {
     display: flex;
     align-items: center;
 }
-
 .nav .links a {
     margin-right: 25px;
     font-size: 17px;
     font-weight: 600;
     color: #000;
 }
-
 .nav .links .mainlink {
     color: #e0501b;
-    /* margin-left: 70px; */
 }
-
 .nav .links a:hover {
     color: #007bff;
 }
-
 .nav .button,
 .nav .buttn {
     padding: 8.5px 34px;
@@ -61,17 +52,13 @@ html {
     border-radius: 8px;
     font-family: 'Playfair Display', serif;
 }
-
 .nav .button {
     margin-left: auto;
-    /* margin-right: 15px; */
 }
-
 .nav .buttn:hover,
 .nav .button:hover {
     color: #da0d0d;
 }
-
 .landing {
     display: flex;
     flex-direction: row;
@@ -80,19 +67,16 @@ html {
     padding: 0 10vw;
     height: 100vh;
 }
-
 .landingText h1 {
     font-size: 6vw;
     margin: 0 !important;
 }
-
 .landingText h2 {
     font-size: 17px;
     line-height: 1.8;
     color: #777;
     font-family: 'Playfair Display', serif;
 }
-
 .about {
     padding: 50px;
     display: flex;
@@ -100,30 +84,24 @@ html {
     justify-content: space-evenly;
     align-items: center;
 }
-
 .aboutText {
     padding: 0 50px;
 }
-
 .aboutText h1 {
     margin-left: 100px;
 }
-
 .aboutList {
     width: 50%;
 }
-
 .aboutList ol {
     list-style: none;
 }
-
 .aboutList ol li {
     font-size: 34px;
     position: relative;
     margin-bottom: 20px;
     border-bottom: 1px solid #ebebeb;
 }
-
 .aboutList ol li p {
     font-size: 16px;
     color: #000;
@@ -131,22 +109,18 @@ html {
     line-height: 30px;
     opacity: 0.6;
 }
-
 .aboutList ol li span {
     position: absolute;
     line-height: 25px;
     font-weight: 600;
 }
-
 .infoSection {
     padding: 40px 10vw;
 }
-
 .infoHeader {
     text-align: center;
     margin-bottom: 40px;
 }
-
 .infoCards {
     display: flex;
     flex-direction: row;
@@ -154,7 +128,6 @@ html {
     align-items: center;
     flex-wrap: wrap;
 }
-
 .infoCards .card {
     position: relative;
     height: 360px;
@@ -165,21 +138,17 @@ html {
     border: 2px solid white;
     border-radius: 10px;
 }
-
 .cardcontent {
     padding: 20px;
 }
-
 .cardcontent h2 {
     text-align: center;
 }
-
 .cardcontent p {
     line-height: 1.5;
     opacity: 0.6;
     text-align: center;
 }
-
 .banner {
     padding: 50px;
     background-color: #2f8be0;
@@ -189,52 +158,42 @@ html {
     align-items: center;
     text-align: center;
 }
-
 .bannerText h1 {
     font-size: 3vw;
     color: black;
     font-weight: 600;
 }
-
 .footer {
     padding: 40px 0;
     background-color: #333;
     color: #fff;
     text-align: center;
 }
-
 .footer a {
     color: #fff;
     text-decoration: none;
     margin: 0 10px;
 }
-
 .footer a:hover {
     color: blue;
 }
-
 .footer .footer-links,
 .footer .social-links {
     margin: 10px 0;
 }
-
 .logo_img {
     display: flex;
     align-items: center;
 }
-
 .logo_img img {
     height: 80px;
     width: 80px;
     border-radius: 50%;
     margin-right: 10px;
 }
-
-
 .hamburger-menu {
     display: none;
 }
-
 .hamburger-icon {
     width: 30px;
     height: 30px; 
@@ -253,8 +212,6 @@ html {
     font-size: 15px; 
     margin-left: 5px;
 }
-
-
 @media only screen and (max-width: 1100px) {
     .nav {
         flex-direction: row; 
@@ -262,22 +219,18 @@ html {
         padding: 10px; 
         height: 60px;
     }
-
     .jansevak {
         font-size: 15px; 
         margin-left: 10px;
     }
-
     .hamburger-menu {
         display: flex; 
         align-items: center;
     }
-
     .hamburger-icon {
         width: 25px; 
         height: 25px;
     }
-
     .nav .links {
         display: none;
         flex-direction: column;
@@ -295,11 +248,9 @@ html {
         z-index: 999;
         transition: all 0.3s ease-in-out;
     }
-
     .nav .links.show {
         display: flex; 
     }
-
     .nav .links a {
         display: block;
         padding: 10px 0;
@@ -326,20 +277,16 @@ html {
         text-align: center; 
         padding: 0;
     }
-
     .aboutText h1 {
         text-align: center; 
         margin-left: -5px; 
     }
-
     .about {
         flex-direction: column;
     }
-
     .purna {
         margin: 20px auto;
     }
-
     .aboutList {
         width: 100%;
         margin-top: 20px;
@@ -347,12 +294,10 @@ html {
         flex-direction: column;
         align-items: center;
     }
-
     .aboutList ol {
         width: 100%;
         text-align: center;
     }
-
     .aboutList ol li {
         width: 100%;
         font-size: 24px;
@@ -360,7 +305,6 @@ html {
         margin-bottom: 30px;
         text-align: center;
     }
-
     .aboutList ol li p {
         font-size: 16px;
         color: #000;
@@ -376,6 +320,4 @@ html {
         border-radius: 50%;
         margin-right: 10px;
     }
-    
-    
 }

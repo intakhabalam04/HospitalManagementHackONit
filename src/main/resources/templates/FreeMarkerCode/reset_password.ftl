@@ -10,7 +10,6 @@
             background-color: #f4f4f4;
             color: #333;
         }
-
         .container {
             width: 90%;
             max-width: 600px;
@@ -18,18 +17,15 @@
             background-color: #fff;
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border: 1px solid #ddd; /* Added border */
-            border-radius: 5px; /* Optional: Add border-radius for rounded corners */
+            border: 1px solid #ddd;
+            border-radius: 5px;
         }
-
         h2 {
             color: #ff5a5f;
         }
-
         p {
             line-height: 1.6;
         }
-
         .button {
             display: inline-block;
             padding: 10px 20px;
@@ -39,13 +35,11 @@
             border-radius: 5px;
             font-weight: bold;
         }
-
         .footer {
             margin-top: 20px;
             font-size: 12px;
             color: #888;
         }
-
         .timer {
             font-weight: bold;
             color: #ff5a5f;
