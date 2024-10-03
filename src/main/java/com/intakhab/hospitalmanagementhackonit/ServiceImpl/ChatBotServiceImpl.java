@@ -9,6 +9,7 @@ import com.intakhab.hospitalmanagementhackonit.Service.ChatBotDbService;
 import com.intakhab.hospitalmanagementhackonit.Service.ChatBotService;
 import com.intakhab.hospitalmanagementhackonit.Service.SecurityService;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -17,7 +18,8 @@ import java.time.LocalDateTime;
 @Service
 public class ChatBotServiceImpl implements ChatBotService {
 
-    private static final String FLASK_SERVER_URL = "http://localhost:5000";
+    @Value("${flask.server.url}")
+    private String FLASK_SERVER_URL;
 
     private final ChatBotDbService chatBotDbService;
     private final ChatBotRepo chatBotRepo;
