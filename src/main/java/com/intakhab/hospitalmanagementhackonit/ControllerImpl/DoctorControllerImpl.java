@@ -45,11 +45,8 @@ public class DoctorControllerImpl implements DoctorController {
 
     @GetMapping("/videocall")
     public ModelAndView videocall(@RequestParam String roomID) {
-        System.out.println("1");
         String viewName = "videocall";
-        System.out.println("2");
         Map<String, Object> model = new HashMap<>();
-        System.out.println("3");
         return new ModelAndView(viewName);
     }
 
@@ -75,7 +72,6 @@ public class DoctorControllerImpl implements DoctorController {
 
     @PostMapping("/update-appointment")
     public ResponseEntity<?> updateAppointment(@RequestBody Appointment appointment) {
-        System.out.println("4");
         return ResponseEntity.ok(doctorService.updateAppointment(appointment.getId(), appointment.getDays()));
     }
 

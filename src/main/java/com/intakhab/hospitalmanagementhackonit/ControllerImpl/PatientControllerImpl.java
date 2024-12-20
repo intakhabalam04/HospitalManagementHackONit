@@ -5,7 +5,6 @@ import com.intakhab.hospitalmanagementhackonit.Model.*;
 import com.intakhab.hospitalmanagementhackonit.Repository.AppointmentRepo;
 import com.intakhab.hospitalmanagementhackonit.Service.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -77,13 +76,12 @@ public class PatientControllerImpl implements PatientController{
             return ResponseEntity.badRequest().body("Error: " + e.getMessage());
         }
     }
+
     @GetMapping("/all")
     public ResponseEntity<?> allDoctors() {
         try {
-            System.out.println("All Doctors");
             return ResponseEntity.ok(doctorService.getAllDoctors());
         } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
             return ResponseEntity.badRequest().body("Error: " + e.getMessage());
         }
     }
@@ -146,10 +144,10 @@ public class PatientControllerImpl implements PatientController{
         model.put("bloodDonate", new BloodDonation());
         return new ModelAndView(viewName, model);
     }
+
     @PostMapping("/blood-donation")
     public ResponseEntity<?> registerBloodDonation(@RequestBody BloodDonation bloodDonation) {
         try {
-            System.out.println(bloodDonation);
             BloodDonation savedBloodDonation = userService.saveBloodDonation(bloodDonation);
             Map<String, Object> response = new HashMap<>();
             response.put("success", true);
@@ -172,7 +170,6 @@ public class PatientControllerImpl implements PatientController{
     @PostMapping("/donate-organs")
     public ResponseEntity<?> donateOrgans(@RequestBody OrganDonation organDonation) {
         try {
-            System.out.println(organDonation);
             OrganDonation savedOrganDonation = userService.saveOrganDonation(organDonation);
             Map<String, Object> response = new HashMap<>();
             response.put("success", true);
@@ -200,7 +197,6 @@ public class PatientControllerImpl implements PatientController{
     }
     @GetMapping("/insurance")
     public ModelAndView insurance(@RequestParam int plan) {
-        System.out.println(plan);
         return new ModelAndView("Patient/insurance");
     }
     @PostMapping("/insurance")

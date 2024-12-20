@@ -90,7 +90,6 @@ public class DoctorServiceImpl implements DoctorService {
             String requestPayLoad = "{\"medicine\": \"" + medicine + "\"}";
             ChatBotServiceImpl.ChatBotResponse response = restTemplate.postForObject(url, requestPayLoad, ChatBotServiceImpl.ChatBotResponse.class);
             assert response != null;
-            System.out.println(response);
             return new MedicineSuggestion(medicine, response.getResponse());
         } catch (Exception e) {
             e.printStackTrace();
@@ -185,7 +184,6 @@ public class DoctorServiceImpl implements DoctorService {
             Phrase p1 = new Phrase("PRESCRIPTION \n", p);
             ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_LEFT, p1, 130, 680, 0);
 
-            System.out.println(drugsName);
             // Split drugsName by commas
             String[] details = drugsName.split(",");
 
@@ -251,7 +249,6 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public Object updateAppointment(UUID id, int days) {
-        System.out.println("5");
         // Fetch the appointment from the database using the id
         Appointment appointment = appointmentRepo.findById(id).orElseThrow(() -> new RuntimeException("Appointment not found"));
 
@@ -263,7 +260,6 @@ public class DoctorServiceImpl implements DoctorService {
         }
         // Save the updated appointment back to the database
         appointmentRepo.save(appointment);
-        System.out.println("6");
         return new AppointmentDto();
     }
 

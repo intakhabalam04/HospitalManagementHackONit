@@ -7,24 +7,17 @@ import com.intakhab.hospitalmanagementhackonit.Model.User;
 import com.intakhab.hospitalmanagementhackonit.Repository.UserRepo;
 import com.intakhab.hospitalmanagementhackonit.Service.ContactService;
 import com.intakhab.hospitalmanagementhackonit.Service.EmailService;
-import com.intakhab.hospitalmanagementhackonit.Service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Random;
 
 @Service
+@RequiredArgsConstructor
 public class ContactServiceImpl implements ContactService {
-
     private final UserRepo userRepo;
     private final EmailService emailService;
-
-    public ContactServiceImpl(UserRepo userRepo, EmailService emailService) {
-        this.userRepo = userRepo;
-        this.emailService = emailService;
-    }
-
     @Override
     public void sendMessage(Contact contact) {
         List<User> adminUsers = userRepo.findAll().
@@ -39,8 +32,6 @@ public class ContactServiceImpl implements ContactService {
             email.setMessage(contact.getMessage());
             email.setReceiver(randomAdmin.getEmail());
             emailService.sendEmail(email);
-
-
         }
     }
 }

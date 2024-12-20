@@ -48,7 +48,6 @@ public class EmailServiceImpl implements EmailService {
             return true;
 
         } catch (Exception e) {
-            System.out.println("Error in sending email: " + e.getMessage());
             return false;
         }
     }
@@ -65,7 +64,6 @@ public class EmailServiceImpl implements EmailService {
             String fromEmail = sender;
             String fromName = websiteName;
             helper.setFrom(fromEmail, fromName);
-
 
             Template template = configuration.getTemplate(email.getTemplateName());
             String html = FreeMarkerTemplateUtils.processTemplateIntoString(template, email.getModel());

@@ -21,7 +21,6 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class AdminServiceImpl implements AdminService {
-
     private final DoctorRepo doctorRepo;
     private final PasswordEncoder passwordEncoder;
     private final UserRepo userRepo;
@@ -33,7 +32,6 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public void addDoctor(Doctor doctor) {
-        System.out.println("Doctor: " + doctor.toString());
         try {
             Doctor newDoctor = new Doctor();
             newDoctor.setName(doctor.getName());
@@ -83,7 +81,6 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void deleteDoctor(UUID id) {
         try {
-            System.out.println("Doctor Id: " + id);
             doctorRepo.deleteById(id);
         } catch (Exception e) {
             e.printStackTrace();

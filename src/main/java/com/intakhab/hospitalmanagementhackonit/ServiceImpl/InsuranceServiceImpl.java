@@ -65,7 +65,6 @@ public class InsuranceServiceImpl implements InsuranceService {
 
         User user = securityService.currentUser();
         List<Insurance> insuranceList = user.getInsuranceList();
-        System.out.println(insuranceList);
         if (insuranceList.isEmpty()) {
             List<Insurance> insuranceList1 = new ArrayList<>();
             user.setInsuranceList(insuranceList1);
@@ -89,8 +88,6 @@ public class InsuranceServiceImpl implements InsuranceService {
                 "Policy End Date: " + insurance1.getPolicyEndDate() + "\n" +
                 "Thank you for choosing us.");
         emailService.sendEmail(email);
-
-
         return insuranceRepo.save(insurance1);
     }
 
