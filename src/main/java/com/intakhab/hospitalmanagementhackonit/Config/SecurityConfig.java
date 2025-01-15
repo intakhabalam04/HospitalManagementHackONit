@@ -42,6 +42,7 @@ public class SecurityConfig {
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
                 .defaultSuccessUrl("/home", true).permitAll()
+            
                 .successHandler(customSuccessHandler)
                 .and()
                 .exceptionHandling()
