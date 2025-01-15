@@ -8,6 +8,7 @@ class HospitalManagementHackONitApplicationTests {
 
     @Test
     void contextLoads() {
+
     }
 
 }

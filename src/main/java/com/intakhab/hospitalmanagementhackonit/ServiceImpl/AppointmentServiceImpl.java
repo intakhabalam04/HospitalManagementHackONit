@@ -29,7 +29,6 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class AppointmentServiceImpl implements AppointmentService {
-
     private final DoctorService doctorService;
     private final AppointmentRepo appointmentRepo;
     private final DoctorRepo doctorRepo;
@@ -152,7 +151,6 @@ public class AppointmentServiceImpl implements AppointmentService {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
         return mergedPdfStream.toByteArray();
     }
 

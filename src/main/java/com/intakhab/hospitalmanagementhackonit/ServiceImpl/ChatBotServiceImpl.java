@@ -9,6 +9,7 @@ import com.intakhab.hospitalmanagementhackonit.Service.ChatBotDbService;
 import com.intakhab.hospitalmanagementhackonit.Service.ChatBotService;
 import com.intakhab.hospitalmanagementhackonit.Service.SecurityService;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -16,35 +17,25 @@ import org.springframework.web.client.RestTemplate;
 import java.time.LocalDateTime;
 
 @Service
+@RequiredArgsConstructor
 public class ChatBotServiceImpl implements ChatBotService {
+
+    private final ChatBotDbService chatBotDbService;
+    private final ChatBotRepo chatBotRepo;
+    private final SecurityService securityService;
+    private final DoctorRepo doctorRepo;
 
     @Value("${flask.server.url}")
     private String FLASK_SERVER_URL;
 
-    private final ChatBotDbService chatBotDbService;
-    private final ChatBotRepo chatBotRepo;
-
-    private final SecurityService securityService;
-    private final DoctorRepo doctorRepo;
-
-    public ChatBotServiceImpl(ChatBotDbService chatBotDbService, ChatBotRepo chatBotRepo, SecurityService securityService, DoctorRepo doctorRepo) {
-        this.chatBotDbService = chatBotDbService;
-        this.chatBotRepo = chatBotRepo;
-        this.securityService = securityService;
-        this.doctorRepo = doctorRepo;
-    }
-
-
     @Override
     public ChatBot getResponse(String message) {
-        System.out.println(message);
         try {
             RestTemplate restTemplate = new RestTemplate();
             String url = FLASK_SERVER_URL + "/chat";
             String requestPayLoad = "{\"input\": \"" + message + "\"}";
             ChatBotResponse response = restTemplate.postForObject(url, requestPayLoad, ChatBotResponse.class);
 
-            System.out.println(response);
 
             assert response != null;
             if (response.getQuestionNo().equals("1")) {

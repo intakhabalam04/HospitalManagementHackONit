@@ -4,6 +4,7 @@ import com.intakhab.hospitalmanagementhackonit.Enum.UserAction;
 import com.intakhab.hospitalmanagementhackonit.Enum.UserRole;
 import com.intakhab.hospitalmanagementhackonit.Model.User;
 import com.intakhab.hospitalmanagementhackonit.Repository.UserRepo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -18,17 +19,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
 
     private final UserRepo userRepo;
 
-    public CustomUserDetailsService(UserRepo userRepo) {
-        this.userRepo = userRepo;
-    }
 
     @Override
     public UserDetails loadUserByUsername(String emailPhoneUsername) throws UsernameNotFoundException {
-        System.out.println(emailPhoneUsername);
         User user = userRepo.findByEmailOrMobileOrUsername(emailPhoneUsername, emailPhoneUsername, emailPhoneUsername);
         if (user == null) {
             throw new UsernameNotFoundException("Username or password not found");

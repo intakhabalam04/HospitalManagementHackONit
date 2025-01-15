@@ -24,9 +24,7 @@ public class PaymentControllerImpl implements PaymentController {
     @PostMapping("/patient/create_order")
     @ResponseBody
     public String createOrder(@RequestBody Map<String, Object> data) {
-        System.out.println(data);
         double amt = Double.parseDouble(data.get("amount").toString());
-        System.out.println(amt);
         try {
             RazorpayClient client = new RazorpayClient("", "");
             JSONObject object = new JSONObject();
@@ -35,7 +33,6 @@ public class PaymentControllerImpl implements PaymentController {
             object.put("receipt", "txn_123456");
             object.put("payment_capture", 1);
             Order order = client.Orders.create(object);
-            System.out.println(order);
             return order.toString();
         } catch (RazorpayException e) {
             e.printStackTrace();

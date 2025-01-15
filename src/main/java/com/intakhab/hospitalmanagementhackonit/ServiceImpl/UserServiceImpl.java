@@ -39,6 +39,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean updateAppointmentStatus(String appointmentId, String roomID) {
         UUID uuid = UUID.fromString(appointmentId);
+
         Optional<Appointment> optionalAppointment = appointmentRepo.findById(uuid);
         if (optionalAppointment.isEmpty()) {
             return false;
